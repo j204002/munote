@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MU:note — 연습이 저절로 기록되는 곳</title>
+<meta name="description" content="악기 소리를 인식해 연습 시간을 자동으로 기록하는 iOS 앱. 소리는 저장되지 않습니다." />
+<style>
+  :root {
+    --bg: #f7f7f6;
+    --ink: #111;
+    --gray: #6b6b6b;
+    --line: #e3e3e0;
+    --card: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero { padding: 110px 0 80px; text-align: center; }
+  .wordmark {
+    font-size: clamp(40px, 8vw, 64px);
+    font-weight: 200;
+    letter-spacing: 0.42em;
+    margin-left: 0.42em; /* letter-spacing 우측 잉여 보정 */
+  }
+  .tagline { margin-top: 22px; font-size: clamp(17px, 3vw, 21px); color: var(--ink); font-weight: 400; }
+  .sub { margin-top: 12px; font-size: 15px; color: var(--gray); }
+  .beta-pill {
+    display: inline-block; margin-top: 34px;
+    border: 1px solid var(--ink); border-radius: 999px;
+    padding: 9px 22px; font-size: 13px; letter-spacing: 0.08em;
+  }
+
+  /* Sections */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .kicker { font-size: 12px; letter-spacing: 0.28em; color: var(--gray); text-transform: uppercase; text-align: center; }
+  h2 { font-size: clamp(22px, 4vw, 30px); font-weight: 600; text-align: center; margin-top: 10px; }
+  .lead { text-align: center; color: var(--gray); font-size: 15px; margin-top: 14px; max-width: 620px; margin-left: auto; margin-right: auto; }
+
+  /* How it works */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
+  .step { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 30px 24px; text-align: center; }
+  .step .num { font-size: 34px; font-weight: 200; color: var(--ink); font-variant-numeric: tabular-nums; }
+  .step h3 { font-size: 16px; font-weight: 600; margin-top: 12px; }
+  .step p { font-size: 13.5px; color: var(--gray); margin-top: 8px; }
+
+  /* Features */
+  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 48px; }
+  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 30px 28px; }
+  .feature h3 { font-size: 16.5px; font-weight: 600; }
+  .feature p { font-size: 14px; color: var(--gray); margin-top: 10px; }
+
+  /* Screens */
+  .shots { display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; margin-top: 48px; }
+  .shot { width: 250px; }
+  .shot img {
+    width: 100%; display: block; border-radius: 34px;
+    border: 1px solid var(--line);
+    box-shadow: 0 18px 44px rgba(0,0,0,0.09);
+  }
+  .shot figcaption { text-align: center; font-size: 13px; color: var(--gray); margin-top: 14px; }
+
+  /* Numbers */
+  .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; text-align: center; }
+  .num-card .big { font-size: clamp(34px, 6vw, 52px); font-weight: 200; font-variant-numeric: tabular-nums; }
+  .num-card .cap { font-size: 13px; color: var(--gray); margin-top: 6px; }
+
+  /* Privacy */
+  .privacy-list { max-width: 640px; margin: 42px auto 0; }
+  .privacy-item { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .privacy-item:last-child { border-bottom: none; }
+  .privacy-item .mark { flex: none; font-weight: 600; }
+
+  /* Try */
+  .try-box { text-align: center; margin-top: 44px; }
+  .btn {
+    display: inline-block; background: var(--ink); color: #fff; text-decoration: none;
+    border-radius: 999px; padding: 16px 38px; font-size: 15px; font-weight: 600;
+  }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); margin-left: 10px; }
+  .try-note { font-size: 13px; color: var(--gray); margin-top: 16px; }
+
+  footer { border-top: 1px solid var(--line); padding: 46px 0 60px; text-align: center; color: var(--gray); font-size: 13px; }
+  footer .fm { letter-spacing: 0.3em; margin-left: 0.3em; color: var(--ink); font-weight: 300; font-size: 15px; }
+
+  @media (max-width: 700px) {
+    .steps, .features, .nums { grid-template-columns: 1fr; }
+    .hero { padding: 80px 0 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <div class="wordmark">MU:note</div>
+  <p class="tagline">연습이 저절로 기록되는 곳</p>
+  <p class="sub">악기 소리를 인식해 연습 시간을 자동으로 기록하는 iOS 앱</p>
+  <div class="beta-pill">TestFlight 클로즈 베타 준비 중</div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Problem</div>
+    <h2>음악가의 하루는 연습으로 채워지는데,<br />그 시간은 어디에도 남지 않습니다</h2>
+    <p class="lead">
+      수기 기록은 귀찮아서 끊기고, 타이머 앱은 시작·정지를 매번 눌러야 해서 꾸준히 쓰이지 않습니다.
+      기록되지 않은 연습은 시간이 지나면 기억에서도 사라집니다.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">How it works</div>
+    <h2>시작 버튼 하나, 나머지는 자동</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>연습 시작</h3>
+        <p>폰을 옆에 두고 시작 버튼을 누른 뒤, 연주만 하면 됩니다.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>소리를 듣고 판단</h3>
+        <p>기기 안의 AI가 악기 소리일 때만 타이머를 진행합니다. 말소리·생활소음은 연습으로 치지 않습니다.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>기록이 자산으로</h3>
+        <p>세션이 끝나면 짧은 회고와 함께 달력에 쌓입니다. 꾸준함이 한눈에 보입니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Features</div>
+    <h2>전문 연주자를 위한 기록 도구</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>악기 소리 인식 자동 기록</h3>
+        <p>온디바이스 AI 분류로 피아노·현악기·관악기·성악을 실측 검증했습니다. 무음 10초까지는 악보를 읽는 시간으로 보호하고, 그 이상 쉬면 정직하게 제외합니다.</p>
+      </div>
+      <div class="feature">
+        <h3>집중모드</h3>
+        <p>연습 중 앱을 벗어난 시간은 "이탈"로 담백하게 기록됩니다. 단, 이탈 중에도 악기 소리가 들리면 연습으로 인정 — 악보 앱을 보며 연주하는 시간을 지킵니다.</p>
+      </div>
+      <div class="feature">
+        <h3>MU:note의 한마디</h3>
+        <p>세션을 마치면 기록을 근거로 한 짧은 관찰과 격려가 도착합니다. 과장하지 않고, 데이터에 없는 말은 하지 않습니다.</p>
+      </div>
+      <div class="feature">
+        <h3>달력에 쌓이는 연습 인생</h3>
+        <p>연습량에 따라 진해지는 달력, 하루 20분 이상만 인정하는 연속 기록. 부풀리지 않는 숫자라서 나중에 봐도 믿을 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Screens</div>
+    <h2>실제 앱 화면</h2>
+    <div class="shots">
+      <figure class="shot">
+        <img src="img/onboarding.png" alt="온보딩 화면 — 악기 선택과 시작 방법" />
+        <figcaption>가입 없이도 바로 시작</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/home.png" alt="홈 화면 — 오늘 연습 시간과 연습 시작 버튼" />
+        <figcaption>큰 시작 버튼 하나의 홈</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Today</div>
+    <h2>지금까지 만들어진 것</h2>
+    <div class="nums">
+      <div class="num-card">
+        <div class="big">5</div>
+        <div class="cap">실측 검증한 악기군<br />(그랜드·업라이트 피아노 / 바이올린 / 플룻 / 성악)</div>
+      </div>
+      <div class="num-card">
+        <div class="big">4</div>
+        <div class="cap">지원 언어<br />(한국어 · English · Español · Deutsch)</div>
+      </div>
+      <div class="num-card">
+        <div class="big">238</div>
+        <div class="cap">자동 테스트<br />(감지 규칙은 연습실 실측 수치로 고정)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Privacy</div>
+    <h2>소리는 저장되지 않습니다</h2>
+    <div class="privacy-list">
+      <div class="privacy-item"><span class="mark">01</span><span>감지에 쓰인 오디오는 기기 메모리에서 분류 직후 폐기됩니다. 남는 것은 시간과 판정 결과뿐입니다.</span></div>
+      <div class="privacy-item"><span class="mark">02</span><span>소리 감지가 켜져 있는 동안 화면에 항상 표시됩니다.</span></div>
+      <div class="privacy-item"><span class="mark">03</span><span>메모와 곡 이름은 어떤 경우에도 AI 서버로 전송되지 않습니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Try</div>
+    <h2>직접 사용해보기</h2>
+    <p class="lead">iOS 앱으로 개발 중이며 TestFlight 클로즈 베타를 준비하고 있습니다.</p>
+    <div class="try-box">
+      <!-- Appetize 링크 준비되면 href 교체 후 주석 해제
+      <a class="btn" href="APPETIZE_URL" target="_blank" rel="noopener">브라우저에서 직접 만져보기</a>
+      -->
+      <p class="try-note">체험 링크와 시연 영상은 곧 이 자리에 추가됩니다.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fm">MU:note</div>
+  <p style="margin-top:10px">MUSU · 2026 · 악기 연습 자동 기록</p>
+</footer>
+
+</body>
+</html>
