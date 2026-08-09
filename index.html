@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MU:note — 연습이 저절로 기록되는 곳</title>
 <meta name="description" content="악기 소리를 인식해 연습 시간을 자동으로 기록하는 iOS 앱. 소리는 저장되지 않습니다." />
+<link rel="icon" type="image/png" href="img/app-icon.png" />
+<link rel="apple-touch-icon" href="img/app-icon.png" />
 <style>
   :root {
     --bg: #f7f7f6;
@@ -26,12 +28,8 @@
 
   /* Hero */
   .hero { padding: 110px 0 80px; text-align: center; }
-  .wordmark {
-    font-size: clamp(40px, 8vw, 64px);
-    font-weight: 200;
-    letter-spacing: 0.42em;
-    margin-left: 0.42em; /* letter-spacing 우측 잉여 보정 */
-  }
+  .logo { width: clamp(250px, 52vw, 430px); display: block; margin: 0 auto; }
+  .hero-kicker { font-size: 12px; letter-spacing: 0.3em; color: var(--gray); margin-bottom: 30px; }
   .tagline { margin-top: 22px; font-size: clamp(17px, 3vw, 21px); color: var(--ink); font-weight: 400; }
   .sub { margin-top: 12px; font-size: 15px; color: var(--gray); }
   .beta-pill {
@@ -101,8 +99,9 @@
 <body>
 
 <header class="hero wrap">
-  <div class="wordmark">MU:note</div>
-  <p class="tagline">연습이 저절로 기록되는 곳</p>
+  <div class="hero-kicker">MUSU의 첫 번째 서비스</div>
+  <img class="logo" src="img/logo-horizontal.png" alt="MU:note" />
+  <p class="tagline" style="margin-top:34px">연습은 흘러가도, 기록은 남도록.</p>
   <p class="sub">악기 소리를 인식해 연습 시간을 자동으로 기록하는 iOS 앱</p>
   <div class="beta-pill">TestFlight 클로즈 베타 준비 중</div>
 </header>
@@ -112,8 +111,8 @@
     <div class="kicker">Problem</div>
     <h2>음악가의 하루는 연습으로 채워지는데,<br />그 시간은 어디에도 남지 않습니다</h2>
     <p class="lead">
-      수기 기록은 귀찮아서 끊기고, 타이머 앱은 시작·정지를 매번 눌러야 해서 꾸준히 쓰이지 않습니다.
-      기록되지 않은 연습은 시간이 지나면 기억에서도 사라집니다.
+      기록하려면 연습 외에 또 하나의 행동을 계속 기억해야 하기 때문입니다.
+      수기·자기신고 기록은 시간이 지나면 신뢰하기 어렵고, 기록되지 않은 연습은 기억에서도 사라집니다.
     </p>
   </div>
 </section>
@@ -121,7 +120,7 @@
 <section>
   <div class="wrap">
     <div class="kicker">How it works</div>
-    <h2>시작 버튼 하나, 나머지는 자동</h2>
+    <h2>기록을 '해야 하는 일'에서<br />'자동으로 남는 것'으로 바꿉니다</h2>
     <div class="steps">
       <div class="step">
         <div class="num">1</div>
@@ -136,7 +135,7 @@
       <div class="step">
         <div class="num">3</div>
         <h3>기록이 자산으로</h3>
-        <p>세션이 끝나면 짧은 회고와 함께 달력에 쌓입니다. 꾸준함이 한눈에 보입니다.</p>
+        <p>세션이 끝나면 AI가 이번 연습을 분석해 과거 기록과 비교한 한마디를 남기고, 회고와 함께 달력에 쌓입니다.</p>
       </div>
     </div>
   </div>
@@ -156,8 +155,8 @@
         <p>연습 중 앱을 벗어난 시간은 "이탈"로 담백하게 기록됩니다. 단, 이탈 중에도 악기 소리가 들리면 연습으로 인정 — 악보 앱을 보며 연주하는 시간을 지킵니다.</p>
       </div>
       <div class="feature">
-        <h3>MU:note의 한마디</h3>
-        <p>세션을 마치면 기록을 근거로 한 짧은 관찰과 격려가 도착합니다. 과장하지 않고, 데이터에 없는 말은 하지 않습니다.</p>
+        <h3>MU:note의 한마디 — AI 세션 분석</h3>
+        <p>쌓인 기록을 근거로 AI가 이번 세션을 분석합니다. 최근 한 달의 연습 패턴·시간대·집중 흐름과 비교한 짧은 관찰과 격려가 도착합니다. 과장하지 않고, 데이터에 없는 말은 하지 않습니다.</p>
       </div>
       <div class="feature">
         <h3>달력에 쌓이는 연습 인생</h3>
@@ -170,15 +169,32 @@
 <section>
   <div class="wrap">
     <div class="kicker">Screens</div>
-    <h2>실제 앱 화면</h2>
+    <h2>실제 앱 화면 — 사용 흐름 그대로</h2>
+    <p class="lead">시작 버튼 한 번에서 자산이 되기까지, 화면 여섯 장이면 전부입니다.</p>
     <div class="shots">
       <figure class="shot">
         <img src="img/onboarding.png" alt="온보딩 화면 — 악기 선택과 시작 방법" />
-        <figcaption>가입 없이도 바로 시작</figcaption>
+        <figcaption><strong>1</strong> · 가입 없이 바로 시작</figcaption>
       </figure>
       <figure class="shot">
-        <img src="img/home.png" alt="홈 화면 — 오늘 연습 시간과 연습 시작 버튼" />
-        <figcaption>큰 시작 버튼 하나의 홈</figcaption>
+        <img src="img/home.png" alt="홈 화면 — 오늘 연습 시간과 연속 기록 배지" />
+        <figcaption><strong>2</strong> · 오늘과 연속 기록이 보이는 홈</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/focus.png" alt="집중모드 — 연주 감지 중, 타이머가 저절로 진행" />
+        <figcaption><strong>3</strong> · 소리를 들으며 저절로 기록되는 집중모드</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/reflection.png" alt="세션 회고 — AI가 분석한 한마디와 곡·유형 선택" />
+        <figcaption><strong>4</strong> · 끝나면 회고 — AI가 분석한 한마디 도착</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/calendar.png" alt="기록 달력 — 연습량에 따라 진해지는 날짜" />
+        <figcaption><strong>5</strong> · 연습량에 따라 진해지는 달력</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="img/detail.png" alt="세션 상세 — 지난 세션의 한마디와 곡·유형·메모" />
+        <figcaption><strong>6</strong> · 지난 세션도 한마디와 함께 다시</figcaption>
       </figure>
     </div>
   </div>
@@ -232,8 +248,8 @@
 </section>
 
 <footer>
-  <div class="fm">MU:note</div>
-  <p style="margin-top:10px">MUSU · 2026 · 악기 연습 자동 기록</p>
+  <img src="img/app-icon.png" alt="MU:note 아이콘" style="width:44px;border-radius:10px" />
+  <p style="margin-top:12px">MU:note — MUSU의 첫 번째 서비스 · 2026</p>
 </footer>
 
 </body>
