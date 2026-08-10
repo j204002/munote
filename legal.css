@@ -1,0 +1,24 @@
+/* MU:note 법적 문서 공용 스타일 — 랜딩과 같은 모노크롬 미니멀 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+  background: #fff;
+  color: #111;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
+.brand { font-size: 15px; font-weight: 300; letter-spacing: 0.06em; color: #111; text-decoration: none; }
+h1 { font-size: 26px; font-weight: 700; margin: 36px 0 6px; }
+.meta { font-size: 13px; color: #888; margin-bottom: 36px; }
+h2 { font-size: 17px; font-weight: 700; margin: 36px 0 10px; }
+p, li { font-size: 15px; color: #333; }
+ul { padding-left: 20px; margin: 8px 0 16px; }
+li { margin: 4px 0; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 14px; }
+th, td { border: 1px solid #e5e5e5; padding: 8px 10px; text-align: left; vertical-align: top; }
+th { background: #fafafa; font-weight: 600; }
+.note { font-size: 13px; color: #888; }
+.footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid #eee; font-size: 13px; color: #888; }
+.footer a { color: #555; }
+strong { font-weight: 700; }
