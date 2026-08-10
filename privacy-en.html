@@ -17,10 +17,12 @@
   <h2>1. What we collect</h2>
   <table>
     <tr><th>Type</th><th>Items</th><th>When</th></tr>
-    <tr><td>Required (sign-up)</td><td>Social login identifier (Kakao/Apple), email</td><td>When you sign up</td></tr>
+    <tr><td>Required (sign-up)</td><td>Kakao/Apple account identifier, email (when provided by your social account)</td><td>When you sign up</td></tr>
     <tr><td>Optional (sign-up)</td><td>Age group, gender, school</td><td>Only if you enter them</td></tr>
-    <tr><td>Service use</td><td>Practice session records (start/end time, practice and away time, instrument, practice type, piece names/notes/reflections you type), device language, timezone, app settings</td><td>While using the app</td></tr>
+    <tr><td>Service use</td><td>Practice records (start/end time, practice and away time, instrument, practice type, piece names/notes/reflections you type), device language, timezone, app settings</td><td>While using the app</td></tr>
+    <tr><td>Automatically generated</td><td>Detection program version, pause/away counts, generated encouragement notes, record created/updated timestamps, consent time and version</td><td>While using the app</td></tr>
   </table>
+  <p class="note">Guest (not signed-up) practice records are also stored on our server for syncing. They are not linked to an account, so access is lost once the app is deleted; such orphaned records will be cleaned up periodically.</p>
   <p><strong>What we never collect:</strong> the app uses your microphone to detect practice sounds, but <strong>raw audio is never stored or transmitted under any circumstances.</strong> Sound is classified on your device ("is this an instrument?") and immediately discarded. We do not access your location, contacts, or photos.</p>
 
   <h2>2. Why we use it</h2>
@@ -29,7 +31,7 @@
     <li>Practice statistics, calendar, and encouragement notes ("a note from MU:note")</li>
     <li>Account management, age verification (14+), and support</li>
   </ul>
-  <p>When generating encouragement notes, <strong>only numeric practice statistics</strong> are sent for AI processing — <strong>your typed notes and piece names are never sent.</strong></p>
+  <p>When generating encouragement notes, <strong>only summarized practice statistics (such as practice time, weekday, and time-of-day patterns), practice types, and your app language</strong> are sent for AI processing — <strong>your typed notes and piece names are never sent.</strong></p>
 
   <h2>3. Processors and international transfer</h2>
   <table>
