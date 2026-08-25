@@ -3,10 +3,59 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MU:note — 내 악기소리만 자동으로 세는 연습 기록</title>
-<meta name="description" content="연습을 시작하면, 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. iOS 앱." />
+<title>MU:note — 내 악기소리만 자동으로 세는 연습 기록 앱</title>
+<meta name="description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. 피아노·현악기·관악기·성악 지원. iOS 연습 기록 앱." />
+<meta name="keywords" content="연습기록,연습일지,연습 앱,악기 연습,피아노 연습,바이올린 연습,성악 연습,음악 전공,입시,연습 타이머,MU:note,뮤노트" />
+<link rel="canonical" href="https://j204002.github.io/munote/" />
+<link rel="alternate" hreflang="ko" href="https://j204002.github.io/munote/" />
+<link rel="alternate" hreflang="en" href="https://j204002.github.io/munote/index-en.html" />
+<link rel="alternate" hreflang="x-default" href="https://j204002.github.io/munote/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="MU:note" />
+<meta property="og:title" content="MU:note — 내 악기소리만 자동으로 세는 연습 기록" />
+<meta property="og:description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 소리는 저장하지 않습니다." />
+<meta property="og:url" content="https://j204002.github.io/munote/" />
+<meta property="og:image" content="https://j204002.github.io/munote/img/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="ko_KR" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MU:note — 내 악기소리만 자동으로 세는 연습 기록" />
+<meta name="twitter:description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 소리는 저장하지 않습니다." />
+<meta name="twitter:image" content="https://j204002.github.io/munote/img/og.png" />
 <link rel="icon" type="image/png" href="img/app-icon.png" />
 <link rel="apple-touch-icon" href="img/app-icon.png" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "MU:note",
+  "operatingSystem": "iOS",
+  "applicationCategory": "EducationalApplication",
+  "description": "내 악기소리만 자동으로 세는 연습 기록 앱. 연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 소리는 저장하지 않습니다.",
+  "url": "https://j204002.github.io/munote/",
+  "image": "https://j204002.github.io/munote/img/og.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+  "author": { "@type": "Organization", "name": "MUSU" },
+  "inLanguage": ["ko", "en", "es", "de"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "어떤 악기를 지원하나요?", "acceptedAnswer": { "@type": "Answer", "text": "피아노, 현악기, 관악기, 성악을 지원합니다. 악기마다 판단 기준이 달라서, 설정에서 고른 악기에 맞춰 인식합니다." } },
+    { "@type": "Question", "name": "소리가 녹음되나요?", "acceptedAnswer": { "@type": "Answer", "text": "아니요. 마이크로 들은 소리는 기기 안에서 판단하고 즉시 버립니다. 녹음 파일은 만들어지지 않고, 어디로도 전송되지 않습니다." } },
+    { "@type": "Question", "name": "가입해야 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "아니요. 가입하지 않아도 기록과 달력을 모두 쓸 수 있습니다. 로그인하면 기록이 서버에 보관되어, 폰을 바꾸거나 앱을 지웠다 깔아도 돌아옵니다." } },
+    { "@type": "Question", "name": "무료인가요?", "acceptedAnswer": { "@type": "Answer", "text": "네, 지금은 모두 무료로 사용할 수 있습니다." } },
+    { "@type": "Question", "name": "쉬는 시간도 연습으로 기록되나요?", "acceptedAnswer": { "@type": "Answer", "text": "아니요. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 10초가 넘는 침묵은 연습 시간에서 제외됩니다." } },
+    { "@type": "Question", "name": "안드로이드 버전은 없나요?", "acceptedAnswer": { "@type": "Answer", "text": "준비 중입니다. iOS 버전부터 출시합니다." } }
+  ]
+}
+</script>
 <style>
   :root {
     --bg: #f7f7f6;
@@ -20,105 +69,191 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
-    line-height: 1.6;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 24px; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
 
-  /* Top bar */
-  .topbar { display: flex; justify-content: flex-end; padding-top: 20px; }
-  .lang-switch { font-size: 13px; color: var(--gray); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; }
+  /* ===== Top nav ===== */
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(247,247,246,0.82);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.25s;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    font-size: 17px; font-weight: 300; letter-spacing: 0.32em;
+    color: var(--ink); text-decoration: none; white-space: nowrap;
+  }
+  .nav-links { display: flex; align-items: center; gap: 26px; }
+  .nav-links a {
+    font-size: 13.5px; color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    font-size: 13px; font-weight: 600; color: #fff !important;
+    background: var(--ink); border-radius: 999px; padding: 8px 18px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(17,17,17,0.18); }
+  .nav-cta:active { transform: translateY(0) scale(0.98); }
+  .nav-lang { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
+  @media (max-width: 700px) { .nav-links a.nav-anchor { display: none; } }
 
-  /* Hero */
-  .hero { padding: 80px 0 80px; text-align: center; }
-  .logo { width: clamp(250px, 52vw, 430px); display: block; margin: 0 auto; }
-  .tagline { margin-top: 30px; font-size: clamp(18px, 3.2vw, 23px); color: var(--ink); font-weight: 500; }
-  .sub { margin-top: 14px; font-size: 15px; color: var(--gray); }
+  /* ===== Hero ===== */
+  .hero { padding: 96px 0 88px; text-align: center; }
+  .logo { width: clamp(250px, 52vw, 440px); display: block; margin: 0 auto; }
+  .tagline {
+    margin-top: 36px;
+    font-size: clamp(24px, 4.6vw, 40px); font-weight: 650;
+    letter-spacing: -0.035em; line-height: 1.32;
+    text-wrap: balance;
+  }
+  .sub { margin-top: 16px; font-size: clamp(15px, 2.4vw, 17px); color: var(--gray); text-wrap: balance; }
 
-  /* Store buttons */
-  .store-row { margin-top: 40px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; align-items: center; }
+  .store-row { margin-top: 44px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; align-items: center; }
   .btn-store {
     display: inline-flex; align-items: center; gap: 10px;
     background: var(--ink); color: #fff; text-decoration: none;
-    border-radius: 999px; padding: 15px 32px; font-size: 15px; font-weight: 600;
+    border-radius: 999px; padding: 16px 34px; font-size: 15px; font-weight: 600;
+    transition: transform 0.22s, box-shadow 0.22s;
+    box-shadow: 0 2px 8px rgba(17,17,17,0.12);
   }
+  .btn-store:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(17,17,17,0.22); }
+  .btn-store:active { transform: translateY(0) scale(0.98); box-shadow: 0 2px 8px rgba(17,17,17,0.12); }
   .btn-store svg { width: 18px; height: 18px; fill: currentColor; display: block; }
   .badge-soon {
     display: inline-flex; align-items: center; gap: 10px;
     color: var(--gray); border: 1px solid var(--line); background: transparent;
-    border-radius: 999px; padding: 14px 28px; font-size: 14px;
+    border-radius: 999px; padding: 15px 28px; font-size: 14px;
   }
   .badge-soon svg { width: 16px; height: 16px; fill: currentColor; display: block; opacity: 0.7; }
-  .store-note { margin-top: 16px; font-size: 13px; color: var(--gray); }
+  .store-note { margin-top: 18px; font-size: 13px; color: var(--gray); }
 
-  /* Sections */
-  section { padding: 72px 0; border-top: 1px solid var(--line); }
-  .kicker { font-size: 12px; letter-spacing: 0.28em; color: var(--gray); text-transform: uppercase; text-align: center; }
-  h2 { font-size: clamp(22px, 4vw, 30px); font-weight: 600; text-align: center; margin-top: 10px; line-height: 1.45; }
-  .lead { text-align: center; color: var(--gray); font-size: 15px; margin-top: 16px; max-width: 620px; margin-left: auto; margin-right: auto; }
+  /* ===== Sections ===== */
+  section { padding: 88px 0; border-top: 1px solid var(--line); }
+  .kicker { font-size: 12px; letter-spacing: 0.28em; color: var(--gray); text-transform: uppercase; }
+  h2 {
+    font-size: clamp(23px, 4vw, 32px); font-weight: 650;
+    letter-spacing: -0.03em; line-height: 1.42; margin-top: 12px;
+    text-wrap: balance;
+  }
+  .center { text-align: center; }
+  .lead { color: var(--gray); font-size: 15.5px; margin-top: 18px; max-width: 620px; }
+  .center .lead { margin-left: auto; margin-right: auto; }
   .lead strong { color: var(--ink); font-weight: 600; }
 
-  /* How it works */
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 48px; }
-  .step { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 30px 24px; text-align: center; }
-  .step .num { font-size: 34px; font-weight: 200; color: var(--ink); font-variant-numeric: tabular-nums; }
-  .step h3 { font-size: 16px; font-weight: 600; margin-top: 12px; }
-  .step p { font-size: 13.5px; color: var(--gray); margin-top: 8px; }
+  /* ===== How it works ===== */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 56px; border-top: 1px solid var(--line); }
+  .step { padding: 34px 28px 8px 0; border-right: 1px solid var(--line); }
+  .step:last-child { border-right: none; padding-right: 0; }
+  .step + .step { padding-left: 28px; }
+  .step .num { font-size: 46px; font-weight: 150; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1; }
+  .step h3 { font-size: 16.5px; font-weight: 650; margin-top: 18px; letter-spacing: -0.01em; }
+  .step p { font-size: 14px; color: var(--gray); margin-top: 10px; }
 
-  /* Screens — horizontal scroll strip */
+  /* ===== Screens ===== */
   .shots {
-    display: flex; gap: 20px; margin-top: 48px;
-    overflow-x: auto; padding: 4px 4px 20px;
+    display: flex; gap: 22px; margin-top: 56px;
+    overflow-x: auto; padding: 6px 6px 24px;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
   }
-  .shot { flex: none; width: 250px; scroll-snap-align: center; }
+  .shot { flex: none; width: 258px; scroll-snap-align: center; transition: transform 0.3s; }
+  .shot:hover { transform: translateY(-6px); }
   .shot img {
     width: 100%; display: block; border-radius: 22px;
     border: 1px solid var(--line);
-    box-shadow: 0 14px 36px rgba(0,0,0,0.08);
+    box-shadow: 0 18px 40px rgba(17,17,17,0.09);
   }
-  .shots-hint { text-align: center; font-size: 12px; color: var(--gray); margin-top: 4px; }
+  .shots-hint { text-align: center; font-size: 12px; color: var(--gray); margin-top: 2px; }
 
-  /* Features */
-  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 48px; }
-  .feature { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 30px 28px; }
-  .feature h3 { font-size: 16.5px; font-weight: 600; }
-  .feature p { font-size: 14px; color: var(--gray); margin-top: 10px; }
+  /* ===== Features — editorial numbered list ===== */
+  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 0 64px; margin-top: 56px; }
+  .feature { border-top: 1px solid var(--line); padding: 30px 0 34px; display: flex; gap: 22px; }
+  .feature .fnum {
+    flex: none; font-size: 15px; font-weight: 300; color: var(--gray);
+    font-variant-numeric: tabular-nums; letter-spacing: 0.06em; padding-top: 4px;
+  }
+  .feature h3 { font-size: 17px; font-weight: 650; letter-spacing: -0.01em; }
+  .feature p { font-size: 14.5px; color: var(--gray); margin-top: 10px; }
 
-  /* Privacy */
-  .privacy-list { max-width: 640px; margin: 42px auto 0; }
-  .privacy-item { display: flex; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  /* ===== Privacy ===== */
+  .privacy-list { max-width: 680px; margin: 48px auto 0; }
+  .privacy-item { display: flex; gap: 18px; padding: 22px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
   .privacy-item:last-child { border-bottom: none; }
-  .privacy-item .mark { flex: none; font-weight: 600; }
+  .privacy-item .mark { flex: none; font-weight: 300; font-size: 15px; color: var(--gray); font-variant-numeric: tabular-nums; padding-top: 2px; }
 
-  /* Closing */
-  .closing { text-align: center; }
-  .closing .line { font-size: clamp(17px, 3vw, 21px); line-height: 1.7; }
-  .closing .store-row { margin-top: 38px; }
+  /* ===== FAQ ===== */
+  .faq { max-width: 720px; margin: 52px auto 0; }
+  .faq-item { border-top: 1px solid var(--line); padding: 26px 0; }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .faq-item h3 { font-size: 16.5px; font-weight: 650; letter-spacing: -0.01em; }
+  .faq-item p { font-size: 14.5px; color: var(--gray); margin-top: 10px; max-width: 620px; }
 
-  footer { border-top: 1px solid var(--line); padding: 46px 0 60px; text-align: center; color: var(--gray); font-size: 13px; }
+  /* ===== Closing ===== */
+  .closing { text-align: center; padding: 110px 0; }
+  .closing .line { font-size: clamp(19px, 3.4vw, 26px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.75; text-wrap: balance; }
+  .closing .store-row { margin-top: 42px; }
+
+  footer { border-top: 1px solid var(--line); padding: 50px 0 64px; text-align: center; color: var(--gray); font-size: 13px; }
   footer a { color: inherit; }
+  footer a:hover { color: var(--ink); }
 
+  /* ===== Scroll reveal ===== */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay: 0.08s; }
+  .reveal.d2 { transition-delay: 0.16s; }
+  .reveal.d3 { transition-delay: 0.24s; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 860px) {
+    .features { grid-template-columns: 1fr; gap: 0; }
+  }
   @media (max-width: 700px) {
-    .steps, .features { grid-template-columns: 1fr; }
-    .hero { padding: 56px 0 60px; }
-    .shot { width: 220px; }
+    .steps { grid-template-columns: 1fr; border-top: none; }
+    .step { border-right: none; border-top: 1px solid var(--line); padding: 28px 0 10px; }
+    .step + .step { padding-left: 0; }
+    .hero { padding: 64px 0 64px; }
+    .shot { width: 226px; }
+    section { padding: 68px 0; }
   }
 </style>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
 
-<div class="wrap topbar">
-  <a class="lang-switch" href="index-en.html">English</a>
-</div>
+<nav class="nav" id="nav" aria-label="주 메뉴">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="#top">MU:note</a>
+    <div class="nav-links">
+      <a class="nav-anchor" href="#features">기능</a>
+      <a class="nav-anchor" href="#screens">화면</a>
+      <a class="nav-anchor" href="#faq">자주 묻는 질문</a>
+      <a class="nav-lang" href="index-en.html">English</a>
+      <a class="nav-cta" href="https://apps.apple.com/app/id6800597794">App Store</a>
+    </div>
+  </div>
+</nav>
 
-<header class="hero wrap">
-  <img class="logo" src="img/logo-horizontal.png" alt="MU:note" />
-  <p class="tagline">내 악기소리만 자동으로 세는 연습 기록</p>
-  <p class="sub">연습을 시작하면, 실제로 연주한 시간만 알아서 쌓입니다.</p>
-  <div class="store-row">
+<header class="hero wrap" id="top">
+  <img class="logo reveal" src="img/logo-horizontal.png" alt="MU:note 로고" />
+  <h1 class="tagline reveal d1">내 악기소리만<br />자동으로 세는 연습 기록</h1>
+  <p class="sub reveal d2">연습을 시작하면, 실제로 연주한 시간만 알아서 쌓입니다.</p>
+  <div class="store-row reveal d3">
     <a class="btn-store" href="https://apps.apple.com/app/id6800597794">
       <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
       App Store에서 받기
@@ -128,13 +263,13 @@
       Google Play 출시 예정
     </span>
   </div>
-  <p class="store-note">iOS 앱 · 가입 없이 시작할 수 있습니다</p>
+  <p class="store-note reveal d3">iOS 앱 · 가입 없이 시작할 수 있습니다</p>
 </header>
 
 <section>
-  <div class="wrap">
-    <h2>연습을 기록하려고 타이머를 눌렀다가,<br />끄는 걸 잊은 적 있으신가요.</h2>
-    <p class="lead">
+  <div class="wrap center">
+    <h2 class="reveal">연습을 기록하려고 타이머를 눌렀다가,<br />끄는 걸 잊은 적 있으신가요.</h2>
+    <p class="lead reveal d1">
       MU:note는 소리를 듣고 실제로 연주한 시간만 골라 기록합니다.<br />
       시작 버튼을 누르고 연습하면, 나머지는 앱이 합니다.<br /><br />
       <strong>음악을 전공하거나 입시를 준비하며 매일 연습실에 가는 사람을 위해 만들었습니다.</strong>
@@ -142,22 +277,24 @@
   </div>
 </section>
 
-<section>
+<section id="how">
   <div class="wrap">
-    <div class="kicker">How it works</div>
-    <h2>버튼 하나. 그다음은 소리가 알아서.</h2>
+    <div class="center">
+      <div class="kicker reveal">How it works</div>
+      <h2 class="reveal d1">버튼 하나. 그다음은 소리가 알아서.</h2>
+    </div>
     <div class="steps">
-      <div class="step">
+      <div class="step reveal">
         <div class="num">1</div>
         <h3>시작 버튼을 누릅니다</h3>
         <p>폰을 옆에 두고 연습을 시작하세요. 타이머는 신경 쓰지 않아도 됩니다.</p>
       </div>
-      <div class="step">
+      <div class="step reveal d1">
         <div class="num">2</div>
         <h3>내 악기 소리만 셉니다</h3>
         <p>설정한 악기 소리가 들릴 때만 시간이 쌓입니다. 다른 악기 소리나 잡음은 인식하지 않습니다.</p>
       </div>
-      <div class="step">
+      <div class="step reveal d2">
         <div class="num">3</div>
         <h3>기록이 남습니다</h3>
         <p>실제로 연주한 시간과 집중도가 달력에 쌓입니다. 20분 이상 연습한 날에는 한 문장의 분석이 도착합니다.</p>
@@ -166,79 +303,136 @@
   </div>
 </section>
 
-<section>
+<section id="screens">
   <div class="wrap">
-    <div class="kicker">Screens</div>
-    <h2>실제 앱 화면</h2>
+    <div class="center">
+      <div class="kicker reveal">Screens</div>
+      <h2 class="reveal d1">실제 앱 화면</h2>
+    </div>
     <div class="shots">
-      <figure class="shot"><img src="img/shots/ko/01.png" alt="집중모드 — '내 악기 소리'만 인식해서 기록합니다" /></figure>
-      <figure class="shot"><img src="img/shots/ko/02.png" alt="회고 화면 — 알아서 저장되는 오늘의 기록" /></figure>
-      <figure class="shot"><img src="img/shots/ko/03.png" alt="달력 — 연습의 흐름이 한눈에" /></figure>
-      <figure class="shot"><img src="img/shots/ko/04.png" alt="홈 화면 — 버튼 하나, 그다음은 소리가 알아서" /></figure>
-      <figure class="shot"><img src="img/shots/ko/05.png" alt="개인정보 안내 — 소리는 저장되지 않습니다" /></figure>
+      <figure class="shot reveal"><img src="img/shots/ko/01.png" alt="집중모드 — '내 악기 소리'만 인식해서 기록합니다" loading="lazy" /></figure>
+      <figure class="shot reveal d1"><img src="img/shots/ko/02.png" alt="회고 화면 — 알아서 저장되는 오늘의 기록" loading="lazy" /></figure>
+      <figure class="shot reveal d2"><img src="img/shots/ko/03.png" alt="달력 — 연습의 흐름이 한눈에" loading="lazy" /></figure>
+      <figure class="shot reveal d3"><img src="img/shots/ko/04.png" alt="홈 화면 — 버튼 하나, 그다음은 소리가 알아서" loading="lazy" /></figure>
+      <figure class="shot reveal d3"><img src="img/shots/ko/05.png" alt="개인정보 안내 — 소리는 저장되지 않습니다" loading="lazy" /></figure>
     </div>
     <p class="shots-hint">옆으로 넘겨보세요</p>
   </div>
 </section>
 
-<section>
+<section id="features">
   <div class="wrap">
-    <div class="kicker">Features</div>
-    <h2>연습하는 사람을 위한 기록 도구</h2>
+    <div class="center">
+      <div class="kicker reveal">Features</div>
+      <h2 class="reveal d1">연습하는 사람을 위한 기록 도구</h2>
+    </div>
     <div class="features">
-      <div class="feature">
-        <h3>연주한 시간만 남습니다</h3>
-        <p>설정한 내 악기 소리만 인식합니다. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 10초가 넘는 침묵은 연습 시간에서 제외됩니다. 피아노, 현악기, 관악기, 성악을 지원합니다.</p>
+      <div class="feature reveal">
+        <span class="fnum">01</span>
+        <div>
+          <h3>연주한 시간만 남습니다</h3>
+          <p>설정한 내 악기 소리만 인식합니다. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 10초가 넘는 침묵은 연습 시간에서 제외됩니다. 피아노, 현악기, 관악기, 성악을 지원합니다.</p>
+        </div>
       </div>
-      <div class="feature">
-        <h3>소리는 저장하지 않습니다</h3>
-        <p>마이크로 들은 소리는 기기 안에서 판단하고 즉시 버립니다. 녹음 파일은 만들어지지 않고, 어디로도 전송되지 않습니다. 무엇을 연주했는지가 아니라, 연주하고 있는지만 봅니다.</p>
+      <div class="feature reveal d1">
+        <span class="fnum">02</span>
+        <div>
+          <h3>소리는 저장하지 않습니다</h3>
+          <p>마이크로 들은 소리는 기기 안에서 판단하고 즉시 버립니다. 녹음 파일은 만들어지지 않고, 어디로도 전송되지 않습니다. 무엇을 연주했는지가 아니라, 연주하고 있는지만 봅니다.</p>
+        </div>
       </div>
-      <div class="feature">
-        <h3>오늘 무엇을 했는지 남깁니다</h3>
-        <p>연습이 끝나면 곡과 연습 유형을 고르고 짧게 메모할 수 있습니다. 달력에서 지난 연습을 날짜별로 볼 수 있고, 하루 합계와 집중도가 함께 보입니다.</p>
+      <div class="feature reveal">
+        <span class="fnum">03</span>
+        <div>
+          <h3>오늘 무엇을 했는지 남깁니다</h3>
+          <p>연습이 끝나면 곡과 연습 유형을 고르고 짧게 메모할 수 있습니다. 달력에서 지난 연습을 날짜별로 볼 수 있고, 하루 합계와 집중도가 함께 보입니다.</p>
+        </div>
       </div>
-      <div class="feature">
-        <h3>MU:note의 한마디</h3>
-        <p>20분 이상 연습한 날에는 지금까지의 기록을 분석한 한 문장을 받습니다. 연습 시간과 집중도 같은 숫자만 사용합니다. 직접 쓰신 메모와 곡 이름은 전송되지 않습니다.</p>
+      <div class="feature reveal d1">
+        <span class="fnum">04</span>
+        <div>
+          <h3>MU:note의 한마디</h3>
+          <p>20분 이상 연습한 날에는 지금까지의 기록을 분석한 한 문장을 받습니다. 연습 시간과 집중도 같은 숫자만 사용합니다. 직접 쓰신 메모와 곡 이름은 전송되지 않습니다.</p>
+        </div>
       </div>
-      <div class="feature">
-        <h3>로그인 없이 시작할 수 있습니다</h3>
-        <p>가입하지 않아도 기록과 달력을 모두 쓸 수 있습니다. 로그인하면 기록이 서버에 보관되어, 폰을 바꾸거나 앱을 지웠다 깔아도 돌아옵니다.</p>
+      <div class="feature reveal">
+        <span class="fnum">05</span>
+        <div>
+          <h3>로그인 없이 시작할 수 있습니다</h3>
+          <p>가입하지 않아도 기록과 달력을 모두 쓸 수 있습니다. 로그인하면 기록이 서버에 보관되어, 폰을 바꾸거나 앱을 지웠다 깔아도 돌아옵니다.</p>
+        </div>
       </div>
-      <div class="feature">
-        <h3>조용한 알림</h3>
-        <p>연습을 권하는 알림을 원하는 시간에 하루 한 번 받을 수 있습니다. 연습하지 않은 날을 탓하지 않습니다. 기본값은 꺼져 있습니다.</p>
+      <div class="feature reveal d1">
+        <span class="fnum">06</span>
+        <div>
+          <h3>조용한 알림</h3>
+          <p>연습을 권하는 알림을 원하는 시간에 하루 한 번 받을 수 있습니다. 연습하지 않은 날을 탓하지 않습니다. 기본값은 꺼져 있습니다.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="kicker">Privacy</div>
-    <h2>소리는 저장되지 않습니다</h2>
+<section id="privacy">
+  <div class="wrap center">
+    <div class="kicker reveal">Privacy</div>
+    <h2 class="reveal d1">소리는 저장되지 않습니다</h2>
     <div class="privacy-list">
-      <div class="privacy-item"><span class="mark">01</span><span>감지에 쓰인 오디오는 기기 메모리에서 분류 직후 폐기됩니다. 남는 것은 시간과 판정 결과뿐입니다.</span></div>
-      <div class="privacy-item"><span class="mark">02</span><span>소리 감지가 켜져 있는 동안 화면에 항상 표시됩니다.</span></div>
-      <div class="privacy-item"><span class="mark">03</span><span>메모와 곡 이름은 어떤 경우에도 AI 서버로 전송되지 않습니다.</span></div>
+      <div class="privacy-item reveal"><span class="mark">01</span><span>감지에 쓰인 오디오는 기기 메모리에서 분류 직후 폐기됩니다. 남는 것은 시간과 판정 결과뿐입니다.</span></div>
+      <div class="privacy-item reveal d1"><span class="mark">02</span><span>소리 감지가 켜져 있는 동안 화면에 항상 표시됩니다.</span></div>
+      <div class="privacy-item reveal d2"><span class="mark">03</span><span>메모와 곡 이름은 어떤 경우에도 AI 서버로 전송되지 않습니다.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker reveal">FAQ</div>
+      <h2 class="reveal d1">자주 묻는 질문</h2>
+    </div>
+    <div class="faq">
+      <div class="faq-item reveal">
+        <h3>어떤 악기를 지원하나요?</h3>
+        <p>피아노, 현악기, 관악기, 성악을 지원합니다. 악기마다 판단 기준이 달라서, 설정에서 고른 악기에 맞춰 인식합니다.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>소리가 녹음되나요?</h3>
+        <p>아니요. 마이크로 들은 소리는 기기 안에서 판단하고 즉시 버립니다. 녹음 파일은 만들어지지 않고, 어디로도 전송되지 않습니다.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>가입해야 하나요?</h3>
+        <p>아니요. 가입하지 않아도 기록과 달력을 모두 쓸 수 있습니다. 로그인하면 기록이 서버에 보관되어, 폰을 바꾸거나 앱을 지웠다 깔아도 돌아옵니다.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>무료인가요?</h3>
+        <p>네, 지금은 모두 무료로 사용할 수 있습니다.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>쉬는 시간도 연습으로 기록되나요?</h3>
+        <p>아니요. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 10초가 넘는 침묵은 연습 시간에서 제외됩니다.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>안드로이드 버전은 없나요?</h3>
+        <p>준비 중입니다. iOS 버전부터 출시합니다.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="closing">
   <div class="wrap">
-    <p class="line">
+    <p class="line reveal">
       MU:note가 세는 시간은 앱과 함께한 시간입니다.<br />
       앱을 켜지 않고 한 연습도 분명한 연습입니다.
     </p>
-    <div class="store-row">
+    <div class="store-row reveal d1">
       <a class="btn-store" href="https://apps.apple.com/app/id6800597794">
         <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         App Store에서 받기
       </a>
     </div>
-    <p class="store-note">한국어 · English · Español · Deutsch 지원</p>
+    <p class="store-note reveal d2">한국어 · English · Español · Deutsch 지원</p>
   </div>
 </section>
 
@@ -247,6 +441,29 @@
   <p style="margin-top:12px">MU:note · © 2026 MUSU</p>
   <p style="margin-top:10px"><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="index-en.html">English</a></p>
 </footer>
+
+<script>
+  (function () {
+    var nav = document.getElementById('nav');
+    var onScroll = function () {
+      nav.classList.toggle('scrolled', window.scrollY > 8);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var items = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  })();
+</script>
 
 </body>
 </html>
