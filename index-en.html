@@ -89,10 +89,8 @@
     display: flex; align-items: center; justify-content: space-between;
     height: 60px;
   }
-  .nav-brand {
-    font-size: 17px; font-weight: 300; letter-spacing: 0.32em;
-    color: var(--ink); text-decoration: none; white-space: nowrap;
-  }
+  .nav-brand { display: flex; align-items: center; text-decoration: none; }
+  .nav-brand img { height: 14px; width: auto; display: block; }
   .nav-links { display: flex; align-items: center; gap: 26px; }
   .nav-links a {
     font-size: 13.5px; color: var(--gray); text-decoration: none;
@@ -238,7 +236,7 @@
 
 <nav class="nav" id="nav" aria-label="Main menu">
   <div class="wrap nav-inner">
-    <a class="nav-brand" href="#top">MU:note</a>
+    <a class="nav-brand" href="#top"><img src="img/logo-horizontal.png" alt="MU:note" /></a>
     <div class="nav-links">
       <a class="nav-anchor" href="#features">Features</a>
       <a class="nav-anchor" href="#screens">Screens</a>

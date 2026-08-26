@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MU:note — 내 악기소리만 자동으로 세는 연습 기록 앱</title>
 <meta name="description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. 피아노·현악기·관악기·성악 지원. iOS 연습 기록 앱." />
-<meta name="keywords" content="연습기록,연습일지,연습 앱,악기 연습,피아노 연습,바이올린 연습,성악 연습,음악 전공,입시,연습 타이머,MU:note,무노트" />
+<meta name="keywords" content="연습기록,연습일지,연습 앱,악기 연습,피아노 연습,바이올린 연습,성악 연습,음악 전공,입시,연습 타이머,MU:note,무노트,뮤노트" />
 <link rel="canonical" href="https://j204002.github.io/munote/" />
 <link rel="alternate" hreflang="ko" href="https://j204002.github.io/munote/" />
 <link rel="alternate" hreflang="en" href="https://j204002.github.io/munote/index-en.html" />
@@ -89,10 +89,8 @@
     display: flex; align-items: center; justify-content: space-between;
     height: 60px;
   }
-  .nav-brand {
-    font-size: 17px; font-weight: 300; letter-spacing: 0.32em;
-    color: var(--ink); text-decoration: none; white-space: nowrap;
-  }
+  .nav-brand { display: flex; align-items: center; text-decoration: none; }
+  .nav-brand img { height: 14px; width: auto; display: block; }
   .nav-links { display: flex; align-items: center; gap: 26px; }
   .nav-links a {
     font-size: 13.5px; color: var(--gray); text-decoration: none;
@@ -238,7 +236,7 @@
 
 <nav class="nav" id="nav" aria-label="주 메뉴">
   <div class="wrap nav-inner">
-    <a class="nav-brand" href="#top">MU:note</a>
+    <a class="nav-brand" href="#top"><img src="img/logo-horizontal.png" alt="MU:note" /></a>
     <div class="nav-links">
       <a class="nav-anchor" href="#features">기능</a>
       <a class="nav-anchor" href="#screens">화면</a>
