@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://j204002.github.io/munote/</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://j204002.github.io/munote/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://j204002.github.io/munote/index-en.html" />
+    <loc>https://oneumart.com/munote/</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://j204002.github.io/munote/index-en.html</loc>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://j204002.github.io/munote/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://j204002.github.io/munote/index-en.html" />
+    <loc>https://oneumart.com/munote/index-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url><loc>https://j204002.github.io/munote/terms.html</loc><priority>0.3</priority></url>
-  <url><loc>https://j204002.github.io/munote/privacy.html</loc><priority>0.3</priority></url>
-  <url><loc>https://j204002.github.io/munote/terms-en.html</loc><priority>0.2</priority></url>
-  <url><loc>https://j204002.github.io/munote/privacy-en.html</loc><priority>0.2</priority></url>
-  <url><loc>https://j204002.github.io/munote/terms-es.html</loc><priority>0.2</priority></url>
-  <url><loc>https://j204002.github.io/munote/privacy-es.html</loc><priority>0.2</priority></url>
-  <url><loc>https://j204002.github.io/munote/terms-de.html</loc><priority>0.2</priority></url>
-  <url><loc>https://j204002.github.io/munote/privacy-de.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/terms.html</loc><priority>0.3</priority></url>
+  <url><loc>https://oneumart.com/munote/privacy.html</loc><priority>0.3</priority></url>
+  <url><loc>https://oneumart.com/munote/terms-en.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/privacy-en.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/terms-es.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/privacy-es.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/terms-de.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/privacy-de.html</loc><priority>0.2</priority></url>
 </urlset>
