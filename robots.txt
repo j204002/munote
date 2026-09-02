@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://j204002.github.io/munote/sitemap.xml
+Sitemap: https://oneumart.com/munote/sitemap.xml
