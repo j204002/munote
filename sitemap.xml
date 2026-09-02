@@ -5,6 +5,8 @@
     <loc>https://oneumart.com/munote/</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/index-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/index-de.html" />
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,6 +14,26 @@
     <loc>https://oneumart.com/munote/index-en.html</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/index-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/index-de.html" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oneumart.com/munote/index-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/index-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/index-de.html" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oneumart.com/munote/index-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/index-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/index-de.html" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
