@@ -6,6 +6,24 @@
 <title>MU:note — 내 악기소리만 자동으로 세는 연습 기록 앱</title>
 <meta name="description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. 피아노·현악기·관악기·성악 지원. iOS 연습 기록 앱." />
 <meta name="keywords" content="연습기록,연습일지,연습 앱,악기 연습,피아노 연습,바이올린 연습,성악 연습,음악 전공,입시,연습 타이머,MU:note,무노트,뮤노트" />
+<script>
+/* 자동 언어 이동 (2026-09-02): 브라우저 언어 ko/en/es/de → 각자 페이지, 그 외 → 영어.
+   드롭다운에서 직접 고른 언어(munote-lang)가 있으면 그게 우선 — 선택을 되돌리는 덫 방지. */
+(function () {
+  try {
+    var map = { en: 'index-en.html', es: 'index-es.html', de: 'index-de.html' };
+    var saved = localStorage.getItem('munote-lang');
+    var target = null;
+    if (saved) {
+      if (saved !== 'ko' && map[saved]) target = map[saved];
+    } else {
+      var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+      if (nav !== 'ko') target = map[nav] || map.en;
+    }
+    if (target) location.replace(target);
+  } catch (e) {}
+})();
+</script>
 <link rel="canonical" href="https://oneumart.com/munote/" />
 <link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
 <link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
@@ -106,7 +124,30 @@
   }
   .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(17,17,17,0.18); }
   .nav-cta:active { transform: translateY(0) scale(0.98); }
-  .nav-lang { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
+  /* 언어 드롭다운 — 4개 언어 (2026-09-02) */
+  details.lang { position: relative; }
+  details.lang summary {
+    list-style: none; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
+    font-size: 13.5px; color: var(--gray);
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  details.lang summary::-webkit-details-marker { display: none; }
+  details.lang summary::after { content: "▾"; font-size: 10px; opacity: 0.7; }
+  details.lang summary:hover, details.lang[open] summary { color: var(--ink); border-color: var(--ink); }
+  .lang-list {
+    position: absolute; right: 0; top: calc(100% + 8px);
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 8px; min-width: 140px;
+    box-shadow: 0 12px 30px rgba(17,17,17,0.12);
+  }
+  .lang-list a {
+    display: block; padding: 8px 12px; border-radius: 8px;
+    font-size: 13.5px; color: var(--gray); text-decoration: none;
+  }
+  .lang-list a:hover { background: var(--bg); color: var(--ink); }
+  .lang-list a[aria-current="true"] { color: var(--ink); font-weight: 600; }
   @media (max-width: 700px) { .nav-links a.nav-anchor { display: none; } }
 
   /* ===== Hero ===== */
@@ -243,7 +284,15 @@
       <a class="nav-anchor" href="#features">기능</a>
       <a class="nav-anchor" href="#screens">화면</a>
       <a class="nav-anchor" href="#faq">자주 묻는 질문</a>
-      <a class="nav-lang" href="index-en.html">English</a>
+      <details class="lang">
+        <summary aria-label="Language">한국어</summary>
+        <div class="lang-list">
+          <a href="index.html" aria-current="true">한국어</a>
+          <a href="index-en.html">English</a>
+          <a href="index-es.html">Español</a>
+          <a href="index-de.html">Deutsch</a>
+        </div>
+      </details>
       <a class="nav-cta" href="https://apps.apple.com/app/id6800597794">App Store</a>
     </div>
   </div>
@@ -450,6 +499,17 @@
       nav.classList.toggle('scrolled', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
+    var LANG_OF = { 'index.html': 'ko', 'index-en.html': 'en', 'index-es.html': 'es', 'index-de.html': 'de' };
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a) return;
+      var name = (a.getAttribute('href') || '').split('#')[0];
+      if (LANG_OF[name]) { try { localStorage.setItem('munote-lang', LANG_OF[name]); } catch (err) {} }
+    });
+    document.addEventListener('click', function (e) {
+      var d = document.querySelector('details.lang[open]');
+      if (d && !d.contains(e.target)) { d.removeAttribute('open'); }
+    });
     onScroll();
 
     var items = document.querySelectorAll('.reveal');

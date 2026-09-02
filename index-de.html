@@ -106,7 +106,30 @@
   }
   .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(17,17,17,0.18); }
   .nav-cta:active { transform: translateY(0) scale(0.98); }
-  .nav-lang { border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
+  /* 언어 드롭다운 — 4개 언어 (2026-09-02) */
+  details.lang { position: relative; }
+  details.lang summary {
+    list-style: none; cursor: pointer;
+    border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px;
+    font-size: 13.5px; color: var(--gray);
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  details.lang summary::-webkit-details-marker { display: none; }
+  details.lang summary::after { content: "▾"; font-size: 10px; opacity: 0.7; }
+  details.lang summary:hover, details.lang[open] summary { color: var(--ink); border-color: var(--ink); }
+  .lang-list {
+    position: absolute; right: 0; top: calc(100% + 8px);
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 8px; min-width: 140px;
+    box-shadow: 0 12px 30px rgba(17,17,17,0.12);
+  }
+  .lang-list a {
+    display: block; padding: 8px 12px; border-radius: 8px;
+    font-size: 13.5px; color: var(--gray); text-decoration: none;
+  }
+  .lang-list a:hover { background: var(--bg); color: var(--ink); }
+  .lang-list a[aria-current="true"] { color: var(--ink); font-weight: 600; }
   @media (max-width: 700px) { .nav-links a.nav-anchor { display: none; } }
 
   /* ===== Hero ===== */
@@ -243,7 +266,15 @@
       <a class="nav-anchor" href="#features">Funktionen</a>
       <a class="nav-anchor" href="#screens">Screens</a>
       <a class="nav-anchor" href="#faq">FAQ</a>
-      <a class="nav-lang" href="index-en.html">English</a>
+      <details class="lang">
+        <summary aria-label="Language">Deutsch</summary>
+        <div class="lang-list">
+          <a href="index.html">한국어</a>
+          <a href="index-en.html">English</a>
+          <a href="index-es.html">Español</a>
+          <a href="index-de.html" aria-current="true">Deutsch</a>
+        </div>
+      </details>
       <a class="nav-cta" href="https://apps.apple.com/app/id6800597794">App Store</a>
     </div>
   </div>
@@ -450,6 +481,17 @@
       nav.classList.toggle('scrolled', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
+    var LANG_OF = { 'index.html': 'ko', 'index-en.html': 'en', 'index-es.html': 'es', 'index-de.html': 'de' };
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a) return;
+      var name = (a.getAttribute('href') || '').split('#')[0];
+      if (LANG_OF[name]) { try { localStorage.setItem('munote-lang', LANG_OF[name]); } catch (err) {} }
+    });
+    document.addEventListener('click', function (e) {
+      var d = document.querySelector('details.lang[open]');
+      if (d && !d.contains(e.target)) { d.removeAttribute('open'); }
+    });
     onScroll();
 
     var items = document.querySelectorAll('.reveal');
