@@ -54,7 +54,7 @@
     { "@type": "Question", "name": "Brauche ich ein Konto?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Aufzeichnung und Kalender funktionieren auch ohne Anmeldung. Meldest du dich an, bleibt dein Verlauf gesichert: Handywechsel oder Neuinstallation, und er ist wieder da." } },
     { "@type": "Question", "name": "Ist die App kostenlos?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, im Moment ist alles kostenlos." } },
     { "@type": "Question", "name": "Zählen Pausen als Übezeit?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Umblättern, Wasser trinken, kurz durchatmen: Nichts davon wird gezählt. Dauert die Stille 15 Sekunden oder länger, wird diese Zeit abgezogen." } },
-    { "@type": "Question", "name": "Gibt es eine Android-Version?", "acceptedAnswer": { "@type": "Answer", "text": "Sie ist in Arbeit. Die iOS-Version erscheint zuerst." } }
+    { "@type": "Question", "name": "Gibt es eine Android-Version?", "acceptedAnswer": { "@type": "Answer", "text": "Sie ist in Arbeit. Android-Mikrofone unterscheiden sich je nach Gerät, deshalb justieren wir neu, wie MU:note dein Instrument heraushört. Trag dich für die Start-Benachrichtigung ein, dann melden wir uns." } }
   ]
 }
 </script>
@@ -160,6 +160,11 @@
     border-radius: 999px; padding: 15px 28px; font-size: 14px;
   }
   .badge-soon svg { width: 16px; height: 16px; fill: currentColor; display: block; opacity: 0.7; }
+  a.badge-soon { text-decoration: none; transition: color 0.2s, border-color 0.2s, transform 0.2s; }
+  a.badge-soon:hover { color: var(--ink); border-color: var(--ink); transform: translateY(-1px); }
+  a.badge-soon:hover svg { opacity: 1; }
+  a.badge-soon:active { transform: translateY(0) scale(0.98); }
+  a.badge-soon .arrow { font-size: 11px; opacity: 0.55; }
   .store-note { margin-top: 18px; font-size: 13px; color: var(--gray); }
 
   /* ===== Sections ===== */
@@ -222,6 +227,12 @@
   .faq-item:last-child { border-bottom: 1px solid var(--line); }
   .faq-item h3 { font-size: 16.5px; font-weight: 650; letter-spacing: -0.01em; }
   .faq-item p { font-size: 14.5px; color: var(--gray); margin-top: 10px; max-width: 620px; }
+  .faq-item p a {
+    color: var(--ink); text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+    text-decoration-color: var(--line); transition: text-decoration-color 0.2s;
+  }
+  .faq-item p a:hover { text-decoration-color: var(--ink); }
 
   /* ===== Closing ===== */
   .closing { text-align: center; padding: 110px 0; }
@@ -289,10 +300,10 @@
       <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
       Im App Store laden
     </a>
-    <span class="badge-soon">
+    <a class="badge-soon" href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform" target="_blank" rel="noopener" aria-label="Für die Android-Start-Benachrichtigung eintragen">
       <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-      Google Play — bald verfügbar
-    </span>
+      Bei Android-Start benachrichtigen <span class="arrow" aria-hidden="true">→</span>
+    </a>
   </div>
   <p class="store-note reveal d3">iOS-App · funktioniert ohne Konto</p>
 </header>
@@ -445,7 +456,7 @@
       </div>
       <div class="faq-item reveal">
         <h3>Gibt es eine Android-Version?</h3>
-        <p>Sie ist in Arbeit. Die iOS-Version erscheint zuerst.</p>
+        <p>Sie ist in Arbeit. Android-Mikrofone unterscheiden sich je nach Gerät, deshalb justieren wir neu, wie MU:note dein Instrument heraushört. <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform">Trag dich für die Start-Benachrichtigung ein</a>, dann melden wir uns.</p>
       </div>
     </div>
   </div>
@@ -461,6 +472,10 @@
       <a class="btn-store" href="https://apps.apple.com/app/id6800597794">
         <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         Im App Store laden
+      </a>
+      <a class="badge-soon" href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform" target="_blank" rel="noopener" aria-label="Für die Android-Start-Benachrichtigung eintragen">
+        <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+        Bei Android-Start benachrichtigen <span class="arrow" aria-hidden="true">→</span>
       </a>
     </div>
     <p class="store-note reveal d2">Verfügbar auf Deutsch, English, Español und 한국어</p>
@@ -508,5 +523,26 @@
   })();
 </script>
 
+
+<!-- Amplitude Analytics: unified SDK v1 (UMD, official npm build via jsDelivr) -->
+<script src="https://cdn.jsdelivr.net/npm/@amplitude/unified@1/lib/scripts/amplitude-min.umd.js"></script>
+<script>
+  // Amplitude ingestion key — public by design; move to an env var when you set up environments.
+  var AMPLITUDE_API_KEY = '0bd1141287b691dce8c5ebf88e1fe963';
+  amplitude.initAll(AMPLITUDE_API_KEY, {
+    analytics: {
+      autocapture: {
+        pageViews: true,           // Page viewed
+        sessions: true,            // Start session / End session
+        attribution: true,         // Marketing attribution (UTM 등)
+        formInteractions: false,
+        fileDownloads: false,
+        elementInteractions: false
+      }
+    },
+    sessionReplay: { sampleRate: 1 }
+  });
+  amplitude.track('Viewed Home Page', { prompt_version: 'BA400.4' }); // helps improve this setup flow — safe to remove once you've verified the event lands
+</script>
 </body>
 </html>
