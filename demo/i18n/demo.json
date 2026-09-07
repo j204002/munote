@@ -1,0 +1,46 @@
+{
+  "ko": {
+    "ribbon": "체험판 · 눌러보세요",
+    "hint": "<b>설치 없이</b> 바로 만져볼 수 있어요 · 실제 소리 인식은 앱에서",
+    "noMic": "체험판에서는 소리를 듣지 않아요",
+    "skip": "▶︎ 25분 뒤로",
+    "inApp": "앱에서 할 수 있어요",
+    "addInApp": "친구 추가는 앱에서",
+    "demoAccount": "체험판",
+    "noNoteYet": "20분 이상 연습한 날에 도착해요",
+    "appStore": "App Store"
+  },
+  "en": {
+    "ribbon": "Try it · tap around",
+    "hint": "Try it <b>without installing</b> · real sound detection is in the app",
+    "noMic": "The demo doesn't listen to any sound",
+    "skip": "▶︎ Skip to 25 min",
+    "inApp": "You can do this in the app",
+    "addInApp": "Add friends in the app",
+    "demoAccount": "Demo",
+    "noNoteYet": "Arrives on days you practice 20 minutes or more",
+    "appStore": "App Store"
+  },
+  "es": {
+    "ribbon": "Prueba · toca y explora",
+    "hint": "Pruébala <b>sin instalar</b> · la detección real de sonido está en la app",
+    "noMic": "La demo no escucha ningún sonido",
+    "skip": "▶︎ Saltar a 25 min",
+    "inApp": "Esto se hace en la app",
+    "addInApp": "Añade amigos en la app",
+    "demoAccount": "Demo",
+    "noNoteYet": "Llega los días que practicas 20 minutos o más",
+    "appStore": "App Store"
+  },
+  "de": {
+    "ribbon": "Ausprobieren · tipp herum",
+    "hint": "<b>Ohne Installation</b> ausprobieren · echte Klangerkennung gibt es in der App",
+    "noMic": "Die Demo hört keinen Ton",
+    "skip": "▶︎ Zu 25 Min. springen",
+    "inApp": "Das geht in der App",
+    "addInApp": "Freunde hinzufügen geht in der App",
+    "demoAccount": "Demo",
+    "noNoteYet": "Kommt an Tagen mit 20 Minuten oder mehr Übung",
+    "appStore": "App Store"
+  }
+}
