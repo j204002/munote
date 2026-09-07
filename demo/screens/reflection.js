@@ -35,7 +35,13 @@ function resetLocal() {
 
 // 순수 헬퍼(테스트 대상) — fade-in 클래스는 render()에서 필요할 때 문자열에 덧붙인다.
 export function coachCardHtml(t, text) {
-  return `<div class="md-coach-card" data-coach><p class="md-coach-label">${esc(t('reflection.coachLabel'))}</p><p class="md-coach-text">“${esc(text)}”</p></div>`;
+  return `<div class=”md-coach-card” data-coach><p class=”md-coach-label”>${esc(t('reflection.coachLabel'))}</p><p class=”md-coach-text”>”${esc(text)}”</p></div>`;
+}
+
+// 순수 헬퍼(테스트 대상) — 저장 직후 상태에서 방금 저장된 세션을 반환.
+// 같은 dateKey 내 다중 세션을 지원하므로 find() 대신 at(-1)을 사용.
+export function justSavedSession(next) {
+  return next.sessions.at(-1);
 }
 
 export const render = (s, t) => {
@@ -132,7 +138,7 @@ export function rewire(root, ctx) {
     const s = ctx.store.get();
     const draft = { ...s.draft, memo: memoText };
     const next = saveReflection({ ...s, draft }, s.lang);
-    const saved = next.sessions.find((x) => x.dateKey === next.todayKey);
+    const saved = justSavedSession(next);
     const coach = saved?.coach;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (coach) {

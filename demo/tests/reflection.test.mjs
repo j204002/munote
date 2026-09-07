@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { render, coachCardHtml } from '../screens/reflection.js';
+import { render, coachCardHtml, justSavedSession } from '../screens/reflection.js';
 import { makeT } from '../i18n.js';
-import { createStore, startFocus, skipFocus, endFocus } from '../state.js';
+import { createStore, startFocus, skipFocus, endFocus, saveReflection } from '../state.js';
 import { PIECES, TYPES } from '../data.js';
 
 const load = (l) => JSON.parse(readFileSync(new URL(`../i18n/${l}.json`, import.meta.url), 'utf8'));
@@ -59,8 +59,43 @@ test('곡 2개를 선택한 draft로 렌더하면 selected 2개', () => {
   assert.equal(selected.length, 2);
 });
 
-test('coachCardHtml: 라벨 "MU:note의 한마디" + 큰따옴표 인용문', () => {
+test('coachCardHtml: 라벨 “MU:note의 한마디” + 큰따옴표 인용문', () => {
   const html = coachCardHtml(t, '테스트 한마디 문장입니다.');
   assert.match(html, /MU:note의 한마디/);
-  assert.match(html, /“테스트 한마디 문장입니다\.”/);
+  assert.match(html, /”테스트 한마디 문장입니다\.”/);
+});
+
+test('두 번 반복된 사이클: 짧은 세션 후 긴 세션 — justSavedSession이 마지막 세션 반환, 코치 문장 포함', () => {
+  // 초기 상태(정규 배포판 데이터 포함)
+  let s = createStore(now).get();
+  const initialCount = s.sessions.length;
+  const initialTodayCount = s.sessions.filter((x) => x.dateKey === s.todayKey).length;
+
+  // 첫 번째 사이클: 짧은 세션(60초) 저장
+  s = startFocus(s);
+  s = { ...s, focus: { ...s.focus, elapsedSec: 60, wallSec: 60, focusPct: 100 } }; // 1분
+  s = endFocus(s);
+  let next = saveReflection(s, 'ko');
+
+  // 검증: 세션 1개 증가, 마지막 세션이 1분 세션(코치 없음)
+  assert.equal(next.sessions.length, initialCount + 1);
+  let saved = justSavedSession(next);
+  assert.strictEqual(saved.coach, undefined, '1분 세션은 코치 없음');
+  assert.equal(saved.practiceMin, 1);
+
+  // 두 번째 사이클: 긴 세션(25분) 저장
+  s = next;
+  s = startFocus(s);
+  s = skipFocus(s); // 25분 스킵
+  s = endFocus(s);
+  next = saveReflection(s, 'ko');
+
+  // 검증: 세션 2개 증가, 마지막 세션이 25분 세션(코치 포함)
+  assert.equal(next.sessions.length, initialCount + 2);
+  const sameDayCount = next.sessions.filter((x) => x.dateKey === next.todayKey).length;
+  assert.equal(sameDayCount, initialTodayCount + 2);
+
+  saved = justSavedSession(next);
+  assert.ok(saved.coach, '25분 세션은 코치 문장을 포함해야 함');
+  assert.match(saved.coach, /25분/);
 });
