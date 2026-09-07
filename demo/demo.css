@@ -1,0 +1,24 @@
+/* demo/demo.css — 앱 theme.ts를 CSS 변수로 */
+#munote-demo { --bg:#FAFAFA; --card:#FFFFFF; --text:#111111; --sub:#666666; --faint:#9A9A9A; --border:#E5E5E5; --grayFill:#ECECEC; --overlay:rgba(0,0,0,.28); --grab:#D9D9D9; font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif; -webkit-font-smoothing:antialiased; }
+.md-phone { position:relative; width:320px; margin:0 auto; border:3px solid var(--text); border-radius:46px; background:#fff; padding:10px; box-shadow:0 30px 60px rgba(17,17,17,.12); }
+.md-screen { position:relative; width:100%; aspect-ratio: 9 / 19.5; border-radius:36px; overflow:hidden; background:var(--bg); color:var(--text); display:flex; flex-direction:column; }
+.md-mount { height:100%; display:flex; flex-direction:column; }
+.screen { flex:1; min-height:0; display:flex; flex-direction:column; }
+.md-body { flex:1; min-height:0; overflow:hidden; }
+.md-body.scroll { overflow-y:auto; overscroll-behavior:contain; touch-action:pan-y; -webkit-overflow-scrolling:touch; }
+.md-tabbar { display:flex; border-top:1px solid var(--border); background:var(--bg); height:56px; }
+.md-tabbar button { flex:1; background:none; border:0; font:inherit; font-size:12px; color:var(--faint); cursor:pointer; }
+.md-tabbar button[aria-current="page"] { color:var(--text); font-weight:700; }
+.md-ribbon { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--text); color:#fff; font-size:11px; letter-spacing:.06em; padding:5px 12px; border-radius:999px; white-space:nowrap; z-index:2; }
+.md-hint { text-align:center; font-size:12px; color:var(--faint); margin-top:14px; } .md-hint b { color:var(--text); font-weight:600; }
+.md-toast { position:absolute; left:50%; bottom:72px; transform:translateX(-50%); background:var(--text); color:#fff; font-size:12px; padding:8px 14px; border-radius:999px; white-space:nowrap; opacity:0; transition:opacity .2s; pointer-events:none; }
+.md-toast.on { opacity:1; pointer-events:auto; } .md-toast a { color:#fff; text-decoration:underline; margin-left:8px; }
+.md-sheet-overlay { position:absolute; inset:0; background:var(--overlay); display:flex; align-items:flex-end; z-index:3; }
+.md-sheet { width:100%; background:var(--card); border-radius:22px 22px 0 0; padding:10px 20px 24px; max-height:85%; overflow-y:auto; overscroll-behavior:contain; }
+.md-grab { width:40px; height:4px; border-radius:2px; background:var(--grab); margin:0 auto 14px; }
+.md-pill { display:inline-flex; align-items:center; height:32px; padding:0 14px; border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--text); font:inherit; font-size:13px; cursor:pointer; }
+.md-pill.has { border-width:2px; border-color:var(--text); } .md-pill.selected { background:var(--text); color:#fff; border-color:var(--text); }
+.md-btn-primary { display:block; width:100%; height:52px; border-radius:14px; background:var(--text); color:#fff; border:0; font:inherit; font-size:16px; font-weight:600; cursor:pointer; }
+.md-btn-secondary { display:block; width:100%; height:44px; border-radius:12px; background:var(--grayFill); color:var(--text); border:0; font:inherit; font-size:15px; cursor:pointer; }
+@media (prefers-reduced-motion: reduce) { #munote-demo * { animation:none !important; transition:none !important; } }
+@media (max-width:720px) { .md-phone { width:min(320px, 84vw); } }
