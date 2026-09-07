@@ -83,10 +83,11 @@ function optPill(label, selected, opt) {
 function sheetBodyHtml(t, s) {
   const which = s.sheet.which;
   if (which === 'instrument') {
+    // settings.instrumentNote는 앱 원문이 "악기는 소리 판정 기준이에요"라 대외비 판정 기준을 그대로
+    // 노출한다(코덱스 리뷰 2026-09-07 Blocker) — 체험판에서는 렌더하지 않는다.
     const opts = INSTRUMENTS.map((k) => optPill(t(`instrument.${k}`), s.me.instrument === k, `instrument:${k}`)).join('');
     return `<p class="md-sheet-title">${esc(t('settings.instrumentLabel'))}</p>
-      <div class="md-pill-wrap">${opts}</div>
-      <p class="md-set-note">${esc(t('settings.instrumentNote'))}</p>`;
+      <div class="md-pill-wrap">${opts}</div>`;
   }
   if (which === 'reminder') {
     const opts = NOTIF_HOURS.map((h) => optPill(t(`settings.notifHour${h}`), reminderHour === h, `reminder:${h}`)).join('');
@@ -112,6 +113,15 @@ function sheetBodyHtml(t, s) {
   return '';
 }
 
+// 시트 role="dialog"의 접근 가능한 이름 — 각 시트 본문 맨 위 제목(md-sheet-title)과 같은 문구를 쓴다.
+function sheetLabelOf(t, which) {
+  if (which === 'instrument') return t('settings.instrumentLabel');
+  if (which === 'reminder') return t('settings.notifLabel');
+  if (which === 'calendar') return t('settings.calendarRowLabel');
+  if (which === 'language') return t('settings.languageSection');
+  return '';
+}
+
 export const render = (s, t) => {
   const langNative = LANGS.find((l) => l.code === s.lang)?.native ?? s.lang;
   const practiceRows = [
@@ -133,7 +143,7 @@ export const render = (s, t) => {
     staticRowHtml(t('settings.versionLabel'), `1.2 (${t('demo.demoAccount')})`, true),
   ].join('');
 
-  const sheetHtml = s.sheet?.kind === 'setting' ? sheet(sheetBodyHtml(t, s)) : '';
+  const sheetHtml = s.sheet?.kind === 'setting' ? sheet(sheetBodyHtml(t, s), { label: sheetLabelOf(t, s.sheet.which) }) : '';
 
   return `<div class="screen md-settings">
     <div class="md-body scroll">

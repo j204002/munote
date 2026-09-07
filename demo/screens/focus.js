@@ -22,7 +22,6 @@ export const render = (s, t) => {
       <p class="md-focus-timer">${fmt(f.elapsedSec)}</p>
       <p class="md-focus-sub">${esc(t('focus.meta', { elapsed: fmt(wallSec), count: f.pauseCount }))}</p>
       <p class="md-focus-mic">${esc(t('demo.noMic'))}</p>
-      <p class="md-focus-noise">${esc(t('focus.noiseHint'))}</p>
       <button type="button" class="md-skip" data-skip>${esc(t('demo.skip'))}</button>
       <div class="md-focus-controls">
         <button type="button" class="md-stop-btn" data-stop>${esc(t(f.paused ? 'focus.resume' : 'focus.stop'))}</button>

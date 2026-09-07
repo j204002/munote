@@ -1,25 +1,26 @@
 {
+  "common": {
+    "back": "Back"
+  },
   "tabs": {
     "home": "Home",
     "records": "Records",
     "settings": "Settings",
     "friends": "Friends"
   },
+  "duration": {
+    "minOnly": "{{m}} min",
+    "hourOnly": "{{h}} hr",
+    "hourMin": "{{h}} hr {{m}} min"
+  },
   "home": {
     "todayLabel": "Today's practice",
     "goalPct": "Goal {{pct}}%",
     "streak_one": "🔥 {{count}}-day practice streak",
     "streak_other": "🔥 {{count}}-day practice streak",
-    "comeback_one": "👋 Back after {{count}} day",
-    "comeback_other": "👋 Back after {{count}} days",
     "weekDays_one": "📆 {{count}} practice day this week",
     "weekDays_other": "📆 {{count}} practice days this week",
-    "pastTodayYear": "✨ You practiced on this day last year",
-    "pastTodayMonth": "✨ You practiced on this day last month",
-    "start": "Start practicing",
-    "hint": "Your sound is detected and logged automatically",
-    "deleteCheckNotice": "Account cleanup check is briefly on hold.\nYour records are safe on this phone; it retries automatically once connected.",
-    "sessionRecovered": "Found a practice that ended without saving — we kept the record.\nYou can add pieces and notes from the calendar."
+    "start": "Start practicing"
   },
   "focus": {
     "state": {
@@ -29,17 +30,7 @@
       "paused": "Paused",
       "ended": "Ended"
     },
-    "abort": "Go back home",
     "meta": "Elapsed {{elapsed}} · paused {{count}}×",
-    "rollback": "Paused — 15 s of silence was excluded",
-    "micLost": "Tracking stopped because another app took the microphone.\nTap Resume to continue.",
-    "micStartFailed": "Tracking couldn't start because the microphone isn't available.\nAllow microphone access for MU:note in Settings, then tap Resume.",
-    "openSettings": "Open Settings",
-    "mic": "🎙 Microphone on · audio is never saved",
-    "noiseHint": "Loud surroundings can lower detection accuracy",
-    "mediaHint": "Videos or music playing alongside will sound quieter.\nYour practice is still counted accurately.",
-    "memoButton": "✏️ Note",
-    "memoPlaceholder": "A thought while practicing…",
     "stop": "Stop",
     "resume": "Resume",
     "end": "End"
@@ -49,24 +40,13 @@
     "minutes": "{{min}} min",
     "metaLine1": "Total {{elapsed}} min · focus {{focus}}%",
     "metaLine2": "Paused {{pause}}×",
-    "metaAway": " · away {{min}} min",
     "coachLabel": "A word from MU:note",
     "shortNote": "Under 20 minutes, your session is saved without a note",
     "piecesSection": "Pieces practiced",
-    "editPieces": "Edit",
-    "editDone": "Done",
-    "newPiecePlaceholder": "Add a piece",
     "typesSection": "Practice type",
     "memosSection": "Notes",
     "memoAddPlaceholder": "Add a note…",
-    "summaryBase_one": "Practice {{min}} min · focus {{focus}}% · {{count}} piece",
-    "summaryBase_other": "Practice {{min}} min · focus {{focus}}% · {{count}} pieces",
-    "summaryAway": " · away {{min}} min",
-    "done": "Save and finish",
-    "saveFailedTitle": "Couldn't save",
-    "saveFailedBody": "Your record is not lost.\nPlease tap Save again in a moment.",
-    "firstNote": "That was our first practice together — {{practiceMin}} minutes of playing made it into the record.\nThe more sessions add up, the more the numbers can say.",
-    "coachGuestHint": "Sign up and a note from MU:note will arrive when you practice 20 minutes or more."
+    "done": "Save and finish"
   },
   "calendar": {
     "weekdays": [
@@ -85,9 +65,7 @@
       "l3": "1 hr+",
       "l4": "2 hr+"
     },
-    "emptyAll": "No records yet — start your first practice",
     "emptyDay": "No records on this day",
-    "sessionMeta": "{{time}} · {{min}} min · focus {{focus}}%",
     "sessionLine_one": "{{time}} · {{min}} min · focus {{focus}}% · {{count}} piece",
     "sessionLine_other": "{{time}} · {{min}} min · focus {{focus}}% · {{count}} pieces",
     "editAll": "Edit all",
@@ -95,173 +73,19 @@
     "daySummary_one": "Practice {{min}} min · focus {{focus}}% · {{count}} session",
     "daySummary_other": "Practice {{min}} min · focus {{focus}}% · {{count}} sessions",
     "dayBarTotal": "Total {{min}} min",
-    "guestLockedNote": "Sign up to see detailed records from past months.\nThe calendar and daily totals stay free.",
     "deleteSession": "Delete session",
-    "deleteSessionConfirmTitle": "Delete this practice record?",
-    "deleteSessionConfirmBody": "This can't be undone.\nIt will also disappear from your stats and calendar.",
-    "deleteSessionAction": "Delete",
-    "deleteFailedTitle": "Couldn't delete",
-    "deleteFailedBody": "A storage issue stopped the deletion.\nPlease try again in a moment.",
     "panel": {
       "sessions": "🎵 Sessions",
       "todo": "📋 to do",
       "memo": "✏️ Notes",
       "dday": "📆 D-day"
-    },
-    "memoOf": "{{time}} session",
-    "noMemos": "No notes on this day",
-    "sessionMemos": "Session notes"
-  },
-  "friends": {
-    "title": "Friends",
-    "gearA11y": "Settings",
-    "addA11y": "Add friends & requests",
-    "pendingA11y": "New friend request",
-    "me": "Me",
-    "guest": {
-      "line": "You need an account to share practice with friends.",
-      "cta": "Sign up"
-    },
-    "name": {
-      "title": "Pick a name\nyour friends will see",
-      "desc": "Only people connected by friend code can see it.\nAfter the first time, you can change it once every 7 days.",
-      "label": "Name",
-      "save": "Save",
-      "change": "Change my name",
-      "hint": "Pick a name to open the practice room.",
-      "tooShort": "At least 2 characters.",
-      "tooLong": "Up to 12 characters.",
-      "invalid": "That name can't be used."
-    },
-    "quiet": "Quiet so far today.\nWhen a friend practices, their card shows up here.",
-    "empty": "Invite a friend who practices too.\nYou can cheer each other on",
-    "sheet": {
-      "codeLabel": "My friend code",
-      "copy": "Copy code",
-      "copied": "Copied",
-      "share": "Share code",
-      "enter": "Enter a friend code",
-      "incoming": "Requests",
-      "requestLine": "sent you a friend request",
-      "accept": "Accept",
-      "decline": "Decline",
-      "friends": "Friends",
-      "outgoing": "Sent",
-      "pending": "Pending",
-      "cancel": "Cancel",
-      "rotate": "New code",
-      "rotateConfirm": "Your old code will stop working.",
-      "shareText": "Come practice with me {{emoji}}\nAdd me on MU:note and we'll share a practice room.\n\nGet the app → {{link}}\nMy friend code: {{code}}  (Friends → Add → Enter code)",
-      "shareRow": "What friends can see",
-      "mine": "me",
-      "myNote": "This is how friends see the items above",
-      "nameCooldown": "You can change it in {{n}} days"
-    },
-    "input": {
-      "title": "Enter a friend code",
-      "placeholder": "7K3F-9P2Q",
-      "check": "Check",
-      "send": "Send friend request",
-      "sent": "Request sent",
-      "alreadyFriends": "You're already friends"
-    },
-    "detail": {
-      "remove": "Remove friend",
-      "removeConfirm": "They'll disappear from each other's lists.",
-      "removeYes": "Remove",
-      "report": "Report",
-      "block": "Block"
-    },
-    "error": {
-      "members_only": "Friends are available after signing up.",
-      "consent_required": "Consent needed. Please check Settings.",
-      "invalid_code": "Please check the code.",
-      "rate_limited": "Please try again in a moment.",
-      "name_invalid": "That name can't be used.",
-      "not_found": "Please try again.",
-      "network": "Check your connection and try again.",
-      "unknown": "Please try again.",
-      "name_cooldown": "You can change your name again 7 days after the last change.",
-      "invalid_date": "Please try again.",
-      "invalid_reaction": "Please try again.",
-      "identity_mismatch": "Please try again."
-    },
-    "emptyCta": "Add friend",
-    "share": {
-      "title": "What friends can see",
-      "question": "What should\nfriends see?",
-      "desc": "Only friends connected by code can see this.\nTurn something off and it disappears from the next refresh.",
-      "descFirst": "Nothing is shared until you save,\nand you can change this anytime in Settings.",
-      "section": "Today's card",
-      "practiced": "Whether I practiced today",
-      "practicedHint": "Off means your card never appears in friends' feeds",
-      "minutes": "Total practice time today",
-      "streak": "Practice streak",
-      "weekDays": "Practice days this week",
-      "focus": "Focus",
-      "focusHint": "Off by default",
-      "note": "Your name and instrument are always visible to friends.\nPiece names and notes are never shown to friends.",
-      "save": "Save",
-      "saveFailed": "Couldn't save. Check your connection and try again.",
-      "live": "Whether I'm practicing right now",
-      "liveHint": "When on, your Muni plays in your friends' practice room while you practice."
-    },
-    "feed": {
-      "label": "Friends who practiced today: {{n}}",
-      "practicedOnly": "Practiced today",
-      "streak": "{{n}}-day streak",
-      "weekDays": "{{n}} days this week",
-      "focus": "Focus {{p}}%",
-      "days": "{{n}} days",
-      "today": "Today",
-      "streakLabel": "Streak",
-      "weekLabel": "This week"
-    },
-    "react": {
-      "clap": "Nice work",
-      "fire": "Awesome",
-      "note": "Off to practice too",
-      "received": "Reactions today",
-      "none": "None yet"
-    },
-    "room": {
-      "live": "Practicing"
-    },
-    "block": {
-      "confirmTitle": "Block this person?",
-      "confirmBody": "Blocking removes you from each other's practice room, feed, and requests.\nThey won't be notified.",
-      "action": "Block",
-      "listTitle": "Blocked people",
-      "unblock": "Unblock",
-      "empty": "No one is blocked",
-      "row": "Blocked people"
-    },
-    "report": {
-      "title": "Report",
-      "spam": "Spam",
-      "impersonation": "Impersonation",
-      "name": "Inappropriate name",
-      "harassment": "Harassment",
-      "other": "Other",
-      "send": "Send",
-      "done": "Received. We'll review and take action.",
-      "blockNow": "Block this person",
-      "close": "Close"
-    },
-    "a11y": {
-      "playing": "practiced today",
-      "lying": "resting for 3+ days",
-      "asleep": "resting for a week or more",
-      "incomingHint": "Long press to report or block"
     }
   },
   "settings": {
-    "profileSection": "Profile",
     "practiceSection": "Practice",
     "instrumentLabel": "Main instrument",
     "goalLabel": "Daily practice goal",
     "goalNone": "None",
-    "goalNote": "No goal, no penalty — it's entirely up to you",
     "notifLabel": "Practice reminder",
     "notifNote": "A gentle nudge once a day so practice isn't forgotten.\nIf you've already practiced, that day's reminder stays quiet.",
     "dayStartLabel": "Day starts at",
@@ -273,57 +97,17 @@
     "weekStartLabel": "Week starts on",
     "weekStartSun": "Sunday",
     "weekStartMon": "Monday",
-    "detailTitle": "Calendar · Language",
-    "detailRowLabel": "Calendar · Language",
-    "detailRowNote": "Change day start, week start, and language",
-    "infoSection": "About",
     "languageSection": "Language",
-    "languageSystem": "Use device setting",
-    "comingSoon": "Coming soon",
-    "privacyNote": "Detection audio is never saved.\nOnly the results (time and classification) are recorded.",
     "versionLabel": "Version",
-    "accountSection": "Account",
-    "accountGuest": "You're using the app as a guest",
-    "accountGuestHint": "Sign up to keep your records safe across phones and reinstalls",
-    "accountSignUp": "Sign up",
-    "accountSignedIn": "Signed in with {{provider}}",
-    "accountLogout": "Log out",
-    "accountLogoutTitle": "Log out?",
-    "accountLogoutBody": "You'll start fresh as a guest. Sign in with the same account anytime and your records will come back.",
-    "accountLogoutBlockedTitle": "Some records aren't saved yet",
-    "accountLogoutBlockedBody_one": "{{count}} record hasn't been saved to the server yet. Please try again while connected to the internet.",
-    "accountLogoutBlockedBody_other": "{{count}} records haven't been saved to the server yet. Please try again while connected to the internet.",
-    "accountProviderKakao": "Kakao",
-    "accountProviderApple": "Apple",
-    "deleteAccount": "Delete account",
-    "deleteGuestAccount": "Delete guest data & account",
-    "deleteAccountConfirmTitle": "Delete your account?",
-    "deleteAccountConfirmBody": "All practice records will be permanently deleted and can't be recovered.\nPlease check anything you need before deleting.",
-    "deleteAccountConfirm2Title": "Really delete?",
-    "deleteAccountConfirm2Body": "This can't be undone.",
-    "deleteAccountAction": "Delete forever",
-    "deleteAccountFailed": "Couldn't delete your account.\nPlease try again in a moment.",
     "notifHour8": "8 AM",
     "notifHour12": "12 PM",
     "notifHour16": "4 PM",
     "notifHour19": "7 PM",
     "notifHour21": "9 PM",
-    "notifPermissionTitle": "Notifications are turned off",
-    "notifPermissionBody": "Please allow MU:note notifications in the Settings app.",
     "legalTerms": "Terms of Service",
     "legalPrivacy": "Privacy Policy",
-    "accountLogoutFailedTitle": "Couldn't log out",
-    "accountLogoutFailedBody": "Please check your connection and try again.\nYour records are safe.",
-    "friendsSection": "Friends",
     "appSection": "App",
-    "calendarRowLabel": "Day start · Week start",
-    "notifOff": "Off",
-    "shareCount": "{{n}} shared",
-    "instrumentNote": "Your instrument sets how sound is judged.\nKeep it on the instrument you actually practice.",
-    "contact": "Contact us",
-    "contactSubject": "MU:note inquiry",
-    "contactNoMail": "Couldn't open a mail app.\nPlease write to the address below.",
-    "contactCopy": "Copy address"
+    "calendarRowLabel": "Day start · Week start"
   },
   "instrument": {
     "piano": "Piano",
@@ -341,18 +125,36 @@
     "detail": "Detail work",
     "ensemble": "Ensemble/accomp."
   },
-  "duration": {
-    "minOnly": "{{m}} min",
-    "hourOnly": "{{h}} hr",
-    "hourMin": "{{h}} hr {{m}} min"
-  },
-  "common": {
-    "cancel": "Cancel",
-    "save": "Save",
-    "add": "Add",
-    "close": "Close",
-    "edit": "Edit",
-    "delete": "Delete",
-    "back": "Back"
+  "friends": {
+    "title": "Friends",
+    "addA11y": "Add friends & requests",
+    "quiet": "Quiet so far today.\nWhen a friend practices, their card shows up here.",
+    "detail": {
+      "remove": "Remove friend",
+      "report": "Report",
+      "block": "Block"
+    },
+    "feed": {
+      "label": "Friends who practiced today: {{n}}",
+      "streak": "{{n}}-day streak",
+      "weekDays": "{{n}} days this week",
+      "days": "{{n}} days",
+      "today": "Today",
+      "streakLabel": "Streak",
+      "weekLabel": "This week"
+    },
+    "react": {
+      "clap": "Nice work",
+      "fire": "Awesome",
+      "note": "Off to practice too",
+      "received": "Reactions today",
+      "none": "None yet"
+    },
+    "a11y": {
+      "playing": "practiced today",
+      "lying": "resting for 3+ days",
+      "asleep": "resting for a week or more",
+      "incomingHint": "Long press to report or block"
+    }
   }
 }
