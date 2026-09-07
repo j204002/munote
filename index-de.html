@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MU:note — Zählt nur dein Instrument | Übetagebuch-App</title>
-<meta name="description" content="Üb einfach los: Es zählt nur die Zeit, in der du wirklich spielst. MU:note hört das Instrument, das du einstellst — Audio wird nie gespeichert. Klavier, Streicher, Bläser, Gesang. Übetagebuch-App für iOS." />
+<meta name="description" content="Üb einfach los: Es zählt nur die Zeit, in der du wirklich spielst. MU:note hört das Instrument, das du einstellst — Audio wird nie gespeichert. Klavier, Streicher, Bläser, Gesang. Übetagebuch-App für iOS. Triff deine Freunde im Übungsraum." />
 <meta name="keywords" content="üben,Übetagebuch,Übezeit,Musik üben App,Klavier,Geige,Gesang,Musikstudium,Übe-Timer,MU:note" />
 <link rel="canonical" href="https://oneumart.com/munote/index-de.html" />
 <link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MU:note" />
 <meta property="og:title" content="MU:note — Zählt nur dein Instrument" />
-<meta property="og:description" content="Üb einfach los: Es zählt nur die Zeit, in der du wirklich spielst. Audio wird nie gespeichert." />
+<meta property="og:description" content="Üb einfach los: Es zählt nur die Zeit, in der du wirklich spielst. Audio wird nie gespeichert. Triff deine Freunde im Übungsraum." />
 <meta property="og:url" content="https://oneumart.com/munote/index-de.html" />
 <meta property="og:image" content="https://oneumart.com/munote/img/og-en.png" />
 <meta property="og:image:width" content="1200" />
@@ -54,6 +54,8 @@
     { "@type": "Question", "name": "Brauche ich ein Konto?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Aufzeichnung und Kalender funktionieren auch ohne Anmeldung. Meldest du dich an, bleibt dein Verlauf gesichert: Handywechsel oder Neuinstallation, und er ist wieder da." } },
     { "@type": "Question", "name": "Ist die App kostenlos?", "acceptedAnswer": { "@type": "Answer", "text": "Ja, im Moment ist alles kostenlos." } },
     { "@type": "Question", "name": "Zählen Pausen als Übezeit?", "acceptedAnswer": { "@type": "Answer", "text": "Nein. Umblättern, Wasser trinken, kurz durchatmen: Nichts davon wird gezählt. Dauert die Stille 15 Sekunden oder länger, wird diese Zeit abgezogen." } },
+    {"@type": "Question", "name": "Was sehen meine Freunde?", "acceptedAnswer": {"@type": "Answer", "text": "Dein Name und dein Hauptinstrument sind immer sichtbar. Ob du heute geübt hast, Übezeit, Serie, Übungstage dieser Woche, Fokus und ob du gerade übst werden nur gezeigt, wenn du das jeweils einschaltest. Stücktitel und Notizen werden nie gezeigt. Blockieren und Melden sind möglich."}},
+    {"@type": "Question", "name": "Brauche ich für Freunde ein Konto?", "acceptedAnswer": {"@type": "Answer", "text": "Freunde gibt es nur für angemeldete Mitglieder. Verlauf und Kalender funktionieren weiterhin ohne Konto."}},
     { "@type": "Question", "name": "Gibt es eine Android-Version?", "acceptedAnswer": { "@type": "Answer", "text": "Sie ist in Arbeit. Android-Mikrofone unterscheiden sich je nach Gerät, deshalb justieren wir neu, wie MU:note dein Instrument heraushört. Trag dich für die Start-Benachrichtigung ein, dann melden wir uns." } }
   ]
 }
@@ -267,6 +269,13 @@
   }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<style>
+  /* 친구 섹션 (1.2, 2026-09-07) */
+  .friends-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .friends-shot { margin: 0; }
+  .friends-shot img { display: block; width: 100%; max-width: 340px; margin: 0 auto; border-radius: 22px; border: 1px solid var(--line); }
+  @media (max-width: 720px) { .friends-grid { grid-template-columns: 1fr; gap: 36px; } .friends-shot img { max-width: 280px; } }
+</style>
 </head>
 <body>
 
@@ -274,6 +283,7 @@
   <div class="wrap nav-inner">
     <a class="nav-brand" href="#top"><img src="img/logo-horizontal.png" alt="MU:note" /></a>
     <div class="nav-links">
+      <a class="nav-anchor" href="#friends">Freunde</a>
       <a class="nav-anchor" href="#features">Funktionen</a>
       <a class="nav-anchor" href="#screens">Screens</a>
       <a class="nav-anchor" href="#faq">FAQ</a>
@@ -339,9 +349,21 @@
       <div class="step reveal d2">
         <div class="num">3</div>
         <h3>Dein Verlauf bleibt</h3>
-        <p>Deine echte Übezeit und dein Fokus sammeln sich im Kalender. Dauert eine Session länger als 20 Minuten, kommt eine kurze Analyse-Notiz.</p>
+        <p>Deine echte Übezeit und dein Fokus sammeln sich im Kalender. Auch bei gesperrtem Display bleiben Timer und Erkennungsstatus auf dem Sperrbildschirm. Dauert eine Session länger als 20 Minuten, kommt eine Notiz aus zwei Sätzen.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="friends">
+  <div class="wrap friends-grid">
+    <div class="friends-copy">
+      <div class="kicker reveal">Friends</div>
+      <h2 class="reveal d1">Allein üben,<br />im selben Raum</h2>
+      <p class="lead reveal d2">Verbinde dich per Freundescode – ihr Muni läuft durch deinen Übungsraum. Wer heute geübt hat, spielt; nach ein paar Tagen Pause legt er sich hin. Schick Klatsch-, Feuer- und Noten-Reaktionen auf die Tageskarten.</p>
+      <p class="lead reveal d3"><strong>Du entscheidest, was Freunde sehen.</strong> Stücktitel und Notizen werden Freunden nie gezeigt.</p>
+    </div>
+    <figure class="friends-shot reveal d1"><img src="img/shots/de/06.png" alt="Freunde — im selben Übungsraum" loading="lazy" /></figure>
   </div>
 </section>
 
@@ -353,6 +375,8 @@
     </div>
     <div class="shots">
       <figure class="shot reveal"><img src="img/shots/de/01.png" alt="Fokusmodus — hört nur dein Instrument" loading="lazy" /></figure>
+      <figure class="shot reveal d1"><img src="img/shots/de/06.png" alt="Freunde — im selben Übungsraum" loading="lazy" /></figure>
+      <figure class="shot reveal d2"><img src="img/shots/de/07.png" alt="Reaktionen — feuer die Tageskarte eines Freundes an" loading="lazy" /></figure>
       <figure class="shot reveal d1"><img src="img/shots/de/02.png" alt="Rückblick — deine Übezeit, automatisch erfasst" loading="lazy" /></figure>
       <figure class="shot reveal d2"><img src="img/shots/de/03.png" alt="Kalender — deine Übezeit auf einen Blick" loading="lazy" /></figure>
       <figure class="shot reveal d3"><img src="img/shots/de/04.png" alt="Start — ein Tipp, den Rest übernimmt der Klang" loading="lazy" /></figure>
@@ -411,6 +435,13 @@
           <p>Eine Erinnerung pro Tag, zu der Zeit, die du wählst. Sie macht dir nie Vorwürfe wegen eines freien Tages. Standardmäßig aus.</p>
         </div>
       </div>
+      <div class="feature reveal d1">
+        <span class="fnum">07</span>
+        <div>
+          <h3>Plane das Üben von heute</h3>
+          <p>Schreib die Ziele des Tages auf und hak sie ab. Setz einen D-Day für Prüfung oder Wettbewerb und lass eine kurze Tagesnotiz da.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -422,7 +453,7 @@
     <div class="privacy-list">
       <div class="privacy-item reveal"><span class="mark">01</span><span>Das Audio für die Erkennung wird direkt nach der Auswertung aus dem Gerätespeicher verworfen. Was bleibt, sind Zeit und Ergebnis — sonst nichts.</span></div>
       <div class="privacy-item reveal d1"><span class="mark">02</span><span>Solange die Klangerkennung läuft, wird das immer auf dem Bildschirm angezeigt.</span></div>
-      <div class="privacy-item reveal d2"><span class="mark">03</span><span>Deine Notizen und Stücktitel werden unter keinen Umständen an den KI-Server gesendet.</span></div>
+      <div class="privacy-item reveal d2"><span class="mark">03</span><span>Deine Notizen und Stücktitel werden unter keinen Umständen an den KI-Server gesendet oder Freunden gezeigt.</span></div>
     </div>
   </div>
 </section>
@@ -455,6 +486,14 @@
         <p>Nein. Umblättern, Wasser trinken, kurz durchatmen: Nichts davon wird gezählt. Dauert die Stille 15 Sekunden oder länger, wird diese Zeit abgezogen.</p>
       </div>
       <div class="faq-item reveal">
+        <h3>Was sehen meine Freunde?</h3>
+        <p>Dein Name und dein Hauptinstrument sind immer sichtbar. Ob du heute geübt hast, Übezeit, Serie, Übungstage dieser Woche, Fokus und ob du gerade übst werden nur gezeigt, wenn du das jeweils einschaltest. Stücktitel und Notizen werden nie gezeigt. Blockieren und Melden sind möglich.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>Brauche ich für Freunde ein Konto?</h3>
+        <p>Freunde gibt es nur für angemeldete Mitglieder. Verlauf und Kalender funktionieren weiterhin ohne Konto.</p>
+      </div>
+      <div class="faq-item reveal">
         <h3>Gibt es eine Android-Version?</h3>
         <p>Sie ist in Arbeit. Android-Mikrofone unterscheiden sich je nach Gerät, deshalb justieren wir neu, wie MU:note dein Instrument heraushört. <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform">Trag dich für die Start-Benachrichtigung ein</a>, dann melden wir uns.</p>
       </div>
@@ -485,6 +524,7 @@
 <footer>
   <img src="img/app-icon.png" alt="MU:note Icon" style="width:44px;border-radius:10px" />
   <p style="margin-top:12px">MU:note · © 2026 MUSU</p>
+  <p style="margin-top:10px">Kontakt <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
   <p style="margin-top:10px"><a href="terms-de.html">Nutzungsbedingungen</a> · <a href="privacy-de.html">Datenschutzerklärung</a></p>
   <p style="margin-top:10px"><a href="index.html">한국어</a> · <a href="index-en.html">English</a> · <a href="index-es.html">Español</a></p>
 </footer>

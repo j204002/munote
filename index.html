@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MU:note — 내 악기소리만 자동으로 세는 연습 기록 앱</title>
-<meta name="description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. 피아노·현악기·관악기·성악 지원. iOS 연습 기록 앱." />
+<meta name="description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. 피아노·현악기·관악기·성악 지원. iOS 연습 기록 앱. 친구와 같은 연습실에서 서로의 연습을 응원합니다." />
 <meta name="keywords" content="연습기록,연습일지,연습 앱,악기 연습,피아노 연습,바이올린 연습,성악 연습,음악 전공,입시,연습 타이머,MU:note,무노트,뮤노트" />
 <script>
 /* 자동 언어 이동 (2026-09-02): 브라우저 언어 ko/en/es/de → 각자 페이지, 그 외 → 영어.
@@ -33,7 +33,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MU:note" />
 <meta property="og:title" content="MU:note — 내 악기소리만 자동으로 세는 연습 기록" />
-<meta property="og:description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 소리는 저장하지 않습니다." />
+<meta property="og:description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 소리는 저장하지 않습니다. 친구와 같은 연습실에서 서로의 연습을 응원합니다." />
 <meta property="og:url" content="https://oneumart.com/munote/" />
 <meta property="og:image" content="https://oneumart.com/munote/img/og.png" />
 <meta property="og:image:width" content="1200" />
@@ -72,6 +72,8 @@
     { "@type": "Question", "name": "가입해야 하나요?", "acceptedAnswer": { "@type": "Answer", "text": "아니요. 가입하지 않아도 기록과 달력을 모두 쓸 수 있습니다. 로그인하면 기록이 서버에 보관되어, 폰을 바꾸거나 앱을 지웠다 깔아도 돌아옵니다." } },
     { "@type": "Question", "name": "무료인가요?", "acceptedAnswer": { "@type": "Answer", "text": "네, 지금은 모두 무료로 사용할 수 있습니다." } },
     { "@type": "Question", "name": "쉬는 시간도 연습으로 기록되나요?", "acceptedAnswer": { "@type": "Answer", "text": "아니요. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 15초가 넘는 침묵은 연습 시간에서 제외됩니다." } },
+    {"@type": "Question", "name": "친구에게는 무엇이 보이나요?", "acceptedAnswer": {"@type": "Answer", "text": "이름과 대표 악기는 항상 보이고, 오늘 연습했는지·연습 시간·연속 일수·이번 주 연습일·집중도·지금 연습 중인지는 내가 켠 항목만 보입니다. 곡 이름과 메모는 어떤 경우에도 보이지 않습니다. 차단과 신고도 할 수 있습니다."}},
+    {"@type": "Question", "name": "친구 기능도 가입 없이 쓸 수 있나요?", "acceptedAnswer": {"@type": "Answer", "text": "친구 기능은 로그인한 회원만 쓸 수 있습니다. 기록과 달력은 지금처럼 가입 없이 쓸 수 있습니다."}},
     { "@type": "Question", "name": "안드로이드 버전은 없나요?", "acceptedAnswer": { "@type": "Answer", "text": "준비 중입니다. 안드로이드는 기기마다 마이크가 달라서, 악기 소리를 가려내는 기준을 다시 맞추고 있습니다. 출시 알림을 신청해 두시면 나오는 날 알려드릴게요." } }
   ]
 }
@@ -285,6 +287,13 @@
   }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<style>
+  /* 친구 섹션 (1.2, 2026-09-07) */
+  .friends-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .friends-shot { margin: 0; }
+  .friends-shot img { display: block; width: 100%; max-width: 340px; margin: 0 auto; border-radius: 22px; border: 1px solid var(--line); }
+  @media (max-width: 720px) { .friends-grid { grid-template-columns: 1fr; gap: 36px; } .friends-shot img { max-width: 280px; } }
+</style>
 </head>
 <body>
 
@@ -292,6 +301,7 @@
   <div class="wrap nav-inner">
     <a class="nav-brand" href="#top"><img src="img/logo-horizontal.png" alt="MU:note" /></a>
     <div class="nav-links">
+      <a class="nav-anchor" href="#friends">친구</a>
       <a class="nav-anchor" href="#features">기능</a>
       <a class="nav-anchor" href="#screens">화면</a>
       <a class="nav-anchor" href="#faq">자주 묻는 질문</a>
@@ -357,9 +367,21 @@
       <div class="step reveal d2">
         <div class="num">3</div>
         <h3>기록이 남습니다</h3>
-        <p>실제로 연주한 시간과 집중도가 달력에 쌓입니다. 20분 이상 연습한 날에는 한 문장의 분석이 도착합니다.</p>
+        <p>실제로 연주한 시간과 집중도가 달력에 쌓입니다. 화면을 잠가도 잠금화면에 타이머와 감지 상태가 보입니다. 20분 이상 연습한 날에는 두 문장의 분석이 도착합니다.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="friends">
+  <div class="wrap friends-grid">
+    <div class="friends-copy">
+      <div class="kicker reveal">Friends</div>
+      <h2 class="reveal d1">혼자 하는 연습,<br />같은 방에서</h2>
+      <p class="lead reveal d2">친구 코드로 연결하면 연습실에 친구 무니가 걸어 다닙니다. 오늘 연습한 친구는 연주하고, 며칠 쉬면 눕습니다. 오늘 카드에 박수·불꽃·음표 반응을 보낼 수 있습니다.</p>
+      <p class="lead reveal d3"><strong>무엇을 보여줄지는 내가 정합니다.</strong> 곡 이름과 메모는 친구에게 절대 보이지 않습니다.</p>
+    </div>
+    <figure class="friends-shot reveal d1"><img src="img/shots/ko/06.png" alt="친구 연습실 — 친구와 같은 연습실에서" loading="lazy" /></figure>
   </div>
 </section>
 
@@ -371,6 +393,8 @@
     </div>
     <div class="shots">
       <figure class="shot reveal"><img src="img/shots/ko/01.png" alt="집중모드 — '내 악기 소리'만 인식해서 기록합니다" loading="lazy" /></figure>
+      <figure class="shot reveal d1"><img src="img/shots/ko/06.png" alt="친구 연습실 — 친구와 같은 연습실에서" loading="lazy" /></figure>
+      <figure class="shot reveal d2"><img src="img/shots/ko/07.png" alt="반응 — 친구의 오늘 카드에 박수·불꽃·음표를 보내요" loading="lazy" /></figure>
       <figure class="shot reveal d1"><img src="img/shots/ko/02.png" alt="회고 화면 — 알아서 저장되는 오늘의 기록" loading="lazy" /></figure>
       <figure class="shot reveal d2"><img src="img/shots/ko/03.png" alt="달력 — 연습의 흐름이 한눈에" loading="lazy" /></figure>
       <figure class="shot reveal d3"><img src="img/shots/ko/04.png" alt="홈 화면 — 버튼 하나, 그다음은 소리가 알아서" loading="lazy" /></figure>
@@ -412,7 +436,7 @@
         <span class="fnum">04</span>
         <div>
           <h3>MU:note의 한마디</h3>
-          <p>20분 이상 연습한 날에는 지금까지의 기록을 분석한 한 문장을 받습니다. 연습 시간과 집중도 같은 숫자만 사용합니다. 직접 쓰신 메모와 곡 이름은 전송되지 않습니다.</p>
+          <p>20분 이상 연습한 날에는 지금까지의 기록을 분석한 두 문장을 받습니다. 연습 시간과 집중도 같은 숫자만 사용합니다. 직접 쓰신 메모와 곡 이름은 전송되지 않습니다.</p>
         </div>
       </div>
       <div class="feature reveal">
@@ -429,6 +453,13 @@
           <p>연습을 권하는 알림을 원하는 시간에 하루 한 번 받을 수 있습니다. 연습하지 않은 날을 탓하지 않습니다. 기본값은 꺼져 있습니다.</p>
         </div>
       </div>
+      <div class="feature reveal d1">
+        <span class="fnum">07</span>
+        <div>
+          <h3>오늘 할 연습을 적어둡니다</h3>
+          <p>연습 목표를 적어두고 하나씩 지웁니다. 콩쿨·입시 날짜는 디데이로 걸어두고, 그날의 짧은 메모도 남길 수 있습니다.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -440,7 +471,7 @@
     <div class="privacy-list">
       <div class="privacy-item reveal"><span class="mark">01</span><span>감지에 쓰인 오디오는 기기 메모리에서 분류 직후 폐기됩니다. 남는 것은 시간과 판정 결과뿐입니다.</span></div>
       <div class="privacy-item reveal d1"><span class="mark">02</span><span>소리 감지가 켜져 있는 동안 화면에 항상 표시됩니다.</span></div>
-      <div class="privacy-item reveal d2"><span class="mark">03</span><span>메모와 곡 이름은 어떤 경우에도 AI 서버로 전송되지 않습니다.</span></div>
+      <div class="privacy-item reveal d2"><span class="mark">03</span><span>메모와 곡 이름은 어떤 경우에도 AI 서버로도, 친구에게도 전송되지 않습니다.</span></div>
     </div>
   </div>
 </section>
@@ -473,6 +504,14 @@
         <p>아니요. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 15초가 넘는 침묵은 연습 시간에서 제외됩니다.</p>
       </div>
       <div class="faq-item reveal">
+        <h3>친구에게는 무엇이 보이나요?</h3>
+        <p>이름과 대표 악기는 항상 보이고, 오늘 연습했는지·연습 시간·연속 일수·이번 주 연습일·집중도·지금 연습 중인지는 내가 켠 항목만 보입니다. 곡 이름과 메모는 어떤 경우에도 보이지 않습니다. 차단과 신고도 할 수 있습니다.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>친구 기능도 가입 없이 쓸 수 있나요?</h3>
+        <p>친구 기능은 로그인한 회원만 쓸 수 있습니다. 기록과 달력은 지금처럼 가입 없이 쓸 수 있습니다.</p>
+      </div>
+      <div class="faq-item reveal">
         <h3>안드로이드 버전은 없나요?</h3>
         <p>준비 중입니다. 안드로이드는 기기마다 마이크가 달라서, 악기 소리를 가려내는 기준을 다시 맞추고 있습니다. <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform">출시 알림을 신청</a>해 두시면 나오는 날 알려드릴게요.</p>
       </div>
@@ -503,6 +542,7 @@
 <footer>
   <img src="img/app-icon.png" alt="MU:note 아이콘" style="width:44px;border-radius:10px" />
   <p style="margin-top:12px">MU:note · © 2026 MUSU</p>
+  <p style="margin-top:10px">문의 <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
   <p style="margin-top:10px"><a href="terms.html">이용약관</a> · <a href="privacy.html">개인정보처리방침</a></p>
   <p style="margin-top:10px"><a href="index-en.html">English</a> · <a href="index-es.html">Español</a> · <a href="index-de.html">Deutsch</a></p>
 </footer>

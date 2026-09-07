@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MU:note — Counts only your instrument | Practice log app</title>
-<meta name="description" content="Start practicing — only your actual playing time adds up. MU:note hears the instrument you set, and audio is never recorded. Piano, strings, winds, voice. iOS practice log app." />
+<meta name="description" content="Start practicing — only your actual playing time adds up. MU:note hears the instrument you set, and audio is never recorded. Piano, strings, winds, voice. iOS practice log app. Meet your friends in the practice room." />
 <meta name="keywords" content="practice log,practice journal,music practice app,piano practice,violin practice,voice practice,music major,practice timer,MU:note" />
 <link rel="canonical" href="https://oneumart.com/munote/index-en.html" />
 <link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="MU:note" />
 <meta property="og:title" content="MU:note — Counts only your instrument" />
-<meta property="og:description" content="Start practicing — only your actual playing time adds up. Audio is never recorded." />
+<meta property="og:description" content="Start practicing — only your actual playing time adds up. Audio is never recorded. Meet your friends in the practice room." />
 <meta property="og:url" content="https://oneumart.com/munote/index-en.html" />
 <meta property="og:image" content="https://oneumart.com/munote/img/og-en.png" />
 <meta property="og:image:width" content="1200" />
@@ -54,6 +54,8 @@
     { "@type": "Question", "name": "Do I need an account?", "acceptedAnswer": { "@type": "Answer", "text": "No. Records and the calendar work fully without signing up. Sign in, and your history is stored safely — switch phones or reinstall, and it comes back." } },
     { "@type": "Question", "name": "Is it free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, everything is free for now." } },
     { "@type": "Question", "name": "Are breaks counted as practice?", "acceptedAnswer": { "@type": "Answer", "text": "No. Turning pages, sipping water, short breaks: none of it is counted. Any silence longer than 15 seconds is left out." } },
+    {"@type": "Question", "name": "What can friends see?", "acceptedAnswer": {"@type": "Answer", "text": "Your name and main instrument are always visible. Whether you practiced today, practice time, streak, days this week, focus, and whether you're practicing now are shown only if you turn each one on. Piece names and notes are never shown. You can block and report."}},
+    {"@type": "Question", "name": "Do I need an account for Friends?", "acceptedAnswer": {"@type": "Answer", "text": "Friends is for signed-in members only. Records and the calendar still work without an account."}},
     { "@type": "Question", "name": "Is there an Android version?", "acceptedAnswer": { "@type": "Answer", "text": "It’s in the works. Android microphones differ by device, so we’re re-tuning how MU:note picks out your instrument. Sign up for the launch notice and we’ll let you know." } }
   ]
 }
@@ -267,6 +269,13 @@
   }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+<style>
+  /* 친구 섹션 (1.2, 2026-09-07) */
+  .friends-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .friends-shot { margin: 0; }
+  .friends-shot img { display: block; width: 100%; max-width: 340px; margin: 0 auto; border-radius: 22px; border: 1px solid var(--line); }
+  @media (max-width: 720px) { .friends-grid { grid-template-columns: 1fr; gap: 36px; } .friends-shot img { max-width: 280px; } }
+</style>
 </head>
 <body>
 
@@ -274,6 +283,7 @@
   <div class="wrap nav-inner">
     <a class="nav-brand" href="#top"><img src="img/logo-horizontal.png" alt="MU:note" /></a>
     <div class="nav-links">
+      <a class="nav-anchor" href="#friends">Friends</a>
       <a class="nav-anchor" href="#features">Features</a>
       <a class="nav-anchor" href="#screens">Screens</a>
       <a class="nav-anchor" href="#faq">FAQ</a>
@@ -339,9 +349,21 @@
       <div class="step reveal d2">
         <div class="num">3</div>
         <h3>Your record remains</h3>
-        <p>Your true playing time and focus build up on the calendar. On days you practice 20 minutes or more, one short line of analysis arrives.</p>
+        <p>Your true playing time and focus build up on the calendar. Lock the screen and the timer and detection state stay on your Lock Screen. On days you practice 20 minutes or more, a two-sentence note arrives.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="friends">
+  <div class="wrap friends-grid">
+    <div class="friends-copy">
+      <div class="kicker reveal">Friends</div>
+      <h2 class="reveal d1">Practice alone,<br />in the same room</h2>
+      <p class="lead reveal d2">Connect with a friend code and their Muni walks into your practice room. Friends who practiced today play; after a few days off they lie down. Send clap, fire, and note reactions to today&rsquo;s cards.</p>
+      <p class="lead reveal d3"><strong>You choose what friends see.</strong> Piece names and notes are never shown to friends.</p>
+    </div>
+    <figure class="friends-shot reveal d1"><img src="img/shots/en/06.png" alt="Friends — practice in the same room" loading="lazy" /></figure>
   </div>
 </section>
 
@@ -353,6 +375,8 @@
     </div>
     <div class="shots">
       <figure class="shot reveal"><img src="img/shots/en/01.png" alt="Focus mode — hears only your instrument" loading="lazy" /></figure>
+      <figure class="shot reveal d1"><img src="img/shots/en/06.png" alt="Friends — practice in the same room" loading="lazy" /></figure>
+      <figure class="shot reveal d2"><img src="img/shots/en/07.png" alt="Reactions — cheer a friend&rsquo;s card for today" loading="lazy" /></figure>
       <figure class="shot reveal d1"><img src="img/shots/en/02.png" alt="Reflection — your practice, logged automatically" loading="lazy" /></figure>
       <figure class="shot reveal d2"><img src="img/shots/en/03.png" alt="Calendar — see your practice at a glance" loading="lazy" /></figure>
       <figure class="shot reveal d3"><img src="img/shots/en/04.png" alt="Home — one tap, the sound does the rest" loading="lazy" /></figure>
@@ -394,7 +418,7 @@
         <span class="fnum">04</span>
         <div>
           <h3>A word from MU:note</h3>
-          <p>On days you practice 20 minutes or more, you get one short line drawn from your history. It uses numbers only — practice time and focus. Your notes and piece names are never sent.</p>
+          <p>On days you practice 20 minutes or more, you get a two-sentence note drawn from your history. It uses numbers only — practice time and focus. Your notes and piece names are never sent.</p>
         </div>
       </div>
       <div class="feature reveal">
@@ -411,6 +435,13 @@
           <p>One gentle reminder a day, at the time you choose. It never scolds you for a day off. Off by default.</p>
         </div>
       </div>
+      <div class="feature reveal d1">
+        <span class="fnum">07</span>
+        <div>
+          <h3>Plan today&rsquo;s practice</h3>
+          <p>Write down today&rsquo;s goals and tick them off. Set a D-day for an audition or competition, and leave a short note for the day.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -422,7 +453,7 @@
     <div class="privacy-list">
       <div class="privacy-item reveal"><span class="mark">01</span><span>Audio used for detection is discarded from device memory right after classification. What remains is time and the result — nothing else.</span></div>
       <div class="privacy-item reveal d1"><span class="mark">02</span><span>While sound detection is on, it is always shown on screen.</span></div>
-      <div class="privacy-item reveal d2"><span class="mark">03</span><span>Your notes and piece names are never sent to the AI server, under any circumstances.</span></div>
+      <div class="privacy-item reveal d2"><span class="mark">03</span><span>Your notes and piece names are never sent to the AI server &mdash; or shown to friends &mdash; under any circumstances.</span></div>
     </div>
   </div>
 </section>
@@ -455,6 +486,14 @@
         <p>No. Turning pages, sipping water, short breaks: none of it is counted. Any silence longer than 15 seconds is left out.</p>
       </div>
       <div class="faq-item reveal">
+        <h3>What can friends see?</h3>
+        <p>Your name and main instrument are always visible. Whether you practiced today, practice time, streak, days this week, focus, and whether you&rsquo;re practicing now are shown only if you turn each one on. Piece names and notes are never shown. You can block and report.</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>Do I need an account for Friends?</h3>
+        <p>Friends is for signed-in members only. Records and the calendar still work without an account.</p>
+      </div>
+      <div class="faq-item reveal">
         <h3>Is there an Android version?</h3>
         <p>It’s in the works. Android microphones differ by device, so we’re re-tuning how MU:note picks out your instrument. <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform">Sign up for the launch notice</a> and we’ll let you know.</p>
       </div>
@@ -485,6 +524,7 @@
 <footer>
   <img src="img/app-icon.png" alt="MU:note icon" style="width:44px;border-radius:10px" />
   <p style="margin-top:12px">MU:note · © 2026 MUSU</p>
+  <p style="margin-top:10px">Contact <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
   <p style="margin-top:10px"><a href="terms-en.html">Terms of Service</a> · <a href="privacy-en.html">Privacy Policy</a></p>
   <p style="margin-top:10px"><a href="index.html">한국어</a> · <a href="index-es.html">Español</a> · <a href="index-de.html">Deutsch</a></p>
 </footer>
