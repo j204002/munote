@@ -86,6 +86,37 @@ test('B: skip 후 틱이 계속 흘러도(elapsedSec !== SKIP_TO.elapsedSec) ski
   assert.equal(today.practiceMin, 25, '3틱 뒤에도 25분(1515초 floor)');
   assert.equal(today.coach, COACH.ko.skip, 'skip 문장이 이어져야 한다(elapsedSec 동등비교가 아니라 skipped 플래그로 판정)');
 });
+test('setDayStart: 새벽 시간대에 하루 시작 시각을 바꾸면 todayKey가 바뀌고, 고정 대본이 새 오늘로 다시 만들어지며, 이번 체험에서 저장한 세션은 살아남는다', () => {
+  const dawn = new Date('2026-09-07T02:30:00+09:00'); // KST 02:30 — dayStartHour=4(기본)면 전날(09-06) 취급
+  let s = createStore(dawn).get();
+  assert.equal(s.todayKey, '2026-09-06', '기본 하루 시작 4시 기준으로 아직 어제');
+  assert.deepEqual(homeBadge(s), { kind: 'streak', count: 8 });
+
+  // 이번 체험에서 방문자가 직접 저장한 세션 하나(대본이 아니다 — id가 today-로 시작)
+  s = saveReflection(endFocus(skipFocus(startFocus(s))), 'ko');
+  const liveId = s.sessions.at(-1).id;
+  assert.match(liveId, /^today-/);
+
+  s = setDayStart(s, 0); // 자정 기준으로 바꾸면 02:30은 그냥 오늘(09-07)
+  assert.equal(s.todayKey, '2026-09-07');
+  // 고정 대본도 새 오늘 기준으로 다시 만들어졌다 — 가장 최근 대본 세션은 이제 D-1(새 오늘의 전날)
+  const scriptSessions = s.sessions.filter((x) => !x.id.startsWith('today-'));
+  const mostRecentScript = scriptSessions.reduce((a, b) => (a.dateKey > b.dateKey ? a : b));
+  assert.equal(mostRecentScript.dateKey, '2026-09-06');
+  assert.deepEqual(homeBadge(s), { kind: 'streak', count: 8 }, '대본이 새 오늘 기준으로 재구성돼도 스트릭은 그대로');
+  // 방문자가 저장한 세션은 사라지지 않는다
+  assert.ok(s.sessions.some((x) => x.id === liveId), '체험 중 저장한 세션이 살아남아야 한다');
+});
+
+test('setDayStart: 다른 달/날짜를 보고 있었다면 그 선택은 건드리지 않는다', () => {
+  let s = createStore(now).get();
+  s = setCalendarMonth(s, '2026-08');
+  s = selectDay(s, '2026-08-15');
+  s = setDayStart(s, 0);
+  assert.equal(s.calendarMonth, '2026-08', '다른 달을 보고 있었다면 그대로');
+  assert.equal(s.selectedDay, '2026-08-15', '다른 날을 선택 중이었다면 그대로');
+});
+
 test('openSheet/closeSheet: 친구 시트를 열고 닫는다', () => {
   let s = createStore(now).get();
   assert.equal(s.sheet, null);
