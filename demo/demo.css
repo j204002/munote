@@ -58,3 +58,28 @@
 .md-focus-controls { margin-top:auto; margin-bottom:calc(32 * var(--pt)); display:flex; gap:calc(14 * var(--pt)); width:100%; }
 .md-stop-btn { flex:1; padding:calc(18 * var(--pt)) 0; border-radius:calc(14 * var(--pt)); border:calc(1.5 * var(--pt)) solid var(--text); background:var(--card); font:inherit; font-size:calc(18 * var(--pt)); font-weight:600; color:var(--text); cursor:pointer; }
 .md-end-btn { flex:1; padding:calc(18 * var(--pt)) 0; border-radius:calc(14 * var(--pt)); border:0; background:var(--text); font:inherit; font-size:calc(18 * var(--pt)); font-weight:600; color:#fff; cursor:pointer; }
+/* 회고 화면 — ReflectionScreen.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. 탭바 없음(회고 중 앱과 동일), 스크롤 */
+.md-reflection { background:var(--bg); }
+.md-reflection-content { flex:1; min-height:0; width:100%; box-sizing:border-box; overflow-y:auto; overscroll-behavior:contain; padding:calc(20 * var(--pt)); padding-bottom:calc(28 * var(--pt)); }
+.md-reflection-h1 { margin:0; margin-top:calc(18 * var(--pt)); font-size:calc(15 * var(--pt)); color:var(--sub); }
+.md-reflection-head { display:flex; flex-direction:row; align-items:center; gap:calc(12 * var(--pt)); margin-top:calc(8 * var(--pt)); }
+.md-reflection-big { margin:0; font-size:calc(42 * var(--pt)); font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; }
+.md-reflection-metacol { display:flex; flex-direction:column; gap:calc(3 * var(--pt)); justify-content:center; flex-shrink:1; min-width:0; }
+.md-reflection-meta { margin:0; font-size:calc(14 * var(--pt)); color:var(--sub); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.md-coach-card { margin-top:calc(20 * var(--pt)); border-radius:calc(14 * var(--pt)); border:1px solid var(--border); background:var(--card); padding:calc(14 * var(--pt)) calc(16 * var(--pt)); opacity:0; transition:opacity .4s ease; }
+.md-coach-card.md-fade-in { opacity:1; }
+.md-coach-label { margin:0; margin-bottom:calc(6 * var(--pt)); font-size:calc(12 * var(--pt)); font-weight:600; color:var(--faint); letter-spacing:calc(1 * var(--pt)); }
+.md-coach-text { margin:0; font-size:calc(16 * var(--pt)); line-height:calc(24 * var(--pt)); color:var(--text); }
+.md-reflection-shortnote { margin:0; margin-top:calc(14 * var(--pt)); font-size:calc(14 * var(--pt)); color:var(--faint); }
+.md-reflection-section { margin:0; margin-top:calc(40 * var(--pt)); margin-bottom:calc(12 * var(--pt)); font-size:calc(16 * var(--pt)); font-weight:600; color:var(--text); }
+.md-reflection-section.after-coach { margin-top:calc(24 * var(--pt)); }
+.md-reflection-chipwrap { display:flex; flex-wrap:wrap; gap:calc(8 * var(--pt)); }
+.md-piece-chip { padding:calc(9 * var(--pt)) calc(14 * var(--pt)); border-radius:999px; border:1px solid var(--border); background:var(--card); font:inherit; font-size:calc(14 * var(--pt)); color:var(--text); cursor:pointer; }
+.md-piece-chip.selected { background:var(--text); color:#fff; border-color:var(--text); }
+.md-type-row { display:flex; gap:calc(6 * var(--pt)); margin-bottom:calc(6 * var(--pt)); }
+.md-type-chip { flex:1; padding:calc(10 * var(--pt)) calc(6 * var(--pt)); border-radius:999px; border:1px solid var(--border); background:var(--card); text-align:center; font:inherit; font-size:calc(13 * var(--pt)); color:var(--text); cursor:pointer; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.md-type-chip.selected { background:var(--text); color:#fff; border-color:var(--text); }
+.md-memo-toggle { margin-top:calc(40 * var(--pt)); align-self:flex-start; display:block; padding:calc(7 * var(--pt)) calc(14 * var(--pt)); border-radius:999px; border:1px solid var(--border); background:var(--bg); font:inherit; font-size:calc(14 * var(--pt)); color:var(--text); cursor:pointer; }
+.md-reflection-textarea { margin-top:calc(10 * var(--pt)); width:100%; box-sizing:border-box; border:1px solid var(--border); border-radius:calc(10 * var(--pt)); padding:calc(9 * var(--pt)) calc(12 * var(--pt)); font-size:calc(15 * var(--pt)); color:var(--text); background:var(--card); font-family:inherit; resize:vertical; min-height:calc(60 * var(--pt)); }
+.md-reflection-done { margin-top:calc(40 * var(--pt)); width:100%; padding:calc(16 * var(--pt)) 0; border-radius:calc(14 * var(--pt)); border:0; background:var(--text); color:#fff; font:inherit; font-size:calc(17 * var(--pt)); font-weight:600; cursor:pointer; }
+.md-piece-chip:disabled, .md-type-chip:disabled, .md-memo-toggle:disabled, .md-reflection-done:disabled { opacity:.5; cursor:default; }
