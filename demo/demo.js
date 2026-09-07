@@ -32,12 +32,18 @@ if (root) {
     },
   };
   let cleanup = null;
+  let lastScreen = null;
   let toastTimer = null;
   function render(s) {
-    cleanup?.();
     const scr = SCREENS[s.screen];
     mount.innerHTML = scr.render(s, T.t);
-    cleanup = scr.bind(mount, ctx) ?? null;
+    if (lastScreen !== s.screen) {
+      cleanup?.();
+      cleanup = scr.bind(mount, ctx) ?? null;
+    } else {
+      scr.rewire?.(mount, ctx);
+    }
+    lastScreen = s.screen;
     mount.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => ctx.update((x) => go(x, b.dataset.go))));
     mount.querySelectorAll('[data-gate]').forEach((b) => b.addEventListener('click', (e) => { e.preventDefault(); ctx.update((x) => showToast(x, b.dataset.gate)); }));
     mount.querySelectorAll('[data-close-sheet]').forEach((o) => o.addEventListener('click', (e) => { if (e.target === o) ctx.update((x) => ({ ...x, sheet: null })); }));

@@ -47,12 +47,16 @@ export const render = (s, t) => {
 };
 
 export const bind = (root, ctx) => {
-  root.querySelector('[data-start]')?.addEventListener('click', () => ctx.update(startFocus));
   let timer = null;
   if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     timer = setTimeout(() => {
       root.querySelector('.md-btn-start')?.classList.add('md-nudge');
     }, NUDGE_DELAY_MS);
   }
+  rewire(root, ctx);
   return () => clearTimeout(timer);
+};
+
+export const rewire = (root, ctx) => {
+  root.querySelector('[data-start]')?.addEventListener('click', () => ctx.update(startFocus));
 };
