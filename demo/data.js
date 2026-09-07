@@ -48,7 +48,7 @@ export const FRIENDS = [
 export const COACH = {
   ko: { skip: '오늘은 25분을 한 번에 이어서 연주했어요. 자리를 뜨지 않고 끝까지 갔네요.', natural: '오늘 연습은 {min}분이었어요. 무음 없이 이어진 구간이 길었어요.',
     past: ['이번 주에 4일 연습했어요. 같은 곡을 이어서 다듬고 있네요.', '43분을 한 자리에서 연주했어요. 저녁 시간대에 집중이 잘 되는 편이네요.', '3일 연속으로 같은 시간대에 앉았어요. 리듬이 잡히고 있어요.'] },
-  en: { skip: 'You played for 25 minutes in one stretch today. You stayed at the bench until the end.', natural: 'Today\'s practice was {min} minutes. The stretches without silence were long.',
+  en: { skip: 'You played for 25 minutes in one stretch today. You stayed at the bench until the end.', natural: "Today’s practice was {min} minutes. The stretches without silence were long.",
     past: ['You practiced on 4 days this week. You keep polishing the same piece.', 'You played 43 minutes in one sitting. Evenings seem to be when you focus well.', 'You sat down at the same hour 3 days in a row. A rhythm is forming.'] },
   es: { skip: 'Hoy tocaste 25 minutos de una sola vez. Te quedaste en el banco hasta el final.', natural: 'La práctica de hoy fue de {min} minutos. Los tramos sin silencio fueron largos.',
     past: ['Practicaste 4 días esta semana. Sigues puliendo la misma obra.', 'Tocaste 43 minutos de una sentada. Por la tarde parece que te concentras bien.', 'Te sentaste a la misma hora 3 días seguidos. Se está formando un ritmo.'] },
