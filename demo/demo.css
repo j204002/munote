@@ -83,3 +83,48 @@
 .md-reflection-textarea { margin-top:calc(10 * var(--pt)); width:100%; box-sizing:border-box; border:1px solid var(--border); border-radius:calc(10 * var(--pt)); padding:calc(9 * var(--pt)) calc(12 * var(--pt)); font-size:calc(15 * var(--pt)); color:var(--text); background:var(--card); font-family:inherit; resize:vertical; min-height:calc(60 * var(--pt)); }
 .md-reflection-done { margin-top:calc(40 * var(--pt)); width:100%; padding:calc(16 * var(--pt)) 0; border-radius:calc(14 * var(--pt)); border:0; background:var(--text); color:#fff; font:inherit; font-size:calc(17 * var(--pt)); font-weight:600; cursor:pointer; }
 .md-piece-chip:disabled, .md-type-chip:disabled, .md-memo-toggle:disabled, .md-reflection-done:disabled { opacity:.5; cursor:default; }
+/* 기록 화면 — CalendarScreen.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. 스크롤 영역은 공용 .md-body.scroll */
+.md-records { background:var(--bg); }
+.md-cal-content { width:100%; box-sizing:border-box; padding:calc(20 * var(--pt)) calc(20 * var(--pt)) calc(48 * var(--pt)); }
+.md-cal-title-row { display:flex; align-items:center; justify-content:space-between; margin-bottom:calc(16 * var(--pt)); }
+.md-cal-title { margin:0; font-size:calc(20 * var(--pt)); font-weight:600; color:var(--text); }
+.md-cal-nav { padding:calc(4 * var(--pt)) calc(14 * var(--pt)); font-size:calc(24 * var(--pt)); color:var(--text); background:none; border:0; font:inherit; cursor:pointer; }
+.md-cal-week-row { display:flex; }
+.md-cal-weekday { flex:1; margin:0 0 calc(6 * var(--pt)); text-align:center; font-size:calc(12 * var(--pt)); color:var(--faint); }
+.md-cal-grid-row { display:flex; }
+.md-cal-cell { flex:1; aspect-ratio:1; display:flex; align-items:center; justify-content:center; background:none; border:0; padding:0; font:inherit; cursor:pointer; }
+.md-cal-cell.blank { cursor:default; }
+.md-cal-ring { box-sizing:border-box; width:calc(42 * var(--pt)); height:calc(42 * var(--pt)); border-radius:50%; display:flex; align-items:center; justify-content:center; border:calc(1.5 * var(--pt)) solid transparent; }
+.md-cal-ring.on { border-color:var(--text); }
+.md-cal-dot { width:calc(34 * var(--pt)); height:calc(34 * var(--pt)); border-radius:50%; display:flex; align-items:center; justify-content:center; }
+.md-cal-daytext { font-size:calc(14 * var(--pt)); color:var(--text); }
+.md-cal-daytext.on-dark { color:#fff; }
+.md-cal-legend-row { display:flex; align-items:center; justify-content:space-between; margin-top:calc(14 * var(--pt)); }
+.md-cal-legend { display:flex; align-items:center; gap:calc(8 * var(--pt)); flex-wrap:wrap; flex:1; }
+.md-cal-legend-item { display:inline-flex; align-items:center; gap:calc(4 * var(--pt)); }
+.md-cal-swatch { display:inline-block; width:calc(10 * var(--pt)); height:calc(10 * var(--pt)); border-radius:50%; }
+.md-cal-legend-text { font-size:calc(11 * var(--pt)); color:var(--sub); }
+.md-cal-empty { margin:calc(24 * var(--pt)) 0 0; font-size:calc(13 * var(--pt)); color:var(--faint); text-align:center; }
+.md-cal-total { box-sizing:border-box; margin-top:calc(18 * var(--pt)); border-radius:calc(12 * var(--pt)); background:var(--text); padding:calc(14 * var(--pt)); display:flex; flex-direction:column; gap:calc(4 * var(--pt)); }
+.md-cal-total-label { margin:0; font-size:calc(12 * var(--pt)); color:#9A9A9A; }
+.md-cal-total-text { margin:0; font-size:calc(15 * var(--pt)); font-weight:600; color:#fff; }
+.md-cal-bar-track { margin-top:calc(10 * var(--pt)); height:calc(6 * var(--pt)); border-radius:calc(3 * var(--pt)); background:#3A3A3A; overflow:hidden; }
+.md-cal-bar-fill { height:100%; border-radius:calc(3 * var(--pt)); background:#fff; }
+.md-cal-bar-legend { margin:calc(6 * var(--pt)) 0 0; text-align:right; font-size:calc(11 * var(--pt)); color:#9A9A9A; font-variant-numeric:tabular-nums; }
+.md-cal-panels { display:flex; justify-content:center; flex-wrap:wrap; gap:calc(8 * var(--pt)); margin-top:calc(16 * var(--pt)); }
+.md-cal-panel-pill { box-sizing:border-box; border:1px solid var(--border); background:var(--card); border-radius:999px; padding:calc(9 * var(--pt)) calc(12 * var(--pt)); font:inherit; font-size:calc(14 * var(--pt)); color:var(--text); cursor:pointer; }
+.md-cal-panel-pill.has { border-width:calc(2.5 * var(--pt)); border-color:var(--text); padding:calc(7.5 * var(--pt)) calc(10.5 * var(--pt)); }
+.md-cal-panel-pill.on { background:var(--text); border-color:var(--text); color:#fff; font-weight:700; }
+.md-cal-session { box-sizing:border-box; margin-top:calc(14 * var(--pt)); border-radius:calc(12 * var(--pt)); border:1px solid var(--border); background:var(--card); padding:calc(14 * var(--pt)); display:flex; flex-direction:column; gap:calc(6 * var(--pt)); }
+.md-cal-session-row { display:flex; align-items:center; justify-content:space-between; gap:calc(10 * var(--pt)); }
+.md-cal-session-line { margin:0; flex-shrink:1; font-size:calc(14 * var(--pt)); color:var(--text); font-variant-numeric:tabular-nums; }
+.md-cal-session-inst { font-size:calc(18 * var(--pt)); }
+.md-cal-session-pieces { margin:0; font-size:calc(14 * var(--pt)); color:var(--text); }
+.md-cal-session-types { margin:0; font-size:calc(13 * var(--pt)); color:var(--sub); }
+.md-cal-session-memo { margin:0; font-size:calc(14 * var(--pt)); color:var(--sub); }
+.md-cal-coach { box-sizing:border-box; border-radius:calc(14 * var(--pt)); border:1px solid var(--border); background:var(--bg); padding:calc(14 * var(--pt)) calc(16 * var(--pt)); }
+.md-cal-coach-label { margin:0 0 calc(6 * var(--pt)); font-size:calc(12 * var(--pt)); font-weight:600; color:var(--faint); letter-spacing:calc(1 * var(--pt)); }
+.md-cal-coach-text { margin:0; font-size:calc(16 * var(--pt)); line-height:calc(24 * var(--pt)); color:var(--text); }
+.md-cal-session-foot { display:flex; justify-content:flex-end; }
+.md-cal-edit-all { box-sizing:border-box; padding:calc(6 * var(--pt)) calc(12 * var(--pt)); border-radius:999px; border:1px solid var(--border); background:var(--bg); font:inherit; font-size:calc(12 * var(--pt)); color:var(--text); cursor:pointer; }
+.md-cal-delete { margin-top:calc(4 * var(--pt)); align-self:center; padding:calc(8 * var(--pt)) 0; background:none; border:0; font:inherit; font-size:calc(13 * var(--pt)); color:var(--faint); cursor:pointer; }

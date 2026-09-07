@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday } from '../state.js';
+import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay } from '../state.js';
 const now = new Date('2026-09-07T10:00:00+09:00');
 test('초기: 오늘 0분·배지 스트릭 8·내 무니 걷기', () => {
   const s = createStore(now).get();
@@ -50,4 +50,24 @@ test('경계: 19분 31초는 19분, 한마디 없음', () => {
   today = s2.sessions.find((x) => x.dateKey === s2.todayKey);
   assert.equal(today.practiceMin, 20, '1200초는 20분');
   assert.match(today.coach, /20분/, '20분은 한마디 생성');
+});
+test('초기 selectedDay = 오늘 (앱은 null이지만 체험판은 오늘 상세를 바로 보여준다)', () => {
+  const s = createStore(now).get();
+  assert.equal(s.selectedDay, s.todayKey);
+  assert.equal(s.calendarMonth, s.todayKey.slice(0, 7));
+});
+test('setCalendarMonth: 월 이동 + 선택 날짜 초기화', () => {
+  let s = createStore(now).get();
+  s = setCalendarMonth(s, '2026-08');
+  assert.equal(s.calendarMonth, '2026-08');
+  assert.equal(s.selectedDay, null, '월 이동 시 선택은 초기화(앱의 moveMonth와 동일)');
+});
+test('selectDay: 다른 날 선택, 같은 날 재선택은 토글 해제', () => {
+  let s = createStore(now).get();
+  s = selectDay(s, '2026-09-06');
+  assert.equal(s.selectedDay, '2026-09-06');
+  s = selectDay(s, '2026-09-06');
+  assert.equal(s.selectedDay, null, '같은 날 재탭 = 선택 해제');
+  s = selectDay(s, null);
+  assert.equal(s.selectedDay, null);
 });
