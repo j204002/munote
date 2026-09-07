@@ -36,3 +36,18 @@ test('악기 변경 → 내 포즈', () => {
   let s = saveReflection(endFocus(skipFocus(startFocus(createStore(now).get()))), 'ko');
   s = setInstrument(s, 'vocal'); assert.equal(myPose(s), 'play_vocal');
 });
+test('경계: 19분 31초는 19분, 한마디 없음', () => {
+  let s = endFocus(startFocus(createStore(now).get()));
+  s = { ...s, focus: { ...s.focus, elapsedSec: 1171, soundingSec: 1171, wallSec: 1300 } };
+  s = saveReflection(s, 'ko');
+  let today = s.sessions.find((x) => x.dateKey === s.todayKey);
+  assert.equal(today.practiceMin, 19, '19분 31초는 19분');
+  assert.equal(today.coach, undefined, '19분은 한마디 없음');
+  // 1200초 케이스: 20분이 되고 한마디 생성
+  let s2 = endFocus(startFocus(createStore(now).get()));
+  s2 = { ...s2, focus: { ...s2.focus, elapsedSec: 1200, soundingSec: 1200, wallSec: 1200 } };
+  s2 = saveReflection(s2, 'ko');
+  today = s2.sessions.find((x) => x.dateKey === s2.todayKey);
+  assert.equal(today.practiceMin, 20, '1200초는 20분');
+  assert.match(today.coach, /20분/, '20분은 한마디 생성');
+});
