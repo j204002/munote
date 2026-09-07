@@ -71,7 +71,9 @@ if (root) {
         document.addEventListener('keydown', sheetKeydownHandler);
       }
       const sheetEl = mount.querySelector('.md-sheet');
-      if (sheetEl && !sheetEl.contains(document.activeElement)) sheetEl.querySelector('button')?.focus();
+      // 내 무니 시트처럼 안에 버튼이 하나도 없으면(포커스 받을 대상 없음) 시트 컨테이너 자체로
+      // 포커스를 옮긴다(ui.js의 sheet()가 tabindex="-1"을 준 이유) — 이름 없는 모달로 남지 않게.
+      if (sheetEl && !sheetEl.contains(document.activeElement)) (sheetEl.querySelector('button') ?? sheetEl).focus();
     } else if (sheetKeydownHandler) {
       document.removeEventListener('keydown', sheetKeydownHandler);
       sheetKeydownHandler = null;

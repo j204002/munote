@@ -220,7 +220,7 @@ function friendSheetHtml(f, t) {
       <button type="button" class="md-sheet-link" ${gate(t)}>${esc(t('friends.detail.block'))}</button>
     </div>
   </div>`;
-  return sheet(body);
+  return sheet(body, { label: f.name });
 }
 
 function meSheetHtml(s, t) {
@@ -230,7 +230,7 @@ function meSheetHtml(s, t) {
     <p class="md-sheet-name">${esc(s.me.name)}<span class="md-sheet-inst">${esc(t(`instrument.${s.me.instrument}`))}</span></p>
     <div class="md-sum-grid"><div class="md-sum-cell"><p class="md-sum-v">${esc(t('reflection.minutes', { min }))}</p><p class="md-sum-l">${esc(t('friends.feed.today'))}</p></div></div>
   </div>`;
-  return sheet(body);
+  return sheet(body, { label: s.me.name });
 }
 
 function sheetHtmlOf(s, t) {
