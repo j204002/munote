@@ -4,3 +4,4 @@ export const tabbar = (t, active) => `<nav class="md-tabbar" aria-label="tabs">$
 export const pill = (label, { selected = false, has = false, data = '' } = {}) => `<button type="button" class="md-pill${selected ? ' selected' : ''}${has ? ' has' : ''}" ${data}>${esc(label)}</button>`;
 export const sheet = (bodyHtml) => `<div class="md-sheet-overlay" data-close-sheet><div class="md-sheet" role="dialog" aria-modal="true"><div class="md-grab"></div>${bodyHtml}</div></div>`;
 export const gate = (t, key = 'demo.inApp') => `data-gate="${key}"`; // 막힌 동작에 붙이면 demo.js가 토스트로 처리
+export const asset = (name) => new URL(`./assets/${name}`, import.meta.url).href; // 페이지 경로와 무관하게 항상 demo/assets 기준
