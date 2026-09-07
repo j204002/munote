@@ -68,6 +68,8 @@ export const setWeekStart = (s, mon) => ({ ...s, me: { ...s.me, weekStartMon: mo
 export const setLang = (s, lang) => ({ ...s, lang });
 export const go = (s, screen) => ({ ...s, screen, sheet: null });
 export const showToast = (s, key) => ({ ...s, toast: key });
+export const openSheet = (s, sheet) => ({ ...s, sheet });
+export const closeSheet = (s) => ({ ...s, sheet: null });
 // ── 기록(달력) ──────────────────────────────────────────
 // 월 이동 시 선택 날짜 초기화 — 앱의 moveMonth와 동일(선택은 이전 달 소속이라 무의미해짐).
 export const setCalendarMonth = (s, ym) => ({ ...s, calendarMonth: ym, selectedDay: null });

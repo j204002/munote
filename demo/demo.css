@@ -128,3 +128,44 @@
 .md-cal-session-foot { display:flex; justify-content:flex-end; }
 .md-cal-edit-all { box-sizing:border-box; padding:calc(6 * var(--pt)) calc(12 * var(--pt)); border-radius:999px; border:1px solid var(--border); background:var(--bg); font:inherit; font-size:calc(12 * var(--pt)); color:var(--text); cursor:pointer; }
 .md-cal-delete { margin-top:calc(4 * var(--pt)); align-self:center; padding:calc(8 * var(--pt)) 0; background:none; border:0; font:inherit; font-size:calc(13 * var(--pt)); color:var(--faint); cursor:pointer; }
+/* 친구 화면 — FriendsScreen.tsx·PracticeRoom.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. */
+.md-friends { background:var(--bg); }
+.md-friends-header { display:flex; align-items:center; justify-content:space-between; height:calc(26 * var(--pt)); margin:calc(20 * var(--pt)) calc(24 * var(--pt)) calc(14 * var(--pt)); flex:0 0 auto; }
+.md-friends-slot { width:calc(26 * var(--pt)); height:calc(26 * var(--pt)); }
+.md-friends-title { margin:0; font-size:calc(17 * var(--pt)); font-weight:700; color:var(--text); letter-spacing:-0.2px; }
+.md-add-friend { width:calc(26 * var(--pt)); height:calc(26 * var(--pt)); display:flex; align-items:center; justify-content:center; background:none; border:0; padding:0; font-size:calc(15 * var(--pt)); line-height:1; cursor:pointer; }
+.md-room { position:relative; flex:0 0 auto; width:100%; aspect-ratio:1; background-size:cover; background-position:center; background-repeat:no-repeat; overflow:hidden; }
+.md-muni { position:absolute; left:0; top:0; margin:0; padding:0; border:0; background:none; display:flex; flex-direction:column; align-items:center; cursor:pointer; }
+.md-muni-walk { width:calc(60 * var(--pt)); }
+.md-muni-walk img { width:calc(60 * var(--pt)); height:calc(80 * var(--pt)); object-fit:contain; display:block; }
+.md-muni-posed img { object-fit:contain; display:block; }
+.md-muni-name { margin-top:2px; font-size:calc(11 * var(--pt)); color:var(--sub); text-align:center; max-width:calc(84 * var(--pt)); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.md-muni.me .md-muni-name { color:var(--text); font-weight:700; }
+.md-muni-mark { width:0; height:0; border-left:calc(4 * var(--pt)) solid transparent; border-right:calc(4 * var(--pt)) solid transparent; border-top:calc(5 * var(--pt)) solid var(--text); margin-bottom:2px; }
+.md-friends-feed { padding:calc(14 * var(--pt)) calc(24 * var(--pt)) calc(24 * var(--pt)); }
+.md-feed-label { margin:0 0 calc(4 * var(--pt)); font-size:calc(11 * var(--pt)); color:var(--faint); letter-spacing:0.5px; }
+.md-friends-quiet { margin:calc(24 * var(--pt)) 0 0; font-size:calc(13 * var(--pt)); color:var(--faint); text-align:center; line-height:calc(20 * var(--pt)); }
+.md-friend-card { display:flex; align-items:center; gap:calc(12 * var(--pt)); padding:calc(12 * var(--pt)) 0; border-bottom:1px solid var(--border); }
+.md-friend-card-main { flex:1; min-width:0; display:flex; align-items:center; gap:calc(12 * var(--pt)); background:none; border:0; padding:0; font:inherit; text-align:left; cursor:pointer; }
+.md-friend-card-muni { width:calc(22 * var(--pt)); height:calc(36 * var(--pt)); object-fit:contain; flex-shrink:0; }
+.md-friend-card-tx { flex:1; min-width:0; }
+.md-friend-card-name-row { display:flex; align-items:center; gap:calc(4 * var(--pt)); }
+.md-friend-card-name { font-size:calc(14 * var(--pt)); font-weight:700; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.md-friend-card-emoji { font-size:calc(12 * var(--pt)); }
+.md-friend-card-sum { margin:calc(3 * var(--pt)) 0 0; font-size:calc(12 * var(--pt)); color:var(--sub); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.md-friend-card-react { display:flex; gap:4px; flex-shrink:0; }
+.md-react-pill { display:inline-flex; align-items:center; border:1px solid var(--border); background:var(--card); border-radius:999px; padding:calc(5 * var(--pt)) calc(8 * var(--pt)); font:inherit; font-size:calc(11 * var(--pt)); color:var(--sub); cursor:pointer; font-variant-numeric:tabular-nums; }
+.md-react-pill.labelled { padding:calc(9 * var(--pt)) calc(14 * var(--pt)); font-size:calc(13 * var(--pt)); }
+.md-react-pill.on { background:var(--text); border-color:var(--text); color:#fff; }
+.md-sheet-friend { display:flex; flex-direction:column; align-items:center; }
+.md-sheet-muni { width:calc(84 * var(--pt)); height:calc(112 * var(--pt)); object-fit:contain; margin-top:calc(4 * var(--pt)); }
+.md-sheet-name { margin:calc(8 * var(--pt)) 0 0; font-size:calc(20 * var(--pt)); font-weight:700; color:var(--text); display:flex; align-items:baseline; gap:calc(6 * var(--pt)); }
+.md-sheet-inst { font-size:calc(14 * var(--pt)); color:var(--sub); font-weight:400; }
+.md-sum-grid { display:flex; align-self:stretch; margin-top:calc(22 * var(--pt)); padding:0 calc(12 * var(--pt)); }
+.md-sum-cell { flex:1; text-align:center; }
+.md-sum-v { margin:0 0 calc(3 * var(--pt)); font-size:calc(17 * var(--pt)); font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; }
+.md-sum-l { margin:0; font-size:calc(12 * var(--pt)); color:var(--sub); }
+.md-sheet-react { display:flex; justify-content:center; gap:calc(8 * var(--pt)); margin-top:calc(20 * var(--pt)); align-self:stretch; }
+.md-sheet-links { margin-top:calc(26 * var(--pt)); display:flex; align-items:center; justify-content:center; }
+.md-sheet-link { background:none; border:0; font:inherit; font-size:calc(13 * var(--pt)); color:var(--faint); text-decoration:underline; cursor:pointer; padding:0; }
+.md-sheet-dot { font-size:calc(13 * var(--pt)); color:var(--faint); }
