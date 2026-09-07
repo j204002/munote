@@ -8,7 +8,9 @@ export function createStore(now = new Date()) {
     lang: 'ko', screen: 'home', me: { ...ME }, todayKey: tk, now,
     sessions: buildSessions(tk), friends: FRIENDS.map((f) => ({ ...f, reactions: { ...f.reactions } })),
     focus: { running: false, phase: 'idle', elapsedSec: 0, focusPct: 0, phaseIdx: 0, phaseSec: 0, paused: false, pauseCount: 0 },
-    draft: { pieces: [], types: [], memo: '' }, toast: null, sheet: null, calendarMonth: tk.slice(0, 7), selectedDay: null,
+    draft: { pieces: [], types: [], memo: '' }, toast: null, sheet: null, calendarMonth: tk.slice(0, 7), selectedDay: tk,
+    // selectedDay 기본값 = 오늘: 앱은 null(미선택)로 시작하지만(CalendarScreen.tsx), 체험판은 기록 탭에
+    // 처음 들어와도 오늘 하루 상세가 바로 보이게 한다(브리프 지시) — 링(선택 테두리)이 곧 "오늘 표시" 역할을 겸한다.
   };
   const subs = new Set();
   return {
@@ -66,6 +68,11 @@ export const setWeekStart = (s, mon) => ({ ...s, me: { ...s.me, weekStartMon: mo
 export const setLang = (s, lang) => ({ ...s, lang });
 export const go = (s, screen) => ({ ...s, screen, sheet: null });
 export const showToast = (s, key) => ({ ...s, toast: key });
+// ── 기록(달력) ──────────────────────────────────────────
+// 월 이동 시 선택 날짜 초기화 — 앱의 moveMonth와 동일(선택은 이전 달 소속이라 무의미해짐).
+export const setCalendarMonth = (s, ym) => ({ ...s, calendarMonth: ym, selectedDay: null });
+// 같은 날을 다시 탭하면 선택 해제(토글) — 앱의 setSelected(isSelected ? null : d)와 동일.
+export const selectDay = (s, key) => ({ ...s, selectedDay: key === s.selectedDay ? null : key });
 // ── 파생 ────────────────────────────────────────────────
 export const sessionsOf = (s, key) => s.sessions.filter((x) => x.dateKey === key);
 export const todayMinutes = (s) => sessionsOf(s, s.todayKey).reduce((a, x) => a + x.practiceMin, 0);
