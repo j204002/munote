@@ -63,7 +63,21 @@ export function toggleReaction(s, friendId, kind) {
 // ── 설정 ────────────────────────────────────────────────
 export const setInstrument = (s, instrument) => ({ ...s, me: { ...s.me, instrument } });
 export const setGoal = (s, goalMin) => ({ ...s, me: { ...s.me, goalMin: Math.max(0, Math.min(240, goalMin)) } });
-export const setDayStart = (s, h) => { const tk = calcToday(h, s.now); return { ...s, me: { ...s.me, dayStartHour: h }, todayKey: tk }; };
+// 하루 시작 시각을 바꾸면 "오늘"의 날짜 키(todayKey)가 바뀐다 — 고정 대본(buildSessions)은 이전
+// todayKey를 기준으로 D-n 상대 오프셋을 계산해뒀던 것이라, todayKey만 바꾸고 sessions는 그대로 두면
+// 대본이 하루 밀려 배지·달력 연속성이 깨진다(코덱스 리뷰 2026-09-07 High). 그래서 새 todayKey로 대본을
+// 다시 만들되, 이번 체험에서 방문자가 실제로 저장한 세션(saveReflection이 매기는 `today-` 접두 id)은
+// 대본이 아니므로 그대로 이어 붙인다. calendarMonth·selectedDay가 "이전 오늘"을 가리키고 있었을
+// 때만 새 오늘로 옮긴다 — 방문자가 다른 달/날짜를 보고 있었다면 그 선택은 건드리지 않는다.
+export const setDayStart = (s, h) => {
+  const oldTodayKey = s.todayKey;
+  const tk = calcToday(h, s.now);
+  const liveSessions = s.sessions.filter((x) => x.id.startsWith('today-'));
+  const sessions = [...buildSessions(tk), ...liveSessions];
+  const selectedDay = s.selectedDay === oldTodayKey ? tk : s.selectedDay;
+  const calendarMonth = s.calendarMonth === oldTodayKey.slice(0, 7) ? tk.slice(0, 7) : s.calendarMonth;
+  return { ...s, me: { ...s.me, dayStartHour: h }, todayKey: tk, sessions, selectedDay, calendarMonth };
+};
 export const setWeekStart = (s, mon) => ({ ...s, me: { ...s.me, weekStartMon: mon } });
 export const setLang = (s, lang) => ({ ...s, lang });
 export const go = (s, screen) => ({ ...s, screen, sheet: null });
