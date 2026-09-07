@@ -1,20 +1,17 @@
 // demo/tests/keys.test.mjs — 체험판이 실제로 쓰는 번역 키가 4개 언어 파일(+demo.json)에 전부 존재하는지 확인한다.
 // t('literal') / t(`prefix.${x}`) / t(identifier) / gate(t, 'literal') 네 가지 호출 형태를 소스에서 정규식으로 모은다.
+// 추출 로직 자체는 scripts/lib/demo-keys.mjs 하나에만 있다(project-locale.mjs의 leaf-key 허용목록과
+// 공유) — 여기서 다시 베껴 쓰면 두 곳이 조용히 어긋날 수 있다(허용목록 드리프트).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { extractFromSource, KNOWN_DYNAMIC_FAMILIES, EXTRA_LITERAL_KEYS } from '../../scripts/lib/demo-keys.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const DEMO = join(HERE, '..');
 const LANGS = ['ko', 'en', 'es', 'de'];
-
-const SOURCE_FILES = [
-  join(DEMO, 'ui.js'),
-  join(DEMO, 'demo.js'),
-  ...readdirSync(join(DEMO, 'screens')).filter((f) => f.endsWith('.js')).map((f) => join(DEMO, 'screens', f)),
-];
 
 const appDicts = Object.fromEntries(LANGS.map((l) => [l, JSON.parse(readFileSync(join(DEMO, 'i18n', l + '.json'), 'utf8'))]));
 const demoDict = JSON.parse(readFileSync(join(DEMO, 'i18n', 'demo.json'), 'utf8'));
@@ -22,34 +19,11 @@ const demoDict = JSON.parse(readFileSync(join(DEMO, 'i18n', 'demo.json'), 'utf8'
 const mergedDicts = Object.fromEntries(LANGS.map((l) => [l, { ...appDicts[l], demo: demoDict[l] }]));
 
 // --- 1) 소스에서 t()/T.t() 호출 수집 -------------------------------------------------
-const literalKeys = new Set(); // 완전한 키 문자열('a.b.c')
-const dynamicPrefixes = new Set(); // 템플릿 리터럴의 ${ 앞부분 ('a.b.' 또는 'a.notifHour' 처럼 중간에서 끊길 수 있음)
-
-for (const file of SOURCE_FILES) {
-  const src = readFileSync(file, 'utf8');
-
-  // t('key') / t("key") / T.t('key') — 정적 리터럴
-  for (const m of src.matchAll(/\bT?\.?\bt\(\s*'([^']*)'/g)) literalKeys.add(m[1]);
-  for (const m of src.matchAll(/\bT?\.?\bt\(\s*"([^"]*)"/g)) literalKeys.add(m[1]);
-
-  // t(`prefix.${expr}`) — 동적 접두사
-  for (const m of src.matchAll(/\bT?\.?\bt\(\s*`([^`]*)\$\{/g)) dynamicPrefixes.add(m[1]);
-
-  // t(ident) / T.t(ident) — 변수로 전달된 키. 같은 파일의 `ident = ...` 대입에서
-  // 점(.)이 들어간 문자열 리터럴을 번역 키 후보로 수집한다(예: focus.js의 stateKey).
-  for (const m of src.matchAll(/\bT?\.?\bt\(\s*([A-Za-z_$][\w$]*)\s*\)/g)) {
-    const ident = m[1];
-    const assign = new RegExp(`\\b${ident}\\s*=[^;\\n]*`, 'g');
-    for (const am of src.matchAll(assign)) {
-      for (const sm of am[0].matchAll(/'([a-zA-Z][\w.]*\.[\w]+)'|"([a-zA-Z][\w.]*\.[\w]+)"/g)) {
-        literalKeys.add(sm[1] ?? sm[2]);
-      }
-    }
-  }
-
-  // gate(t, 'key') — 두 번째 인자 없으면 기본값 'demo.inApp' (ui.js의 gate 시그니처와 동일)
-  for (const m of src.matchAll(/\bgate\(\s*t\s*(?:,\s*'([^']*)')?\s*\)/g)) literalKeys.add(m[1] ?? 'demo.inApp');
-}
+const { literalKeys, dynamicPrefixes } = extractFromSource();
+// 정규식이 못 잡는 삼항식 등(예: settings.js의 weekStartMon/weekStartSun)은 demo-keys.mjs에 수동
+// 등록돼 있다 — 그 계열도 여기서 같이 검사해야 project-locale.mjs가 지운 뒤에야 알아채는 일이 없다.
+for (const family of KNOWN_DYNAMIC_FAMILIES) dynamicPrefixes.add(family.endsWith('*') ? family.slice(0, -1) : family);
+for (const key of EXTRA_LITERAL_KEYS) literalKeys.add(key);
 
 // --- 2) 사전에서 키를 찾는 헬퍼 -------------------------------------------------------
 function get(obj, path) {

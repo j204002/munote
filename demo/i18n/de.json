@@ -1,25 +1,26 @@
 {
+  "common": {
+    "back": "Zurück"
+  },
   "tabs": {
     "home": "Home",
     "records": "Verlauf",
     "settings": "Einstellungen",
     "friends": "Freunde"
   },
+  "duration": {
+    "minOnly": "{{m}} Min.",
+    "hourOnly": "{{h}} Std.",
+    "hourMin": "{{h}} Std. {{m}} Min."
+  },
   "home": {
     "todayLabel": "Heutige Übung",
     "goalPct": "Ziel {{pct}} %",
     "streak_one": "🔥 {{count}} Tag in Folge geübt",
     "streak_other": "🔥 {{count}} Tage in Folge geübt",
-    "comeback_one": "👋 Zurück nach {{count}} Tag",
-    "comeback_other": "👋 Zurück nach {{count}} Tagen",
     "weekDays_one": "📆 {{count}} Übungstag diese Woche",
     "weekDays_other": "📆 {{count}} Übungstage diese Woche",
-    "pastTodayYear": "✨ Heute vor einem Jahr hast du auch geübt",
-    "pastTodayMonth": "✨ Heute vor einem Monat hast du auch geübt",
-    "start": "Übung starten",
-    "hint": "Dein Spiel wird erkannt, deine Übungszeit automatisch erfasst",
-    "deleteCheckNotice": "Die Prüfung der Kontobereinigung ist kurz angehalten.\nDeine Aufnahmen sind sicher auf dem Handy; es wird automatisch erneut geprüft.",
-    "sessionRecovered": "Eine Übung endete, ohne gespeichert zu werden — wir haben sie festgehalten.\nStücke und Notizen kannst du im Kalender ergänzen."
+    "start": "Übung starten"
   },
   "focus": {
     "state": {
@@ -29,17 +30,7 @@
       "paused": "Pausiert",
       "ended": "Beendet"
     },
-    "abort": "Zurück zum Start",
     "meta": "Dauer {{elapsed}} · {{count}}× pausiert",
-    "rollback": "Pausiert — 15 s Stille wurden nicht gezählt",
-    "micLost": "Die Erfassung wurde gestoppt, weil eine andere App das Mikrofon nutzt.\nTippe auf Fortsetzen.",
-    "micStartFailed": "Die Erfassung konnte nicht starten, weil das Mikrofon nicht verfügbar ist.\nErlaube MU:note in den Einstellungen den Mikrofonzugriff und tippe auf Fortsetzen.",
-    "openSettings": "Einstellungen öffnen",
-    "mic": "🎙 Mikrofon aktiv · Audio wird nie gespeichert",
-    "noiseHint": "Laute Umgebung kann die Erkennung ungenauer machen",
-    "mediaHint": "Videos oder Musik nebenbei klingen leiser.\nDeine Übung wird weiterhin genau gezählt.",
-    "memoButton": "✏️ Notiz",
-    "memoPlaceholder": "Ein Gedanke beim Üben…",
     "stop": "Stop",
     "resume": "Fortsetzen",
     "end": "End"
@@ -49,24 +40,13 @@
     "minutes": "{{min}} Min.",
     "metaLine1": "Gesamt {{elapsed}} Min. · Fokus {{focus}} %",
     "metaLine2": "{{pause}}× pausiert",
-    "metaAway": " · abwesend {{min}} Min.",
     "coachLabel": "Ein Wort von MU:note",
     "shortNote": "Unter 20 Minuten wird die Übung ohne Notiz gespeichert",
     "piecesSection": "Geübte Stücke",
-    "editPieces": "Bearbeiten",
-    "editDone": "Fertig",
-    "newPiecePlaceholder": "Stück hinzufügen",
     "typesSection": "Übungsart",
     "memosSection": "Notizen",
     "memoAddPlaceholder": "Notiz hinzufügen…",
-    "summaryBase_one": "Übung {{min}} Min. · Fokus {{focus}} % · {{count}} Stück",
-    "summaryBase_other": "Übung {{min}} Min. · Fokus {{focus}} % · {{count}} Stücke",
-    "summaryAway": " · abwesend {{min}} Min.",
-    "done": "Speichern und beenden",
-    "saveFailedTitle": "Speichern fehlgeschlagen",
-    "saveFailedBody": "Deine Aufzeichnung ist nicht verloren.\nBitte tippe gleich noch einmal auf Speichern.",
-    "firstNote": "Das war unsere erste Übung zusammen — {{practiceMin}} Minuten Musik sind festgehalten.\nJe mehr Einheiten zusammenkommen, desto mehr erzählen die Zahlen.",
-    "coachGuestHint": "Melde dich an und du bekommst eine Notiz von MU:note, wenn du 20 Minuten oder länger übst."
+    "done": "Speichern und beenden"
   },
   "calendar": {
     "weekdays": [
@@ -85,9 +65,7 @@
       "l3": "1 Std.+",
       "l4": "2 Std.+"
     },
-    "emptyAll": "Noch keine Einträge — starte deine erste Übung",
     "emptyDay": "Keine Einträge an diesem Tag",
-    "sessionMeta": "{{time}} · {{min}} Min. · Fokus {{focus}} %",
     "sessionLine_one": "{{time}} · {{min}} Min. · Fokus {{focus}} % · {{count}} Stück",
     "sessionLine_other": "{{time}} · {{min}} Min. · Fokus {{focus}} % · {{count}} Stücke",
     "editAll": "Alle bearbeiten",
@@ -95,173 +73,19 @@
     "daySummary_one": "Übung {{min}} Min. · Fokus {{focus}} % · {{count}} Übungseinheit",
     "daySummary_other": "Übung {{min}} Min. · Fokus {{focus}} % · {{count}} Übungseinheiten",
     "dayBarTotal": "Gesamt {{min}} Min.",
-    "guestLockedNote": "Melde dich an, um Details vergangener Monate zu sehen.\nKalender und Tagessummen bleiben kostenlos.",
     "deleteSession": "Sitzung löschen",
-    "deleteSessionConfirmTitle": "Diese Übungsaufzeichnung löschen?",
-    "deleteSessionConfirmBody": "Das kann nicht rückgängig gemacht werden.\nSie verschwindet auch aus Statistik und Kalender.",
-    "deleteSessionAction": "Löschen",
-    "deleteFailedTitle": "Löschen nicht möglich",
-    "deleteFailedBody": "Ein Speicherproblem hat das Löschen verhindert.\nBitte versuch es gleich noch einmal.",
     "panel": {
       "sessions": "🎵 Sessions",
       "todo": "📋 to do",
       "memo": "✏️ Notizen",
       "dday": "📆 D-Day"
-    },
-    "memoOf": "Session um {{time}}",
-    "noMemos": "Keine Notizen an diesem Tag",
-    "sessionMemos": "Session-Notizen"
-  },
-  "friends": {
-    "title": "Freunde",
-    "gearA11y": "Einstellungen",
-    "addA11y": "Freunde hinzufügen & Anfragen",
-    "pendingA11y": "Neue Freundschaftsanfrage",
-    "me": "Ich",
-    "guest": {
-      "line": "Um Übungen mit Freunden zu teilen, brauchst du ein Konto.",
-      "cta": "Registrieren"
-    },
-    "name": {
-      "title": "Wähle einen Namen,\nden deine Freunde sehen",
-      "desc": "Nur per Freundescode verbundene Personen sehen ihn.\nNach dem ersten Mal kannst du ihn alle 7 Tage ändern.",
-      "label": "Name",
-      "save": "Speichern",
-      "change": "Meinen Namen ändern",
-      "hint": "Wähle einen Namen, um den Übungsraum zu öffnen.",
-      "tooShort": "Mindestens 2 Zeichen.",
-      "tooLong": "Höchstens 12 Zeichen.",
-      "invalid": "Dieser Name kann nicht verwendet werden."
-    },
-    "quiet": "Heute ist es bisher ruhig.\nWenn ein Freund übt, erscheint seine Karte hier.",
-    "empty": "Lade einen Freund ein, der auch übt.\nIhr könnt euch gegenseitig anfeuern",
-    "sheet": {
-      "codeLabel": "Mein Freundescode",
-      "copy": "Code kopieren",
-      "copied": "Kopiert",
-      "share": "Code teilen",
-      "enter": "Freundescode eingeben",
-      "incoming": "Anfragen",
-      "requestLine": "hat dir eine Anfrage geschickt",
-      "accept": "Annehmen",
-      "decline": "Ablehnen",
-      "friends": "Freunde",
-      "outgoing": "Gesendet",
-      "pending": "Ausstehend",
-      "cancel": "Abbrechen",
-      "rotate": "Neuer Code",
-      "rotateConfirm": "Der alte Code funktioniert dann nicht mehr.",
-      "shareText": "Üb mit mir {{emoji}}\nAls Freunde in MU:note teilen wir uns einen Übungsraum.\n\nApp holen → {{link}}\nMein Freundescode: {{code}}  (Freunde → Hinzufügen → Code eingeben)",
-      "shareRow": "Was Freunde sehen",
-      "mine": "ich",
-      "myNote": "So sehen Freunde die Angaben oben",
-      "nameCooldown": "Änderbar in {{n}} Tagen"
-    },
-    "input": {
-      "title": "Freundescode eingeben",
-      "placeholder": "7K3F-9P2Q",
-      "check": "Prüfen",
-      "send": "Anfrage senden",
-      "sent": "Anfrage gesendet",
-      "alreadyFriends": "Ihr seid schon Freunde"
-    },
-    "detail": {
-      "remove": "Freund entfernen",
-      "removeConfirm": "Ihr verschwindet aus der Liste des anderen.",
-      "removeYes": "Entfernen",
-      "report": "Melden",
-      "block": "Blockieren"
-    },
-    "error": {
-      "members_only": "Freunde gibt es nach der Registrierung.",
-      "consent_required": "Zustimmung nötig. Bitte in den Einstellungen prüfen.",
-      "invalid_code": "Bitte prüfe den Code.",
-      "rate_limited": "Bitte versuche es gleich noch einmal.",
-      "name_invalid": "Dieser Name kann nicht verwendet werden.",
-      "not_found": "Bitte versuche es noch einmal.",
-      "network": "Prüfe deine Verbindung und versuche es noch einmal.",
-      "unknown": "Bitte versuche es noch einmal.",
-      "name_cooldown": "Du kannst deinen Namen 7 Tage nach der letzten Änderung wieder ändern.",
-      "invalid_date": "Bitte versuche es erneut.",
-      "invalid_reaction": "Bitte versuche es erneut.",
-      "identity_mismatch": "Bitte versuche es erneut."
-    },
-    "emptyCta": "Freund hinzufügen",
-    "share": {
-      "title": "Was Freunde sehen",
-      "question": "Was sollen\nFreunde sehen?",
-      "desc": "Nur per Code verbundene Freunde sehen das.\nSchaltest du etwas aus, verschwindet es ab der nächsten Aktualisierung.",
-      "descFirst": "Bis du speicherst, wird nichts geteilt,\nund du kannst es jederzeit in den Einstellungen ändern.",
-      "section": "Karte von heute",
-      "practiced": "Ob ich heute geübt habe",
-      "practicedHint": "Aus heißt: deine Karte erscheint nie bei Freunden",
-      "minutes": "Gesamte Übezeit heute",
-      "streak": "Übe-Serie",
-      "weekDays": "Übetage diese Woche",
-      "focus": "Fokus",
-      "focusHint": "Standardmäßig aus",
-      "note": "Dein Name und dein Instrument sind für Freunde immer sichtbar.\nStücke und Notizen werden Freunden nie gezeigt.",
-      "save": "Speichern",
-      "saveFailed": "Speichern fehlgeschlagen. Prüfe die Verbindung und versuche es erneut.",
-      "live": "Ob ich gerade übe",
-      "liveHint": "Wenn an, spielt dein Muni im Übungsraum deiner Freunde, während du übst."
-    },
-    "feed": {
-      "label": "Freunde, die heute geübt haben: {{n}}",
-      "practicedOnly": "Hat heute geübt",
-      "streak": "{{n}} Tage in Folge",
-      "weekDays": "{{n}} Tage diese Woche",
-      "focus": "Fokus {{p}} %",
-      "days": "{{n}} Tage",
-      "today": "Heute",
-      "streakLabel": "Serie",
-      "weekLabel": "Diese Woche"
-    },
-    "react": {
-      "clap": "Gut gemacht",
-      "fire": "Stark",
-      "note": "Ich geh auch üben",
-      "received": "Reaktionen heute",
-      "none": "Noch keine"
-    },
-    "room": {
-      "live": "Übt gerade"
-    },
-    "block": {
-      "confirmTitle": "Diese Person blockieren?",
-      "confirmBody": "Blockieren entfernt euch gegenseitig aus Übungsraum, Feed und Anfragen.\nDie Person wird nicht benachrichtigt.",
-      "action": "Blockieren",
-      "listTitle": "Blockierte Personen",
-      "unblock": "Freigeben",
-      "empty": "Niemand ist blockiert",
-      "row": "Blockierte Personen"
-    },
-    "report": {
-      "title": "Melden",
-      "spam": "Spam",
-      "impersonation": "Identitätsmissbrauch",
-      "name": "Unangemessener Name",
-      "harassment": "Belästigung",
-      "other": "Sonstiges",
-      "send": "Senden",
-      "done": "Eingegangen. Wir prüfen und handeln.",
-      "blockNow": "Diese Person blockieren",
-      "close": "Schließen"
-    },
-    "a11y": {
-      "playing": "hat heute geübt",
-      "lying": "pausiert seit über 3 Tagen",
-      "asleep": "pausiert seit über einer Woche",
-      "incomingHint": "Lange drücken zum Melden oder Blockieren"
     }
   },
   "settings": {
-    "profileSection": "Profil",
     "practiceSection": "Üben",
     "instrumentLabel": "Hauptinstrument",
     "goalLabel": "Tägliches Übungsziel",
     "goalNone": "Keins",
-    "goalNote": "Ohne Ziel gibt es keinerlei Nachteile — ganz wie du magst",
     "notifLabel": "Übungserinnerung",
     "notifNote": "Eine sanfte Erinnerung, einmal am Tag.\nHast du heute schon geübt, bleibt sie aus.",
     "dayStartLabel": "Tagesbeginn",
@@ -273,57 +97,17 @@
     "weekStartLabel": "Wochenbeginn",
     "weekStartSun": "Sonntag",
     "weekStartMon": "Montag",
-    "detailTitle": "Kalender · Language",
-    "detailRowLabel": "Kalender · Language",
-    "detailRowNote": "Tagesbeginn, Wochenbeginn und Sprache ändern",
-    "infoSection": "Info",
     "languageSection": "Language",
-    "languageSystem": "Geräteeinstellung verwenden",
-    "comingSoon": "In Vorbereitung",
-    "privacyNote": "Audio zur Erkennung wird nie gespeichert.\nNur die Ergebnisse (Zeit und Einstufung) werden aufgezeichnet.",
     "versionLabel": "Version",
-    "accountSection": "Konto",
-    "accountGuest": "Du nutzt die App als Gast",
-    "accountGuestHint": "Mit einem Konto bleiben deine Aufzeichnungen bei Handywechsel und Neuinstallation sicher",
-    "accountSignUp": "Registrieren",
-    "accountSignedIn": "Angemeldet mit {{provider}}",
-    "accountLogout": "Abmelden",
-    "accountLogoutTitle": "Abmelden?",
-    "accountLogoutBody": "Du startest danach neu als Gast. Melde dich jederzeit mit demselben Konto an, und deine Aufzeichnungen sind wieder da.",
-    "accountLogoutBlockedTitle": "Einige Aufzeichnungen sind noch nicht gesichert",
-    "accountLogoutBlockedBody_one": "{{count}} Aufzeichnung wurde noch nicht auf dem Server gespeichert. Bitte versuche es mit Internetverbindung erneut.",
-    "accountLogoutBlockedBody_other": "{{count}} Aufzeichnungen wurden noch nicht auf dem Server gespeichert. Bitte versuche es mit Internetverbindung erneut.",
-    "accountProviderKakao": "Kakao",
-    "accountProviderApple": "Apple",
-    "deleteAccount": "Konto löschen",
-    "deleteGuestAccount": "Gastdaten & Konto löschen",
-    "deleteAccountConfirmTitle": "Konto löschen?",
-    "deleteAccountConfirmBody": "Alle Übungsaufzeichnungen werden dauerhaft gelöscht und können nicht wiederhergestellt werden.\nPrüfe vorher, was du noch brauchst.",
-    "deleteAccountConfirm2Title": "Wirklich löschen?",
-    "deleteAccountConfirm2Body": "Das lässt sich nicht rückgängig machen.",
-    "deleteAccountAction": "Endgültig löschen",
-    "deleteAccountFailed": "Konto konnte nicht gelöscht werden.\nVersuch es gleich noch einmal.",
     "notifHour8": "8 Uhr",
     "notifHour12": "12 Uhr",
     "notifHour16": "16 Uhr",
     "notifHour19": "19 Uhr",
     "notifHour21": "21 Uhr",
-    "notifPermissionTitle": "Mitteilungen sind deaktiviert",
-    "notifPermissionBody": "Erlaube MU:note-Mitteilungen in den Einstellungen.",
     "legalTerms": "Nutzungsbedingungen",
     "legalPrivacy": "Datenschutzerklärung",
-    "accountLogoutFailedTitle": "Abmelden fehlgeschlagen",
-    "accountLogoutFailedBody": "Bitte prüfe deine Verbindung und versuche es erneut.\nDeine Aufzeichnungen sind sicher.",
-    "friendsSection": "Freunde",
     "appSection": "App",
-    "calendarRowLabel": "Tagesbeginn · Wochenbeginn",
-    "notifOff": "Aus",
-    "shareCount": "{{n}} sichtbar",
-    "instrumentNote": "Dein Instrument bestimmt, wie Klang bewertet wird.\nLass es auf dem Instrument, das du wirklich übst.",
-    "contact": "Kontakt",
-    "contactSubject": "MU:note Anfrage",
-    "contactNoMail": "Keine Mail-App gefunden.\nSchreib uns an die Adresse unten.",
-    "contactCopy": "Adresse kopieren"
+    "calendarRowLabel": "Tagesbeginn · Wochenbeginn"
   },
   "instrument": {
     "piano": "Klavier",
@@ -341,18 +125,36 @@
     "detail": "Detailarbeit",
     "ensemble": "Ensemble/Begl."
   },
-  "duration": {
-    "minOnly": "{{m}} Min.",
-    "hourOnly": "{{h}} Std.",
-    "hourMin": "{{h}} Std. {{m}} Min."
-  },
-  "common": {
-    "cancel": "Abbrechen",
-    "save": "Speichern",
-    "add": "Hinzufügen",
-    "close": "Schließen",
-    "edit": "Bearbeiten",
-    "delete": "Löschen",
-    "back": "Zurück"
+  "friends": {
+    "title": "Freunde",
+    "addA11y": "Freunde hinzufügen & Anfragen",
+    "quiet": "Heute ist es bisher ruhig.\nWenn ein Freund übt, erscheint seine Karte hier.",
+    "detail": {
+      "remove": "Freund entfernen",
+      "report": "Melden",
+      "block": "Blockieren"
+    },
+    "feed": {
+      "label": "Freunde, die heute geübt haben: {{n}}",
+      "streak": "{{n}} Tage in Folge",
+      "weekDays": "{{n}} Tage diese Woche",
+      "days": "{{n}} Tage",
+      "today": "Heute",
+      "streakLabel": "Serie",
+      "weekLabel": "Diese Woche"
+    },
+    "react": {
+      "clap": "Gut gemacht",
+      "fire": "Stark",
+      "note": "Ich geh auch üben",
+      "received": "Reaktionen heute",
+      "none": "Noch keine"
+    },
+    "a11y": {
+      "playing": "hat heute geübt",
+      "lying": "pausiert seit über 3 Tagen",
+      "asleep": "pausiert seit über einer Woche",
+      "incomingHint": "Lange drücken zum Melden oder Blockieren"
+    }
   }
 }
