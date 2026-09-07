@@ -4,6 +4,8 @@
 .md-screen { position:relative; width:100%; aspect-ratio: 9 / 19.5; border-radius:36px; overflow:hidden; background:var(--bg); color:var(--text); display:flex; flex-direction:column; }
 .md-mount { height:100%; display:flex; flex-direction:column; }
 .screen { flex:1; min-height:0; display:flex; flex-direction:column; }
+/* 화면 안쪽 여백은 각 화면이 정한다(앱과 동일) — 프레임은 여백을 주지 않는다 */
+.screen-ph { padding: 24px 20px; color: var(--sub); font-size: 13px; }
 .md-body { flex:1; min-height:0; overflow:hidden; }
 .md-body.scroll { overflow-y:auto; overscroll-behavior:contain; touch-action:pan-y; -webkit-overflow-scrolling:touch; }
 .md-tabbar { display:flex; border-top:1px solid var(--border); background:var(--bg); height:56px; }

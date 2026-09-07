@@ -1,6 +1,7 @@
 // demo/demo.js
 import { loadLocale } from './i18n.js';
 import { createStore, go, showToast, setLang } from './state.js';
+import { esc } from './ui.js';
 import * as home from './screens/home.js';
 import * as focus from './screens/focus.js';
 import * as reflection from './screens/reflection.js';
@@ -16,7 +17,7 @@ if (root) {
   const store = createStore();
   store.set(setLang(store.get(), lang));
   let T = await loadLocale(lang);
-  root.innerHTML = `<div class="md-phone"><span class="md-ribbon">${T.t('demo.ribbon')}</span><div class="md-screen"><div class="md-mount"></div><div class="md-toast" role="status"></div></div></div><p class="md-hint">${T.t('demo.hint')}</p>`;
+  root.innerHTML = `<div class="md-phone"><span class="md-ribbon">${esc(T.t('demo.ribbon'))}</span><div class="md-screen"><div class="md-mount"></div><div class="md-toast" role="status"></div></div></div><p class="md-hint">${T.t('demo.hint')}</p>`;
   const mount = root.querySelector('.md-mount');
   const toastEl = root.querySelector('.md-toast');
   const ctx = {
