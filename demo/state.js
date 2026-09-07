@@ -40,13 +40,31 @@ export function endFocus(s) {
   return { ...s, screen: 'reflection', focus: { ...s.focus, running: false, phase: 'ended' }, draft: { pieces: prev ? [...prev.pieces] : [PIECES[0]], types: prev ? [...prev.types] : [], memo: '' } };
 }
 const minsOf = (sec) => (sec > 0 ? Math.max(1, Math.floor(sec / 60)) : 0);
+// 항목마다 soundingSec·wallSec이 "전부" 있으면 초 단위로 합산해 집중도를 낸다(더 정밀함 — 방문자가
+// skip 뒤 틱을 더 흘려도 화면마다 다른 %로 갈리지 않는다, 코덱스 리뷰 2026-09-07 2차 High-1). 하나라도
+// 없으면(고정 대본 세션은 분 단위만 가지고 있다) 전부 분×60으로 취급한다 — 한 목록 안에서 초 단위와
+// 분 단위를 섞어 쓰지 않는다(섞으면 초 단위 항목의 정밀도가 분 단위 항목 탓에 의미 없어진다).
+export function focusPctOf(items) {
+  const hasSec = items.length > 0 && items.every((x) => typeof x.soundingSec === 'number' && typeof x.wallSec === 'number');
+  let sounding = 0;
+  let wall = 0;
+  for (const x of items) {
+    if (hasSec) { sounding += x.soundingSec; wall += x.wallSec; } else { sounding += (x.practiceMin ?? 0) * 60; wall += (x.elapsedMin ?? 0) * 60; }
+  }
+  return wall > 0 ? Math.round((sounding / wall) * 100) : 0;
+}
 export function saveReflection(s, lang) {
   // floor(min 1): 무음구간이 섞인 자연 진행(예: 60틱→48초)도 최소 1분으로 잡힌다. 19m31s → 19분(floor로), 20분이 넘지 않는다.
   const practiceMin = minsOf(s.focus.elapsedSec);
   const elapsedMin = Math.max(practiceMin, minsOf(s.focus.wallSec ?? s.focus.elapsedSec));
   const coach = practiceMin >= 20 ? (s.focus.skipped ? COACH[lang].skip : COACH[lang].natural.replace('{min}', String(practiceMin))) : undefined;
   const hm = `${String(s.now.getHours()).padStart(2, '0')}:${String(s.now.getMinutes()).padStart(2, '0')}`;
-  const session = { id: `today-${s.sessions.length}`, dateKey: s.todayKey, startHm: hm, practiceMin, elapsedMin, focusPct: s.focus.focusPct, pieces: [...s.draft.pieces], types: [...s.draft.types], memo: s.draft.memo || undefined, coach };
+  // soundingSec·wallSec을 그대로 저장해둔다 — practiceMin·elapsedMin은 화면 표시(분)용으로 남기고,
+  // 집중도는 이후(회고 카드·기록 화면 세션 줄·일 합계) 전부 이 두 값을 focusPctOf로 다시 계산해
+  // 같은 뿌리에서 나오게 한다(다른 곳에서 분 단위로 재계산하면서 갈리던 88↔89 드리프트의 근본 원인 제거).
+  const soundingSec = s.focus.soundingSec ?? s.focus.elapsedSec;
+  const wallSec = s.focus.wallSec ?? s.focus.elapsedSec;
+  const session = { id: `today-${s.sessions.length}`, dateKey: s.todayKey, startHm: hm, practiceMin, elapsedMin, focusPct: focusPctOf([{ soundingSec, wallSec }]), soundingSec, wallSec, pieces: [...s.draft.pieces], types: [...s.draft.types], memo: s.draft.memo || undefined, coach };
   return { ...s, screen: 'home', sessions: [...s.sessions, session], focus: { ...s.focus, running: false, phase: 'idle' } };
 }
 // ── 친구 ────────────────────────────────────────────────

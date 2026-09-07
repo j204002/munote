@@ -1,7 +1,7 @@
 // demo/screens/records.js — 기록 화면. CalendarScreen.tsx의 레이아웃·규칙을 --pt 스케일로 그대로 옮긴다.
 // 범위 밖(생략, 태스크 브리프 지시): D-day 행 · to-do 패널 본문 · 메모 패널 본문 · 전체 편집 모달.
 // 대신 세션 카드 안에 곡·유형·메모·한마디를 바로 펼친다(모달 없이) — sessions 패널만 실제로 동작한다.
-import { monthCells, sessionsOf, coachTextOf, setCalendarMonth, selectDay } from '../state.js';
+import { monthCells, sessionsOf, coachTextOf, setCalendarMonth, selectDay, focusPctOf } from '../state.js';
 import { weekdayOf } from '../dateKey.js';
 import { EMOJI } from '../data.js';
 import { tabbar, esc, gate } from '../ui.js';
@@ -46,18 +46,20 @@ function dayCellHtml(cell, selectedDay) {
 }
 
 // lib/stats.ts daySummary()와 동일: 시간가중 집중도(Σ연습 ÷ Σ전체), 세션 단순평균 금지.
+// focusPctOf가 항목 전부에 soundingSec/wallSec이 있으면(오늘 방문자가 저장한 세션들) 초 단위로,
+// 없으면(고정 대본 세션은 분 단위만 있다) 분×60으로 계산한다 — 코덱스 리뷰 2026-09-07 2차 High-1.
 function dayTotalOf(list) {
   if (list.length === 0) return null;
   const practiceMin = list.reduce((a, x) => a + x.practiceMin, 0);
   const elapsedMin = list.reduce((a, x) => a + x.elapsedMin, 0);
-  const focusPct = elapsedMin > 0 ? Math.round((practiceMin / elapsedMin) * 100) : 0;
+  const focusPct = focusPctOf(list);
   return { practiceMin, elapsedMin, focusPct, sessionCount: list.length };
 }
 
-// lib/sessionRecord.ts focusPctOf()와 동일: 세션 한 줄의 집중도는 저장된 focusPct 리터럴이 아니라
-// practiceMin/elapsedMin에서 매번 다시 계산한다(day-total과 같은 식 — fix round 1, 드리프트 원인 제거).
+// 세션 한 줄의 집중도도 day-total과 같은 focusPctOf 하나로 낸다 — 저장된 세션은 soundingSec/wallSec을
+// 들고 있으므로 초 단위로, 고정 대본 세션(분 단위만 있음)은 practiceMin/elapsedMin으로 자동 폴백한다.
 function sessionFocusPct(session) {
-  return session.elapsedMin > 0 ? Math.round((session.practiceMin / session.elapsedMin) * 100) : 0;
+  return focusPctOf([session]);
 }
 
 function sessionCardHtml(session, t, lang, meInstrument) {

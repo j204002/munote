@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay, openSheet, closeSheet, setDayStart } from '../state.js';
+import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay, openSheet, closeSheet, setDayStart, focusPctOf, sessionsOf } from '../state.js';
 import { COACH } from '../data.js';
 const now = new Date('2026-09-07T10:00:00+09:00');
 test('초기: 오늘 0분·배지 스트릭 8·내 무니 걷기', () => {
@@ -115,6 +115,19 @@ test('setDayStart: 다른 달/날짜를 보고 있었다면 그 선택은 건드
   s = setDayStart(s, 0);
   assert.equal(s.calendarMonth, '2026-08', '다른 달을 보고 있었다면 그대로');
   assert.equal(s.selectedDay, '2026-08-15', '다른 날을 선택 중이었다면 그대로');
+});
+
+test('skip 뒤 40초 진행 → 집중·회고·기록 모두 같은 %(코덱스 리뷰 2026-09-07 2차 High-1 회귀)', () => {
+  let s = skipFocus(startFocus(createStore(now).get()));
+  for (let i = 0; i < 40; i += 1) s = tickFocus(s);
+  const focusScreenPct = s.focus.focusPct; // 집중 화면이 보여주는 값(초 단위 비율, tickFocus가 매 틱 갱신)
+  s = saveReflection(endFocus(s), 'ko');
+  const today = s.sessions.find((x) => x.id.startsWith('today-'));
+  const recordsSessionPct = focusPctOf([today]); // 기록 화면 세션 한 줄
+  const recordsDayPct = focusPctOf(sessionsOf(s, s.todayKey)); // 기록 화면 일 합계
+  assert.equal(today.focusPct, focusScreenPct, '저장된 focusPct = 집중 화면이 보여준 값');
+  assert.equal(recordsSessionPct, focusScreenPct, '기록 화면 세션 줄 = 집중 화면 값');
+  assert.equal(recordsDayPct, focusScreenPct, '기록 화면 일 합계 = 집중 화면 값(오늘은 이 세션 하나뿐)');
 });
 
 test('openSheet/closeSheet: 친구 시트를 열고 닫는다', () => {
