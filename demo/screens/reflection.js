@@ -35,7 +35,7 @@ function resetLocal() {
 
 // 순수 헬퍼(테스트 대상) — fade-in 클래스는 render()에서 필요할 때 문자열에 덧붙인다.
 export function coachCardHtml(t, text) {
-  return `<div class=”md-coach-card” data-coach><p class=”md-coach-label”>${esc(t('reflection.coachLabel'))}</p><p class=”md-coach-text”>”${esc(text)}”</p></div>`;
+  return `<div class="md-coach-card" data-coach><p class="md-coach-label">${esc(t('reflection.coachLabel'))}</p><p class="md-coach-text">”${esc(text)}”</p></div>`;
 }
 
 // 순수 헬퍼(테스트 대상) — 저장 직후 상태에서 방금 저장된 세션을 반환.
