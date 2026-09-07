@@ -7,7 +7,9 @@ export const TYPES = ['section', 'runThrough', 'technique', 'memorization', 'sca
 export const POSE_OF_INSTRUMENT = { piano: 'play_piano', strings: 'play_strings', winds: 'play_winds', vocal: 'play_vocal' };
 export const EMOJI = { piano: '🎹', strings: '🎻', winds: '🎷', vocal: '🎤' };
 export const FOCUS_TIMELINE = [{ state: 'sounding', sec: 12 }, { state: 'grace', sec: 4 }];
-export const SKIP_TO = { elapsedSec: 25 * 60 + 12, focusPct: 88 };
+// wallSec은 focusPct에서 역산하지 않고 고정값으로 둔다(fix round: 89%가 저장·회고·기록 세 화면
+// 어디서도 갈리지 않게) — 1512/1700 = 88.9…% → round 89%, records.js 세션 표기(25/28)도 round 89%.
+export const SKIP_TO = { elapsedSec: 25 * 60 + 12, wallSec: 1700, focusPct: 89 };
 
 // D-n → 세션 대본. D-20~D-1 중 15일 연습(비운 날: D-19·D-16·D-13·D-11·D-9), D-8~D-1은 매일.
 // elapsedMin = round(practiceMin / (focusPct/100)) — practiceMin·focusPct는 창업자 확인 스프레드(71~94)를 그대로 유지,
