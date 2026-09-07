@@ -54,8 +54,14 @@ function dayTotalOf(list) {
   return { practiceMin, elapsedMin, focusPct, sessionCount: list.length };
 }
 
+// lib/sessionRecord.ts focusPctOf()와 동일: 세션 한 줄의 집중도는 저장된 focusPct 리터럴이 아니라
+// practiceMin/elapsedMin에서 매번 다시 계산한다(day-total과 같은 식 — fix round 1, 드리프트 원인 제거).
+function sessionFocusPct(session) {
+  return session.elapsedMin > 0 ? Math.round((session.practiceMin / session.elapsedMin) * 100) : 0;
+}
+
 function sessionCardHtml(session, t, lang, meInstrument) {
-  const line = t('calendar.sessionLine', { time: session.startHm, min: session.practiceMin, focus: session.focusPct, count: session.pieces.length });
+  const line = t('calendar.sessionLine', { time: session.startHm, min: session.practiceMin, focus: sessionFocusPct(session), count: session.pieces.length });
   const piecesLine = session.pieces.length ? `<p class="md-cal-session-pieces">${esc(session.pieces.join(' · '))}</p>` : '';
   const typesLine = session.types.length ? `<p class="md-cal-session-types">${esc(session.types.map((k) => t(`practiceType.${k}`)).join(' · '))}</p>` : '';
   const memoLine = session.memo ? `<p class="md-cal-session-memo">${esc(session.memo)}</p>` : '';
