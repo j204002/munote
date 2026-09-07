@@ -1,5 +1,5 @@
 /* demo/demo.css — 앱 theme.ts를 CSS 변수로 */
-#munote-demo { --bg:#FAFAFA; --card:#FFFFFF; --text:#111111; --sub:#666666; --faint:#9A9A9A; --border:#E5E5E5; --grayFill:#ECECEC; --overlay:rgba(0,0,0,.28); --grab:#D9D9D9; font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif; -webkit-font-smoothing:antialiased; }
+#munote-demo { --bg:#FAFAFA; --card:#FFFFFF; --text:#111111; --sub:#666666; --faint:#9A9A9A; --border:#E5E5E5; --grayFill:#ECECEC; --overlay:rgba(0,0,0,.28); --grab:#D9D9D9; --danger:#8B0000; font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif; -webkit-font-smoothing:antialiased; }
 .md-phone { position:relative; width:320px; margin:0 auto; border:3px solid var(--text); border-radius:46px; background:#fff; padding:10px; box-shadow:0 30px 60px rgba(17,17,17,.12); }
 .md-screen { position:relative; width:100%; aspect-ratio: 9 / 19.5; border-radius:36px; overflow:hidden; background:var(--bg); color:var(--text); display:flex; flex-direction:column; container-type: inline-size; --pt: calc(100cqw / 390); /* 390pt 폭 기준 앱 좌표를 프레임 폭에 맞춰 그대로 축소 */ }
 .md-mount { height:100%; display:flex; flex-direction:column; }
@@ -45,3 +45,16 @@
 .md-nudge { animation: md-nudge-pulse .6s ease-in-out; }
 @media (prefers-reduced-motion: reduce) { #munote-demo * { animation:none !important; transition:none !important; } }
 @media (max-width:720px) { .md-phone { width:min(320px, 84vw); } }
+/* 집중모드 화면 — FocusScreen.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. 탭바 없음(세션 중 앱과 동일) */
+.md-focus { background:var(--bg); }
+.md-focus-content { flex:1; min-height:0; width:100%; box-sizing:border-box; overflow-y:auto; display:flex; flex-direction:column; align-items:center; padding:calc(24 * var(--pt)) calc(24 * var(--pt)) 0; }
+.md-focus-state { margin:0; margin-top:calc(32 * var(--pt)); font-size:calc(19 * var(--pt)); font-weight:600; color:var(--text); }
+.md-focus-instrument { margin:0; margin-top:calc(5 * var(--pt)); font-size:calc(13 * var(--pt)); color:var(--faint); }
+.md-focus-timer { margin:0; margin-top:calc(68 * var(--pt)); font-size:calc(72 * var(--pt)); font-weight:200; color:var(--text); font-variant-numeric:tabular-nums; letter-spacing:calc(2 * var(--pt)); }
+.md-focus-sub { margin:0; margin-top:calc(8 * var(--pt)); font-size:calc(14 * var(--pt)); color:var(--sub); font-variant-numeric:tabular-nums; }
+.md-focus-mic { margin:0; margin-top:calc(8 * var(--pt)); font-size:calc(12 * var(--pt)); color:var(--danger); }
+.md-focus-noise { margin:0; margin-top:calc(6 * var(--pt)); font-size:calc(11 * var(--pt)); color:var(--faint); text-align:center; line-height:calc(16 * var(--pt)); padding:0 calc(24 * var(--pt)); }
+.md-skip { margin-top:calc(28 * var(--pt)); background:none; border:0; font:inherit; font-size:calc(13 * var(--pt)); color:var(--faint); cursor:pointer; padding:0; }
+.md-focus-controls { margin-top:auto; margin-bottom:calc(32 * var(--pt)); display:flex; gap:calc(14 * var(--pt)); width:100%; }
+.md-stop-btn { flex:1; padding:calc(18 * var(--pt)) 0; border-radius:calc(14 * var(--pt)); border:calc(1.5 * var(--pt)) solid var(--text); background:var(--card); font:inherit; font-size:calc(18 * var(--pt)); font-weight:600; color:var(--text); cursor:pointer; }
+.md-end-btn { flex:1; padding:calc(18 * var(--pt)) 0; border-radius:calc(14 * var(--pt)); border:0; background:var(--text); font:inherit; font-size:calc(18 * var(--pt)); font-weight:600; color:#fff; cursor:pointer; }
