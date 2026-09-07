@@ -34,7 +34,7 @@ export function tickFocus(s, d = 1) {
 }
 export const stopFocus = (s) => ({ ...s, focus: { ...s.focus, paused: true, phase: 'paused', pauseCount: s.focus.pauseCount + 1 } });
 export const resumeFocus = (s) => ({ ...s, focus: { ...s.focus, paused: false, phase: FOCUS_TIMELINE[s.focus.phaseIdx].state } });
-export const skipFocus = (s) => ({ ...s, focus: { ...s.focus, elapsedSec: SKIP_TO.elapsedSec, soundingSec: SKIP_TO.elapsedSec, wallSec: Math.round(SKIP_TO.elapsedSec / (SKIP_TO.focusPct / 100)), focusPct: SKIP_TO.focusPct, skipped: true } });
+export const skipFocus = (s) => ({ ...s, focus: { ...s.focus, elapsedSec: SKIP_TO.elapsedSec, soundingSec: SKIP_TO.elapsedSec, wallSec: SKIP_TO.wallSec, focusPct: SKIP_TO.focusPct, skipped: true } });
 export function endFocus(s) {
   const prev = s.sessions.filter((x) => x.dateKey === s.todayKey).at(-1) ?? s.sessions.filter((x) => x.dateKey < s.todayKey).at(-1);
   return { ...s, screen: 'reflection', focus: { ...s.focus, running: false, phase: 'ended' }, draft: { pieces: prev ? [...prev.pieces] : [PIECES[0]], types: prev ? [...prev.types] : [], memo: '' } };

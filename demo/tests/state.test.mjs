@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay, openSheet, closeSheet } from '../state.js';
+import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay, openSheet, closeSheet, setDayStart } from '../state.js';
 import { COACH } from '../data.js';
 const now = new Date('2026-09-07T10:00:00+09:00');
 test('초기: 오늘 0분·배지 스트릭 8·내 무니 걷기', () => {
@@ -14,7 +14,12 @@ test('집중 대본: 12초 듣는 중 → 4초 무음(타이머 정지) → 반�
   for (let i = 0; i < 4; i += 1) s = tickFocus(s);
   assert.equal(s.focus.elapsedSec, 12, '무음 중 타이머 정지'); assert.equal(s.focus.phase, 'sounding');
   s = stopFocus(s); s = tickFocus(s); assert.equal(s.focus.elapsedSec, 12); assert.equal(s.focus.pauseCount, 1);
-  s = resumeFocus(s); s = skipFocus(s); assert.equal(s.focus.elapsedSec, 1512); assert.equal(s.focus.focusPct, 88);
+  s = resumeFocus(s); s = skipFocus(s); assert.equal(s.focus.elapsedSec, 1512); assert.equal(s.focus.focusPct, 89);
+  // fix: 88→89 — 저장된 focusPct·회고 재계산(25/28min)·기록 재계산(25/28min)이 전부 같은 숫자로
+  // 갈리지 않아야 한다(코덱스 리뷰 2026-09-07 High). SKIP_TO.wallSec은 고정값(1700)이라 elapsedSec과
+  // 무관하게 항상 이 두 식과 일치한다.
+  assert.equal(Math.round((1512 / 1700) * 100), 89);
+  assert.equal(Math.round((25 / 28) * 100), 89);
 });
 test('End → 회고 → 저장: 오늘 세션·배지 9·내 무니 피아노·한마디 skip 문장', () => {
   let s = skipFocus(startFocus(createStore(now).get()));
