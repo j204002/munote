@@ -276,6 +276,25 @@
   .friends-shot img { display: block; width: 100%; max-width: 340px; margin: 0 auto; border-radius: 22px; border: 1px solid var(--line); }
   @media (max-width: 720px) { .friends-grid { grid-template-columns: 1fr; gap: 36px; } .friends-shot img { max-width: 280px; } }
 </style>
+<link rel="stylesheet" href="demo/demo.css" />
+
+<style>
+  .reveal { opacity:1 !important; transform:none !important; }
+  /* 히어로 2단: 왼쪽 문구, 오른쪽 살아있는 폰 */
+  .hero.demo { text-align:left; display:grid; grid-template-columns: 1.05fr 0.95fr; gap:48px; align-items:center; padding:72px 0 64px; }
+  .hero.demo .logo { margin:0; width:clamp(200px,28vw,320px); }
+  .hero.demo .tagline { text-align:left; }
+  .hero.demo .sub { text-align:left; }
+  .hero.demo .store-row { justify-content:flex-start; }
+  .hero.demo .store-note { text-align:left; }
+  .hero-demo { display:flex; flex-direction:column; }
+  @media (max-width: 720px) {
+    .hero.demo { grid-template-columns:1fr; gap:34px; text-align:center; padding:56px 0 48px; }
+    .hero.demo .logo { margin:0 auto; }
+    .hero.demo .tagline, .hero.demo .sub, .hero.demo .store-note { text-align:center; }
+    .hero.demo .store-row { justify-content:center; }
+  }
+</style>
 </head>
 <body>
 
@@ -285,7 +304,6 @@
     <div class="nav-links">
       <a class="nav-anchor" href="#friends">Freunde</a>
       <a class="nav-anchor" href="#features">Funktionen</a>
-      <a class="nav-anchor" href="#screens">Screens</a>
       <a class="nav-anchor" href="#faq">FAQ</a>
       <details class="lang">
         <summary aria-label="Language">Deutsch</summary>
@@ -301,7 +319,8 @@
   </div>
 </nav>
 
-<header class="hero wrap" id="top">
+<header class="hero wrap demo" id="top">
+  <div class="hero-copy">
   <img class="logo reveal" src="img/logo-horizontal.png" alt="MU:note Logo" />
   <h1 class="tagline reveal d1">Zählt nur<br />dein Instrument</h1>
   <p class="sub reveal d2">Üb einfach los: Es zählt nur die Zeit, in der du wirklich spielst.</p>
@@ -316,6 +335,10 @@
     </a>
   </div>
   <p class="store-note reveal d3">iOS-App · funktioniert ohne Konto</p>
+</div>
+  <div class="hero-demo">
+    <div id="munote-demo" data-lang="de"></div>
+  </div>
 </header>
 
 <section>
@@ -367,24 +390,6 @@
   </div>
 </section>
 
-<section id="screens">
-  <div class="wrap">
-    <div class="center">
-      <div class="kicker reveal">Screens</div>
-      <h2 class="reveal d1">Die App, wie sie ist</h2>
-    </div>
-    <div class="shots">
-      <figure class="shot reveal"><img src="img/shots/de/01.png" alt="Fokusmodus — hört nur dein Instrument" loading="lazy" /></figure>
-      <figure class="shot reveal d1"><img src="img/shots/de/06.png" alt="Freunde — im selben Übungsraum" loading="lazy" /></figure>
-      <figure class="shot reveal d2"><img src="img/shots/de/07.png" alt="Reaktionen — feuer die Tageskarte eines Freundes an" loading="lazy" /></figure>
-      <figure class="shot reveal d1"><img src="img/shots/de/02.png" alt="Rückblick — deine Übezeit, automatisch erfasst" loading="lazy" /></figure>
-      <figure class="shot reveal d2"><img src="img/shots/de/03.png" alt="Kalender — deine Übezeit auf einen Blick" loading="lazy" /></figure>
-      <figure class="shot reveal d3"><img src="img/shots/de/04.png" alt="Start — ein Tipp, den Rest übernimmt der Klang" loading="lazy" /></figure>
-      <figure class="shot reveal d3"><img src="img/shots/de/05.png" alt="Privatsphäre — Audio wird nie gespeichert" loading="lazy" /></figure>
-    </div>
-    <p class="shots-hint">Wischen für mehr</p>
-  </div>
-</section>
 
 <section id="features">
   <div class="wrap">
@@ -586,5 +591,6 @@
   });
   amplitude.track('Viewed Home Page', { prompt_version: 'BA400.4' }); // helps improve this setup flow — safe to remove once you've verified the event lands
 </script>
+<script type="module" src="demo/demo.js"></script>
 </body>
 </html>
