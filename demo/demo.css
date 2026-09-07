@@ -1,16 +1,16 @@
 /* demo/demo.css — 앱 theme.ts를 CSS 변수로 */
 #munote-demo { --bg:#FAFAFA; --card:#FFFFFF; --text:#111111; --sub:#666666; --faint:#9A9A9A; --border:#E5E5E5; --grayFill:#ECECEC; --overlay:rgba(0,0,0,.28); --grab:#D9D9D9; font-family: Pretendard, -apple-system, "Apple SD Gothic Neo", sans-serif; -webkit-font-smoothing:antialiased; }
 .md-phone { position:relative; width:320px; margin:0 auto; border:3px solid var(--text); border-radius:46px; background:#fff; padding:10px; box-shadow:0 30px 60px rgba(17,17,17,.12); }
-.md-screen { position:relative; width:100%; aspect-ratio: 9 / 19.5; border-radius:36px; overflow:hidden; background:var(--bg); color:var(--text); display:flex; flex-direction:column; }
+.md-screen { position:relative; width:100%; aspect-ratio: 9 / 19.5; border-radius:36px; overflow:hidden; background:var(--bg); color:var(--text); display:flex; flex-direction:column; container-type: inline-size; --pt: calc(100cqw / 390); /* 390pt 폭 기준 앱 좌표를 프레임 폭에 맞춰 그대로 축소 */ }
 .md-mount { height:100%; display:flex; flex-direction:column; }
 .screen { flex:1; min-height:0; display:flex; flex-direction:column; }
 /* 화면 안쪽 여백은 각 화면이 정한다(앱과 동일) — 프레임은 여백을 주지 않는다 */
 .screen-ph { padding: 24px 20px; color: var(--sub); font-size: 13px; }
 .md-body { flex:1; min-height:0; overflow:hidden; }
 .md-body.scroll { overflow-y:auto; overscroll-behavior:contain; touch-action:pan-y; -webkit-overflow-scrolling:touch; }
-.md-tabbar { display:flex; border-top:1px solid var(--border); background:var(--bg); height:56px; }
-.md-tabbar button { flex:1; background:none; border:0; font:inherit; font-size:12px; color:var(--faint); cursor:pointer; }
-.md-tabbar button[aria-current="page"] { color:var(--text); font-weight:700; }
+.md-tabbar { display:flex; border-top:1px solid var(--border); background:var(--card); }
+.md-tabbar button { flex:1; background:none; border:0; font:inherit; padding:calc(12 * var(--pt)) 0; font-size:calc(14.5 * var(--pt)); color:var(--faint); cursor:pointer; }
+.md-tabbar button[aria-current="page"] { color:var(--text); font-weight:600; }
 .md-ribbon { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--text); color:#fff; font-size:11px; letter-spacing:.06em; padding:5px 12px; border-radius:999px; white-space:nowrap; z-index:2; }
 .md-hint { text-align:center; font-size:12px; color:var(--faint); margin-top:14px; } .md-hint b { color:var(--text); font-weight:600; }
 .md-toast { position:absolute; left:50%; bottom:72px; transform:translateX(-50%); background:var(--text); color:#fff; font-size:12px; padding:8px 14px; border-radius:999px; white-space:nowrap; opacity:0; transition:opacity .2s; pointer-events:none; }
@@ -22,5 +22,26 @@
 .md-pill.has { border-width:2px; border-color:var(--text); } .md-pill.selected { background:var(--text); color:#fff; border-color:var(--text); }
 .md-btn-primary { display:block; width:100%; height:52px; border-radius:14px; background:var(--text); color:#fff; border:0; font:inherit; font-size:16px; font-weight:600; cursor:pointer; }
 .md-btn-secondary { display:block; width:100%; height:44px; border-radius:12px; background:var(--grayFill); color:var(--text); border:0; font:inherit; font-size:15px; cursor:pointer; }
+/* 홈 화면 — HomeScreen.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. 탭바는 앱처럼 풀블리드(화면 padding 밖) */
+.md-home { background:var(--bg); }
+.md-home-content { flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; padding: 0 calc(24 * var(--pt)); }
+.md-home-header { position:relative; align-self:stretch; flex:0 0 auto; margin-top:calc(24 * var(--pt)); height:calc(24 * var(--pt)); display:flex; align-items:center; justify-content:center; }
+.md-wordmark { width:calc(116 * var(--pt)); height:calc(24 * var(--pt)); }
+.md-gear { position:absolute; right:0; top:calc(-2 * var(--pt)); width:calc(28 * var(--pt)); height:calc(28 * var(--pt)); padding:0; border:0; background:none; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.md-gear img { width:100%; height:100%; }
+.md-home-summary-area { flex:1; min-height:0; width:100%; display:flex; flex-direction:column; align-items:center; padding-top:calc(150 * var(--pt)); }
+.md-home-summary { display:flex; flex-direction:column; align-items:center; gap:calc(10 * var(--pt)); }
+.md-today-label { margin:0; font-size:calc(17 * var(--pt)); color:var(--sub); }
+.md-today-value { margin:0; font-size:calc(54 * var(--pt)); font-weight:600; color:var(--text); font-variant-numeric:tabular-nums; }
+.md-goal-row { display:flex; align-items:center; gap:calc(8 * var(--pt)); margin-top:calc(4 * var(--pt)); }
+.md-goal-track { width:calc(150 * var(--pt)); height:calc(6 * var(--pt)); border-radius:calc(3 * var(--pt)); background:var(--border); overflow:hidden; }
+.md-goal-fill { height:100%; border-radius:calc(3 * var(--pt)); background:var(--text); }
+.md-goal-text { margin:0; font-size:calc(14 * var(--pt)); color:var(--sub); }
+.md-home-badge { margin-top:calc(10 * var(--pt)); padding:calc(6 * var(--pt)) calc(14 * var(--pt)); border-radius:999px; border:1px solid var(--border); background:var(--card); }
+.md-home-badge p { margin:0; font-size:calc(15 * var(--pt)); color:var(--text); }
+.md-btn-start { flex:0 0 auto; margin-bottom:calc(12 * var(--pt)); width:100%; padding:calc(22 * var(--pt)) 0; border-radius:calc(16 * var(--pt)); background:var(--text); color:#fff; border:0; font:inherit; font-size:calc(20 * var(--pt)); font-weight:600; cursor:pointer; }
+.md-no-mic { flex:0 0 auto; margin:0 0 calc(28 * var(--pt)); font-size:calc(12 * var(--pt)); color:var(--faint); text-align:center; }
+@keyframes md-nudge-pulse { 0%, 100% { transform:scale(1); } 50% { transform:scale(1.04); } }
+.md-nudge { animation: md-nudge-pulse .6s ease-in-out; }
 @media (prefers-reduced-motion: reduce) { #munote-demo * { animation:none !important; transition:none !important; } }
 @media (max-width:720px) { .md-phone { width:min(320px, 84vw); } }
