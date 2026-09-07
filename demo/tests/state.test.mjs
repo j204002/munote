@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay } from '../state.js';
+import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay, openSheet, closeSheet } from '../state.js';
 const now = new Date('2026-09-07T10:00:00+09:00');
 test('초기: 오늘 0분·배지 스트릭 8·내 무니 걷기', () => {
   const s = createStore(now).get();
@@ -70,4 +70,12 @@ test('selectDay: 다른 날 선택, 같은 날 재선택은 토글 해제', () =
   assert.equal(s.selectedDay, null, '같은 날 재탭 = 선택 해제');
   s = selectDay(s, null);
   assert.equal(s.selectedDay, null);
+});
+test('openSheet/closeSheet: 친구 시트를 열고 닫는다', () => {
+  let s = createStore(now).get();
+  assert.equal(s.sheet, null);
+  s = openSheet(s, { kind: 'friend', id: 'f3' });
+  assert.deepEqual(s.sheet, { kind: 'friend', id: 'f3' });
+  s = closeSheet(s);
+  assert.equal(s.sheet, null);
 });
