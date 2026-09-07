@@ -170,3 +170,32 @@
 .md-sheet-links { margin-top:calc(26 * var(--pt)); display:flex; align-items:center; justify-content:center; }
 .md-sheet-link { background:none; border:0; font:inherit; font-size:calc(13 * var(--pt)); color:var(--faint); text-decoration:underline; cursor:pointer; padding:0; }
 .md-sheet-dot { font-size:calc(13 * var(--pt)); color:var(--faint); }
+/* 설정 화면 — SettingsScreen.tsx(A안 목록형)·SettingSheet.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. 탭바 없음(홈 톱니로 덮어 열림, 앱과 동일). */
+.md-settings { background:var(--bg); }
+.md-set-content { box-sizing:border-box; padding:calc(24 * var(--pt)) calc(24 * var(--pt)) calc(48 * var(--pt)); }
+.md-set-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:calc(18 * var(--pt)); }
+.md-set-back { width:calc(40 * var(--pt)); background:none; border:0; padding:0; font:inherit; font-size:calc(28 * var(--pt)); line-height:calc(30 * var(--pt)); color:var(--text); text-align:left; cursor:pointer; }
+.md-set-back-spacer { width:calc(40 * var(--pt)); }
+.md-set-title { margin:0; font-size:calc(16 * var(--pt)); font-weight:600; color:var(--text); }
+.md-set-section { margin:calc(22 * var(--pt)) 0 calc(10 * var(--pt)); font-size:calc(13 * var(--pt)); font-weight:600; color:var(--faint); letter-spacing:1px; }
+.md-set-group { background:var(--card); border:1px solid var(--border); border-radius:calc(14 * var(--pt)); overflow:hidden; }
+.md-set-account { display:flex; align-items:center; gap:calc(12 * var(--pt)); padding:calc(16 * var(--pt)); }
+.md-set-avatar { flex-shrink:0; width:calc(40 * var(--pt)); height:calc(40 * var(--pt)); border-radius:50%; background:var(--grayFill); overflow:hidden; display:flex; align-items:flex-start; justify-content:center; }
+.md-set-avatar img { width:calc(54 * var(--pt)); height:calc(72 * var(--pt)); margin-top:calc(4 * var(--pt)); object-fit:contain; }
+.md-set-account-text { flex:1; min-width:0; display:flex; flex-direction:column; }
+.md-set-account-name { font-size:calc(15 * var(--pt)); color:var(--text); }
+.md-set-account-sub { margin-top:calc(2 * var(--pt)); font-size:calc(12 * var(--pt)); color:var(--faint); }
+.md-set-row { display:flex; align-items:center; justify-content:space-between; width:100%; box-sizing:border-box; min-height:calc(48 * var(--pt)); padding:0 calc(16 * var(--pt)); border:0; border-bottom:1px solid var(--grayFill); border-radius:0; background:none; font:inherit; text-align:left; color:inherit; text-decoration:none; cursor:pointer; }
+.md-set-row.last { border-bottom:0; }
+.md-set-row.md-set-static, .md-set-row.md-set-goal { cursor:default; }
+.md-set-label { font-size:calc(15 * var(--pt)); color:var(--text); }
+.md-set-right { display:flex; align-items:center; gap:calc(8 * var(--pt)); }
+.md-set-value { font-size:calc(14 * var(--pt)); color:var(--sub); }
+.md-set-chev { font-size:calc(17 * var(--pt)); color:var(--faint); }
+.md-set-stepper { display:flex; align-items:center; gap:calc(4 * var(--pt)); padding:calc(7 * var(--pt)) 0; }
+.md-set-stepbtn { width:calc(32 * var(--pt)); height:calc(32 * var(--pt)); border-radius:50%; border:1px solid var(--border); background:var(--card); font:inherit; font-size:calc(17 * var(--pt)); color:var(--text); cursor:pointer; }
+.md-set-goalvalue { font-size:calc(14 * var(--pt)); color:var(--sub); min-width:calc(56 * var(--pt)); text-align:center; }
+.md-sheet-title { margin:0 0 calc(18 * var(--pt)); font-size:calc(17 * var(--pt)); font-weight:700; color:var(--text); }
+.md-sheet-section { margin:calc(18 * var(--pt)) 0 calc(10 * var(--pt)); font-size:calc(13 * var(--pt)); font-weight:600; color:var(--faint); letter-spacing:1px; }
+.md-pill-wrap { display:flex; flex-wrap:wrap; gap:calc(8 * var(--pt)); }
+.md-set-note { margin-top:calc(12 * var(--pt)); font-size:calc(12 * var(--pt)); color:var(--faint); line-height:calc(18 * var(--pt)); white-space:pre-line; }
