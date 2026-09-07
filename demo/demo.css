@@ -47,7 +47,7 @@
 @media (max-width:720px) { .md-phone { width:min(320px, 84vw); } }
 /* 집중모드 화면 — FocusScreen.tsx 좌표(390pt 기준)를 --pt로 그대로 옮긴다. 탭바 없음(세션 중 앱과 동일) */
 .md-focus { background:var(--bg); }
-.md-focus-content { flex:1; min-height:0; width:100%; box-sizing:border-box; overflow-y:auto; display:flex; flex-direction:column; align-items:center; padding:calc(24 * var(--pt)) calc(24 * var(--pt)) 0; }
+.md-focus-content { flex:1; min-height:0; width:100%; box-sizing:border-box; overflow-y:auto; display:flex; flex-direction:column; align-items:center; padding:calc(24 * var(--pt)); }
 .md-focus-state { margin:0; margin-top:calc(32 * var(--pt)); font-size:calc(19 * var(--pt)); font-weight:600; color:var(--text); }
 .md-focus-instrument { margin:0; margin-top:calc(5 * var(--pt)); font-size:calc(13 * var(--pt)); color:var(--faint); }
 .md-focus-timer { margin:0; margin-top:calc(68 * var(--pt)); font-size:calc(72 * var(--pt)); font-weight:200; color:var(--text); font-variant-numeric:tabular-nums; letter-spacing:calc(2 * var(--pt)); }
