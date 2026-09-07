@@ -17,6 +17,7 @@ const REST_MIN_MS = 2000;
 const REST_MAX_MS = 6000;
 const REACTIONS = ['clap', 'fire', 'note'];
 const REACTION_EMOJI = { clap: '👏', fire: '🔥', note: '🎵' };
+const ADD_SIZE = 26; // AddFriendButton.tsx
 
 const BOUNDS = { left: 16, right: SIZE - 16 - MUNI_W, top: Math.round(SIZE * 0.62) - MUNI_H, bottom: Math.round(SIZE * 0.86) - MUNI_H };
 
@@ -136,7 +137,8 @@ function muniHtml(room, s, t, id, z) {
   if (pose === null) {
     const pos = walkerPos(room, id);
     const sprite = spriteForDir(pos.dir);
-    return `<button type="button" class="md-muni md-muni-walk${isMe ? ' me' : ''}" data-friend="${id}" data-sprite="${sprite}" style="z-index:${z};transform:translate(calc(${pos.x} * var(--pt)),calc(${pos.y} * var(--pt)));" aria-label="${esc(name)}">
+    const scale = scaleFor(pos.y, BOUNDS);
+    return `<button type="button" class="md-muni md-muni-walk${isMe ? ' me' : ''}" data-friend="${id}" data-sprite="${sprite}" style="z-index:${z};transform:translate(calc(${pos.x} * var(--pt)),calc(${pos.y} * var(--pt))) scale(${scale});" aria-label="${esc(name)}">
       ${meMark}
       <img src="${asset(`muni/${sprite}.png`)}" alt="" loading="lazy">
       <span class="md-muni-name">${esc(name)}</span>
@@ -242,7 +244,7 @@ export const render = (s, t) => `<div class="screen md-friends">
     <div class="md-friends-header">
       <div class="md-friends-slot"></div>
       <p class="md-friends-title" role="heading">${esc(t('friends.title'))}</p>
-      <button type="button" class="md-add-friend" aria-label="${esc(t('friends.addA11y'))}" ${gate(t, 'demo.addInApp')}>👤+</button>
+      <button type="button" class="md-add-friend" aria-label="${esc(t('friends.addA11y'))}" ${gate(t, 'demo.addInApp')}><img src="${asset('add-friend.png')}" alt="" style="width:calc(${ADD_SIZE} * var(--pt));height:calc(${ADD_SIZE} * var(--pt));" loading="lazy"></button>
     </div>
     ${roomHtml(s, t)}
     <div class="md-body scroll"><div class="md-friends-feed">${feedHtml(s, t)}</div></div>
@@ -335,7 +337,7 @@ export function bind(root, ctx) {
           const img = el.querySelector('img');
           if (img) img.src = asset(`muni/${sprite}.png`);
         }
-        el.style.transform = `translate(calc(${w.x} * var(--pt)),calc(${w.y + bob} * var(--pt)))`;
+        el.style.transform = `translate(calc(${w.x} * var(--pt)),calc(${w.y + bob} * var(--pt))) scale(${scaleFor(w.y, BOUNDS)})`;
       }
     }
 
