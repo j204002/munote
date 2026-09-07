@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday, setCalendarMonth, selectDay, openSheet, closeSheet } from '../state.js';
+import { COACH } from '../data.js';
 const now = new Date('2026-09-07T10:00:00+09:00');
 test('초기: 오늘 0분·배지 스트릭 8·내 무니 걷기', () => {
   const s = createStore(now).get();
@@ -70,6 +71,15 @@ test('selectDay: 다른 날 선택, 같은 날 재선택은 토글 해제', () =
   assert.equal(s.selectedDay, null, '같은 날 재탭 = 선택 해제');
   s = selectDay(s, null);
   assert.equal(s.selectedDay, null);
+});
+test('B: skip 후 틱이 계속 흘러도(elapsedSec !== SKIP_TO.elapsedSec) skip 문장 유지', () => {
+  let s = skipFocus(startFocus(createStore(now).get()));
+  for (let i = 0; i < 3; i += 1) s = tickFocus(s);
+  assert.notEqual(s.focus.elapsedSec, 1512, '3틱 후에는 SKIP_TO.elapsedSec과 더 이상 같지 않다');
+  s = saveReflection(endFocus(s), 'ko');
+  const today = s.sessions.find((x) => x.dateKey === s.todayKey);
+  assert.equal(today.practiceMin, 25, '3틱 뒤에도 25분(1515초 floor)');
+  assert.equal(today.coach, COACH.ko.skip, 'skip 문장이 이어져야 한다(elapsedSec 동등비교가 아니라 skipped 플래그로 판정)');
 });
 test('openSheet/closeSheet: 친구 시트를 열고 닫는다', () => {
   let s = createStore(now).get();

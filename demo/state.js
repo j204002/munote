@@ -20,7 +20,7 @@ export function createStore(now = new Date()) {
   };
 }
 // ── 집중모드 ────────────────────────────────────────────
-export const startFocus = (s) => ({ ...s, screen: 'focus', focus: { running: true, phase: 'sounding', elapsedSec: 0, focusPct: 0, phaseIdx: 0, phaseSec: 0, paused: false, pauseCount: 0, soundingSec: 0, wallSec: 0 } });
+export const startFocus = (s) => ({ ...s, screen: 'focus', focus: { running: true, phase: 'sounding', elapsedSec: 0, focusPct: 0, phaseIdx: 0, phaseSec: 0, paused: false, pauseCount: 0, soundingSec: 0, wallSec: 0, skipped: false } });
 export function tickFocus(s, d = 1) {
   const f = s.focus; if (!f.running || f.paused) return s;
   let { phaseIdx, phaseSec, elapsedSec, soundingSec, wallSec } = f;
@@ -34,7 +34,7 @@ export function tickFocus(s, d = 1) {
 }
 export const stopFocus = (s) => ({ ...s, focus: { ...s.focus, paused: true, phase: 'paused', pauseCount: s.focus.pauseCount + 1 } });
 export const resumeFocus = (s) => ({ ...s, focus: { ...s.focus, paused: false, phase: FOCUS_TIMELINE[s.focus.phaseIdx].state } });
-export const skipFocus = (s) => ({ ...s, focus: { ...s.focus, elapsedSec: SKIP_TO.elapsedSec, soundingSec: SKIP_TO.elapsedSec, wallSec: Math.round(SKIP_TO.elapsedSec / (SKIP_TO.focusPct / 100)), focusPct: SKIP_TO.focusPct } });
+export const skipFocus = (s) => ({ ...s, focus: { ...s.focus, elapsedSec: SKIP_TO.elapsedSec, soundingSec: SKIP_TO.elapsedSec, wallSec: Math.round(SKIP_TO.elapsedSec / (SKIP_TO.focusPct / 100)), focusPct: SKIP_TO.focusPct, skipped: true } });
 export function endFocus(s) {
   const prev = s.sessions.filter((x) => x.dateKey === s.todayKey).at(-1) ?? s.sessions.filter((x) => x.dateKey < s.todayKey).at(-1);
   return { ...s, screen: 'reflection', focus: { ...s.focus, running: false, phase: 'ended' }, draft: { pieces: prev ? [...prev.pieces] : [PIECES[0]], types: prev ? [...prev.types] : [], memo: '' } };
@@ -44,7 +44,7 @@ export function saveReflection(s, lang) {
   // floor(min 1): 무음구간이 섞인 자연 진행(예: 60틱→48초)도 최소 1분으로 잡힌다. 19m31s → 19분(floor로), 20분이 넘지 않는다.
   const practiceMin = minsOf(s.focus.elapsedSec);
   const elapsedMin = Math.max(practiceMin, minsOf(s.focus.wallSec ?? s.focus.elapsedSec));
-  const coach = practiceMin >= 20 ? (s.focus.elapsedSec === SKIP_TO.elapsedSec ? COACH[lang].skip : COACH[lang].natural.replace('{min}', String(practiceMin))) : undefined;
+  const coach = practiceMin >= 20 ? (s.focus.skipped ? COACH[lang].skip : COACH[lang].natural.replace('{min}', String(practiceMin))) : undefined;
   const hm = `${String(s.now.getHours()).padStart(2, '0')}:${String(s.now.getMinutes()).padStart(2, '0')}`;
   const session = { id: `today-${s.sessions.length}`, dateKey: s.todayKey, startHm: hm, practiceMin, elapsedMin, focusPct: s.focus.focusPct, pieces: [...s.draft.pieces], types: [...s.draft.types], memo: s.draft.memo || undefined, coach };
   return { ...s, screen: 'home', sessions: [...s.sessions, session], focus: { ...s.focus, running: false, phase: 'idle' } };

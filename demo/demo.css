@@ -13,7 +13,7 @@
 .md-tabbar button[aria-current="page"] { color:var(--text); font-weight:600; }
 .md-ribbon { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--text); color:#fff; font-size:11px; letter-spacing:.06em; padding:5px 12px; border-radius:999px; white-space:nowrap; z-index:2; }
 .md-hint { text-align:center; font-size:12px; color:var(--faint); margin-top:14px; } .md-hint b { color:var(--text); font-weight:600; }
-.md-toast { position:absolute; left:50%; bottom:72px; transform:translateX(-50%); background:var(--text); color:#fff; font-size:12px; padding:8px 14px; border-radius:999px; white-space:nowrap; opacity:0; transition:opacity .2s; pointer-events:none; }
+.md-toast { position:absolute; left:50%; bottom:72px; transform:translateX(-50%); background:var(--text); color:#fff; font-size:12px; padding:8px 14px; border-radius:999px; white-space:nowrap; opacity:0; transition:opacity .2s; pointer-events:none; z-index:4; }
 .md-toast.on { opacity:1; pointer-events:auto; } .md-toast a { color:#fff; text-decoration:underline; margin-left:8px; }
 .md-sheet-overlay { position:absolute; inset:0; background:var(--overlay); display:flex; align-items:flex-end; z-index:3; }
 .md-sheet { width:100%; background:var(--card); border-radius:22px 22px 0 0; padding:10px 20px 24px; max-height:85%; overflow-y:auto; overscroll-behavior:contain; }
