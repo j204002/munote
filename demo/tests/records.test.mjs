@@ -53,8 +53,10 @@ test('하루 선택(9/6, 어제): 합계 카드·세션 줄·곡·유형·한마
   let s = createStore(now).get();
   s = selectDay(s, '2026-09-06');
   const html = render(s, t);
-  assert.match(html, /연습 43분 · 집중도 91% · 세션 1개/);
-  assert.match(html, /20:00 · 43분 · 집중도 87% · 곡 1개/);
+  // fix round 1: 세션 한 줄의 집중도는 practiceMin/elapsedMin(43/49)에서 다시 계산 — 저장된 focusPct 리터럴(87)이 아니라 88%.
+  // 이날은 세션이 1개뿐이라 day-total(합계 카드)도 같은 43/49에서 나오므로 두 표기가 정확히 같아야 한다(더 이상 91% vs 87% 드리프트 없음).
+  assert.match(html, /연습 43분 · 집중도 88% · 세션 1개/);
+  assert.match(html, /20:00 · 43분 · 집중도 88% · 곡 1개/);
   assert.match(html, /쇼팽 발라드 1번/);
   assert.match(html, /전체 런스루/);
   assert.match(html, /MU:note의 한마디/);
@@ -62,6 +64,10 @@ test('하루 선택(9/6, 어제): 합계 카드·세션 줄·곡·유형·한마
   // 세션 카드 안의 editAll·deleteSession은 게이트만(표시만)
   assert.match(html, /전체 편집/);
   assert.match(html, /세션 삭제/);
+  // 단일 세션 날짜는 day-total 집중도 == 세션 줄 집중도(같은 rows에서 파생) — 명시적 동등성 검증.
+  const dayFocus = html.match(/연습 43분 · 집중도 (\d+)% · 세션 1개/)[1];
+  const sessionFocus = html.match(/20:00 · 43분 · 집중도 (\d+)% · 곡 1개/)[1];
+  assert.equal(dayFocus, sessionFocus, '단일 세션 날짜: 합계 카드와 세션 줄의 집중도가 같아야 한다');
 });
 
 test('같은 날 재선택 → 토글 해제', () => {

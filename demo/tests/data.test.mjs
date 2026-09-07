@@ -9,7 +9,13 @@ test('기록 3주: 15일·D-8~D-1 연속·범위', () => {
   assert.equal(days.size, 15);
   for (let i = 1; i <= 8; i += 1) assert.ok(days.has(addDays(T, -i)), `D-${i}`);
   assert.ok(!days.has(T));
-  for (const x of s) { assert.ok(x.practiceMin >= 20 && x.practiceMin <= 62); assert.ok(x.focusPct >= 71 && x.focusPct <= 94); assert.ok(x.pieces.every((p) => PIECES.includes(p))); }
+  for (const x of s) {
+    assert.ok(x.practiceMin >= 20 && x.practiceMin <= 62); assert.ok(x.focusPct >= 71 && x.focusPct <= 94); assert.ok(x.pieces.every((p) => PIECES.includes(p)));
+    // fix round 1: elapsedMin은 focusPct에서 round(practiceMin/(focusPct/100))로 역산된 값이라, practiceMin/elapsedMin을
+    // 다시 반올림하면 정수 나눗셈의 이중 반올림 오차(최대 1%p)가 생길 수 있다 — 이 오차 안에서만 허용, 그 이상 벌어지면(=드리프트) 실패.
+    const derived = Math.round((x.practiceMin / x.elapsedMin) * 100);
+    assert.ok(Math.abs(derived - x.focusPct) <= 1, `elapsedMin·focusPct 정합(±1%p): ${x.id} practiceMin=${x.practiceMin} elapsedMin=${x.elapsedMin} focusPct=${x.focusPct} derived=${derived}`);
+  }
   assert.ok(s.some((x) => x.pieces.includes('베토벤 소나타')));
   assert.deepEqual(buildSessions(T), s, '결정적');
 });
