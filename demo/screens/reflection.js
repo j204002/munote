@@ -35,7 +35,7 @@ function resetLocal() {
 
 // 순수 헬퍼(테스트 대상) — fade-in 클래스는 render()에서 필요할 때 문자열에 덧붙인다.
 export function coachCardHtml(t, text) {
-  return `<div class="md-coach-card" data-coach><p class="md-coach-label">${esc(t('reflection.coachLabel'))}</p><p class="md-coach-text">”${esc(text)}”</p></div>`;
+  return `<div class="md-coach-card" data-coach><p class="md-coach-label">${esc(t('reflection.coachLabel'))}</p><p class="md-coach-text">“${esc(text)}”</p></div>`;
 }
 
 // 순수 헬퍼(테스트 대상) — 저장 직후 상태에서 방금 저장된 세션을 반환.
@@ -48,6 +48,9 @@ export const render = (s, t) => {
   const f = s.focus;
   const minutes = minsOf(f.elapsedSec);
   const elapsed = minsOf(f.wallSec ?? f.elapsedSec);
+  // records.js의 sessionFocusPct와 같은 식(연습분/전체분에서 매번 다시 계산)으로 맞춘다 — f.focusPct는
+  // 초 단위 sounding/wall 비율에서 나와 반올림 경로가 달라 회고·기록 화면 표기가 어긋났다(버그 G).
+  const focusPct = elapsed > 0 ? Math.round((minutes / elapsed) * 100) : 0;
   const showCoach = minutes >= 20;
   const disabledAttr = pending ? ' disabled' : '';
 
@@ -82,7 +85,7 @@ export const render = (s, t) => {
       <div class="md-reflection-head">
         <p class="md-reflection-big">${esc(t('reflection.minutes', { min: minutes }))}</p>
         <div class="md-reflection-metacol">
-          <p class="md-reflection-meta">${esc(t('reflection.metaLine1', { elapsed, focus: f.focusPct }))}</p>
+          <p class="md-reflection-meta">${esc(t('reflection.metaLine1', { elapsed, focus: focusPct }))}</p>
           <p class="md-reflection-meta">${esc(t('reflection.metaLine2', { pause: f.pauseCount }))}</p>
         </div>
       </div>

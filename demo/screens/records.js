@@ -66,7 +66,7 @@ function sessionCardHtml(session, t, lang, meInstrument) {
   const typesLine = session.types.length ? `<p class="md-cal-session-types">${esc(session.types.map((k) => t(`practiceType.${k}`)).join(' · '))}</p>` : '';
   const memoLine = session.memo ? `<p class="md-cal-session-memo">${esc(session.memo)}</p>` : '';
   const coachText = coachTextOf(session, lang);
-  const coachHtml = coachText ? `<div class="md-cal-coach"><p class="md-cal-coach-label">${esc(t('reflection.coachLabel'))}</p><p class="md-cal-coach-text">"${esc(coachText)}"</p></div>` : '';
+  const coachHtml = coachText ? `<div class="md-cal-coach"><p class="md-cal-coach-label">${esc(t('reflection.coachLabel'))}</p><p class="md-cal-coach-text">“${esc(coachText)}”</p></div>` : '';
   const emoji = EMOJI[meInstrument] ?? '🎹';
   return `<div class="md-cal-session">
     <div class="md-cal-session-row">

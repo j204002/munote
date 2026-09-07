@@ -13,12 +13,14 @@ const now = new Date('2026-09-07T10:00:00+09:00');
 
 const buildState = () => endFocus(skipFocus(startFocus(createStore(now).get())));
 
-test('회고 화면: 제목·요약(25분/전체 28분·집중도 88%/일시정지 0회)·섹션 제목·저장 버튼', () => {
+test('회고 화면: 제목·요약(25분/전체 28분·집중도 89%/일시정지 0회)·섹션 제목·저장 버튼', () => {
   const s = buildState();
   const html = render(s, t);
   assert.match(html, /오늘의 연습/);
   assert.match(html, />25분</);
-  assert.match(html, /전체 28분 · 집중도 88%/);
+  // fix G: 집중도는 records.js와 같은 식(25/28 min → 89%)으로 다시 계산한다 — f.focusPct(88, 초 단위 비율)와는
+  // 반올림 경로가 달라 회고·기록 화면 표기가 어긋났었다.
+  assert.match(html, /전체 28분 · 집중도 89%/);
   assert.match(html, /일시정지 0회/);
   assert.match(html, /연습한 곡/);
   assert.match(html, /연습 유형/);
@@ -62,7 +64,7 @@ test('곡 2개를 선택한 draft로 렌더하면 selected 2개', () => {
 test('coachCardHtml: 라벨 “MU:note의 한마디” + 큰따옴표 인용문', () => {
   const html = coachCardHtml(t, '테스트 한마디 문장입니다.');
   assert.match(html, /MU:note의 한마디/);
-  assert.match(html, /”테스트 한마디 문장입니다\.”/);
+  assert.match(html, /“테스트 한마디 문장입니다\.”/);
 });
 
 test('두 번 반복된 사이클: 짧은 세션 후 긴 세션 — justSavedSession이 마지막 세션 반환, 코치 문장 포함', () => {
