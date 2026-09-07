@@ -1,6 +1,6 @@
 // demo/screens/reflection.js — 회고 화면. ReflectionScreen.tsx의 레이아웃·크기를 --pt 스케일로 그대로 옮긴다.
 // 앱과 달리: 곡은 PIECES 4개 고정(추가/보관 없음), 유형은 다중선택, 메모는 텍스트 하나(목록 아님), to-do 없음.
-import { saveReflection } from '../state.js';
+import { saveReflection, focusPctOf } from '../state.js';
 import { PIECES, TYPES } from '../data.js';
 import { esc } from '../ui.js';
 
@@ -48,9 +48,12 @@ export const render = (s, t) => {
   const f = s.focus;
   const minutes = minsOf(f.elapsedSec);
   const elapsed = minsOf(f.wallSec ?? f.elapsedSec);
-  // records.js의 sessionFocusPct와 같은 식(연습분/전체분에서 매번 다시 계산)으로 맞춘다 — f.focusPct는
-  // 초 단위 sounding/wall 비율에서 나와 반올림 경로가 달라 회고·기록 화면 표기가 어긋났다(버그 G).
-  const focusPct = elapsed > 0 ? Math.round((minutes / elapsed) * 100) : 0;
+  // 초 단위(sounding/wall)로 계산한다 — records.js의 세션 줄·일 합계도 같은 focusPctOf를 쓰므로,
+  // 저장 전(이 화면) · 저장 직후(회고 카드) · 기록 화면이 전부 같은 뿌리에서 같은 %를 낸다(코덱스
+  // 리뷰 2026-09-07 2차 High-1 — 분 단위로 따로 반올림하면 skip 뒤 틱이 흐를수록 갈렸다: 88→89→86).
+  // elapsedSec은 "듣는 중"일 때만 흐르는 sounding 누적값 그 자체(state.js tickFocus에서 soundingSec와
+  // 항상 같은 값으로 갱신된다) — 여기 쓰는 f.elapsedSec이 바로 그 sounding 초다.
+  const focusPct = focusPctOf([{ soundingSec: f.elapsedSec, wallSec: f.wallSec ?? f.elapsedSec }]);
   const showCoach = minutes >= 20;
   const disabledAttr = pending ? ' disabled' : '';
 
