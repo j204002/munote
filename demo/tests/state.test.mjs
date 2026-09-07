@@ -1,0 +1,38 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { createStore, startFocus, tickFocus, stopFocus, resumeFocus, skipFocus, endFocus, saveReflection, toggleReaction, setInstrument, todayMinutes, homeBadge, myPose, practicedToday } from '../state.js';
+const now = new Date('2026-09-07T10:00:00+09:00');
+test('초기: 오늘 0분·배지 스트릭 8·내 무니 걷기', () => {
+  const s = createStore(now).get();
+  assert.equal(todayMinutes(s), 0); assert.deepEqual(homeBadge(s), { kind: 'streak', count: 8 }); assert.equal(myPose(s), 'walk'); assert.equal(practicedToday(s), false);
+});
+test('집중 대본: 12초 듣는 중 → 4초 무음(타이머 정지) → 반복; Stop/Resume; Skip', () => {
+  let s = startFocus(createStore(now).get());
+  for (let i = 0; i < 12; i += 1) s = tickFocus(s);
+  assert.equal(s.focus.elapsedSec, 12); assert.equal(s.focus.phase, 'grace');
+  for (let i = 0; i < 4; i += 1) s = tickFocus(s);
+  assert.equal(s.focus.elapsedSec, 12, '무음 중 타이머 정지'); assert.equal(s.focus.phase, 'sounding');
+  s = stopFocus(s); s = tickFocus(s); assert.equal(s.focus.elapsedSec, 12); assert.equal(s.focus.pauseCount, 1);
+  s = resumeFocus(s); s = skipFocus(s); assert.equal(s.focus.elapsedSec, 1512); assert.equal(s.focus.focusPct, 88);
+});
+test('End → 회고 → 저장: 오늘 세션·배지 9·내 무니 피아노·한마디 skip 문장', () => {
+  let s = skipFocus(startFocus(createStore(now).get()));
+  s = endFocus(s); assert.equal(s.screen, 'reflection'); assert.deepEqual(s.draft.pieces, ['쇼팽 발라드 1번'], '직전 세션 곡 미리 채움');
+  s = saveReflection({ ...s, draft: { ...s.draft, pieces: ['베토벤 소나타'], types: ['section'], memo: '' } }, 'ko');
+  assert.equal(s.screen, 'home'); assert.equal(todayMinutes(s), 25); assert.deepEqual(homeBadge(s), { kind: 'streak', count: 9 }); assert.equal(myPose(s), 'play_piano');
+  const today = s.sessions.find((x) => x.dateKey === s.todayKey); assert.match(today.coach, /25분/);
+});
+test('20분 미만 저장 → 한마디 없음', () => {
+  let s = startFocus(createStore(now).get()); for (let i = 0; i < 60; i += 1) s = tickFocus(s);
+  s = saveReflection(endFocus(s), 'ko'); const today = s.sessions.find((x) => x.dateKey === s.todayKey); assert.equal(today.coach, undefined); assert.equal(today.practiceMin, 1);
+});
+test('반응: 탭=채움, 재탭=취소, 다른 것=교체', () => {
+  let s = createStore(now).get();
+  s = toggleReaction(s, 'f2', 'clap'); let f = s.friends.find((x) => x.id === 'f2'); assert.equal(f.reactions.clap, 1); assert.equal(f.mine, 'clap');
+  s = toggleReaction(s, 'f2', 'fire'); f = s.friends.find((x) => x.id === 'f2'); assert.equal(f.reactions.clap, 0); assert.equal(f.reactions.fire, 1); assert.equal(f.mine, 'fire');
+  s = toggleReaction(s, 'f2', 'fire'); f = s.friends.find((x) => x.id === 'f2'); assert.equal(f.reactions.fire, 0); assert.equal(f.mine, null);
+});
+test('악기 변경 → 내 포즈', () => {
+  let s = saveReflection(endFocus(skipFocus(startFocus(createStore(now).get()))), 'ko');
+  s = setInstrument(s, 'vocal'); assert.equal(myPose(s), 'play_vocal');
+});
