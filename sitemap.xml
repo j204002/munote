@@ -45,4 +45,40 @@
   <url><loc>https://oneumart.com/munote/privacy-es.html</loc><priority>0.2</priority></url>
   <url><loc>https://oneumart.com/munote/terms-de.html</loc><priority>0.2</priority></url>
   <url><loc>https://oneumart.com/munote/privacy-de.html</loc><priority>0.2</priority></url>
+  <url>
+    <loc>https://oneumart.com/munote/notices.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/notices.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/notices-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/notices-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/notices-de.html" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://oneumart.com/munote/notices-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/notices.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/notices-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/notices-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/notices-de.html" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://oneumart.com/munote/notices-es.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/notices.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/notices-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/notices-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/notices-de.html" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://oneumart.com/munote/notices-de.html</loc>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/notices.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://oneumart.com/munote/notices-en.html" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://oneumart.com/munote/notices-es.html" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://oneumart.com/munote/notices-de.html" />
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
