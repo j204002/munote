@@ -297,19 +297,71 @@
 <link rel="stylesheet" href="demo/demo.css" />
 
 <style>
-  /* 히어로 2단: 왼쪽 문구, 오른쪽 살아있는 폰 */
-  .hero.demo { text-align:left; display:grid; grid-template-columns: 1.05fr 0.95fr; gap:48px; align-items:center; padding:72px 0 64px; }
-  .hero.demo .logo { margin:0; width:clamp(200px,28vw,320px); }
-  .hero.demo .tagline { text-align:left; }
-  .hero.demo .sub { text-align:left; }
-  .hero.demo .store-row { justify-content:flex-start; }
-  .hero.demo .store-note { text-align:left; }
-  .hero-demo { display:flex; flex-direction:column; }
-  @media (max-width: 720px) {
-    .hero.demo { grid-template-columns:1fr; gap:34px; text-align:center; padding:56px 0 48px; }
-    .hero.demo .logo { margin:0 auto; }
-    .hero.demo .tagline, .hero.demo .sub, .hero.demo .store-note { text-align:center; }
-    .hero.demo .store-row { justify-content:center; }
+  /* ===== 리디자인 A안 (2026-09-08, 창업자 확정) — 히어로: 평평한 grid, 글은 폰 윗선·3단계 요약은 폰 바닥선 ===== */
+  .hero.demo { display:grid; text-align:left; column-gap:72px; row-gap:0; padding:52px 0 72px;
+    grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr); grid-template-rows: auto auto auto auto auto 1fr;
+    grid-template-areas: "logo demo" "tagline demo" "sub demo" "store demo" "note demo" "steps demo"; align-items:start; }
+  .hero.demo .logo { grid-area:logo; margin:0; width:clamp(180px,22vw,260px); }
+  .hero.demo .tagline { grid-area:tagline; text-align:left; margin-top:30px; font-size:clamp(30px,3.6vw,48px); font-weight:700; letter-spacing:-0.045em; line-height:1.18; }
+  .hero.demo .sub { grid-area:sub; text-align:left; margin-top:20px; font-size:17px; max-width:420px; line-height:1.6; }
+  .hero.demo .store-row { grid-area:store; justify-content:flex-start; margin-top:36px; }
+  .hero.demo .store-note { grid-area:note; text-align:left; margin-top:16px; }
+  .hero.demo .hero-demo { grid-area:demo; display:flex; flex-direction:column; min-width:0; }
+  .mini-steps { grid-area:steps; align-self:end; list-style:none; margin-top:56px; border-top:1px solid var(--line); max-width:440px; }
+  .mini-steps li { display:flex; gap:18px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--line); font-size:14px; color:var(--gray); }
+  .mini-steps li span { flex:none; font-weight:200; font-size:22px; color:var(--ink); font-variant-numeric:tabular-nums; width:18px; }
+  .mini-steps li b { color:var(--ink); font-weight:600; margin-right:4px; }
+  @media (max-width:720px) {
+    .hero.demo { grid-template-columns:minmax(0,1fr); grid-template-rows:auto; grid-template-areas: "logo" "tagline" "demo" "sub" "store" "note"; padding:18px 0 56px; }
+    .hero.demo .logo { width:140px; margin:0 auto; }
+    .hero.demo .tagline { text-align:center; margin-top:14px; font-size:clamp(24px,7vw,30px); line-height:1.25; }
+    .hero.demo .hero-demo { margin-top:26px; }
+    .hero.demo .md-phone { width:min(300px, 80vw); }
+    .hero.demo .sub { text-align:center; margin:30px auto 0; font-size:15.5px; }
+    .hero.demo .store-row { flex-direction:column; align-items:stretch; margin-top:24px; }
+    .hero.demo .store-row .btn-store, .hero.demo .store-row .badge-soon { justify-content:center; }
+    .hero.demo .store-note { text-align:center; }
+    .mini-steps { display:none; }
+    .md-hint { margin-top:10px; }
+  }
+  /* 섹션 리듬 — 제목 왼쪽 정렬, 마무리(closing)만 가운데 */
+  section .center { text-align:left; }
+  .center .lead { margin-left:0; }
+  .faq, .privacy-list { margin-left:0; }
+  h1, h2, h3, .lead, .closing .line, .mini-steps li { word-break:keep-all; overflow-wrap:anywhere; }
+  /* 공감 문장 */
+  .statement h2 { font-size:clamp(26px,3.2vw,38px); font-weight:500; letter-spacing:-0.035em; line-height:1.4; max-width:760px; }
+  .statement .lead { max-width:none; display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:34px; font-size:16px; }
+  .statement .lead br { display:none; }
+  .statement .lead strong { display:block; font-size:18px; line-height:1.6; }
+  /* how */
+  #how .steps { margin-top:48px; }
+  #how .step .num { font-size:56px; }
+  /* friends — 그림 왼쪽, 글 오른쪽 */
+  .friends-grid { grid-template-columns:0.85fr 1.15fr; gap:72px; }
+  .friends-grid .friends-shot { order:-1; }
+  .friends-shot img { max-width:300px; margin:0; }
+  /* features — 왼쪽 sticky 머리 + 오른쪽 한 줄씩 */
+  .feat-grid { display:grid; grid-template-columns:0.9fr 1.5fr; gap:72px; align-items:start; }
+  .feat-head { position:sticky; top:92px; }
+  .feat-head .lead { margin-top:18px; max-width:320px; }
+  .features { grid-template-columns:1fr; gap:0; margin-top:0; }
+  .feature { padding:26px 0 30px; }
+  .feature:first-child { border-top:none; padding-top:6px; }
+  .feature h3 { font-size:19px; }
+  .feature p { font-size:15px; max-width:520px; }
+  /* privacy — 3칸 */
+  .privacy-list { max-width:none; display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:44px; }
+  .privacy-item { flex-direction:column; gap:14px; border-bottom:none; border-top:1px solid var(--line); padding:22px 0 0; font-size:15px; }
+  .privacy-item .mark { font-size:28px; font-weight:200; color:var(--ink); }
+  /* faq — 2칸 */
+  .faq { max-width:none; display:grid; grid-template-columns:1fr 1fr; gap:0 64px; margin-top:44px; }
+  .faq-item:last-child { border-bottom:none; }
+  @media (max-width:860px) {
+    .feat-grid { grid-template-columns:1fr; gap:24px; } .feat-head { position:static; }
+    .privacy-list { grid-template-columns:1fr; gap:0; } .faq { grid-template-columns:1fr; }
+    .statement .lead { grid-template-columns:1fr; gap:20px; }
+    .friends-grid .friends-shot { order:0; } .friends-shot img { margin:0 auto; }
   }
 </style>
 </head>
@@ -337,7 +389,6 @@
 </nav>
 
 <header class="hero wrap demo" id="top">
-  <div class="hero-copy">
   <img class="logo reveal" src="img/logo-horizontal.png" alt="MU:note 로고" />
   <h1 class="tagline reveal d1">내 악기소리만<br />자동으로 세는 연습 기록</h1>
   <p class="sub reveal d2">연습을 시작하면, 실제로 연주한 시간만 알아서 쌓입니다.</p>
@@ -352,13 +403,17 @@
     </a>
   </div>
   <p class="store-note reveal d3">iOS 앱 · 가입 없이 시작할 수 있습니다</p>
-</div>
   <div class="hero-demo">
     <div id="munote-demo" data-lang="ko"></div>
   </div>
+  <ol class="mini-steps reveal d3">
+    <li><span>1</span><b>시작 버튼을 누르고</b> 폰은 옆에 둡니다</li>
+    <li><span>2</span><b>내 악기 소리가 들릴 때만</b> 시간이 쌓입니다</li>
+    <li><span>3</span><b>끝나면 기록과 두 문장</b> 이 남습니다</li>
+  </ol>
 </header>
 
-<section>
+<section class="statement">
   <div class="wrap center">
     <h2 class="reveal">연습을 기록하려고 타이머를 눌렀다가,<br />끄는 걸 잊은 적 있으신가요.</h2>
     <p class="lead reveal d1">
@@ -409,55 +464,56 @@
 
 
 <section id="features">
-  <div class="wrap">
-    <div class="center">
+  <div class="wrap feat-grid">
+    <div class="feat-head">
       <div class="kicker reveal">Features</div>
       <h2 class="reveal d1">연습하는 사람을 위한 기록 도구</h2>
+      <p class="lead reveal d2">연습실에서 매일 쓰는 도구라서, 하나하나 조용하게 만들었습니다.</p>
     </div>
     <div class="features">
-      <div class="feature reveal">
+<div class="feature reveal">
         <span class="fnum">01</span>
         <div>
           <h3>연주한 시간만 남습니다</h3>
           <p>설정한 내 악기 소리만 인식합니다. 악보를 넘기고, 물을 마시고, 잠깐 쉬는 시간은 빼고 셉니다. 15초가 넘는 침묵은 연습 시간에서 제외됩니다. 피아노, 현악기, 관악기, 성악을 지원합니다.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">02</span>
         <div>
           <h3>소리는 저장하지 않습니다</h3>
           <p>마이크로 들은 소리는 기기 안에서 판단하고 즉시 버립니다. 녹음 파일은 만들어지지 않고, 어디로도 전송되지 않습니다. 무엇을 연주했는지가 아니라, 연주하고 있는지만 봅니다.</p>
         </div>
       </div>
-      <div class="feature reveal">
+<div class="feature reveal">
         <span class="fnum">03</span>
         <div>
           <h3>오늘 무엇을 했는지 남깁니다</h3>
           <p>연습이 끝나면 곡과 연습 유형을 고르고 짧게 메모할 수 있습니다. 달력에서 지난 연습을 날짜별로 볼 수 있고, 하루 합계와 집중도가 함께 보입니다.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">04</span>
         <div>
           <h3>MU:note의 한마디</h3>
           <p>20분 이상 연습한 날에는 지금까지의 기록을 분석한 두 문장을 받습니다. 연습 시간과 집중도 같은 숫자만 사용합니다. 직접 쓰신 메모와 곡 이름은 전송되지 않습니다.</p>
         </div>
       </div>
-      <div class="feature reveal">
+<div class="feature reveal">
         <span class="fnum">05</span>
         <div>
           <h3>로그인 없이 시작할 수 있습니다</h3>
           <p>가입하지 않아도 기록과 달력을 모두 쓸 수 있습니다. 로그인하면 기록이 서버에 보관되어, 폰을 바꾸거나 앱을 지웠다 깔아도 돌아옵니다.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">06</span>
         <div>
           <h3>조용한 알림</h3>
           <p>연습을 권하는 알림을 원하는 시간에 하루 한 번 받을 수 있습니다. 연습하지 않은 날을 탓하지 않습니다. 기본값은 꺼져 있습니다.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">07</span>
         <div>
           <h3>오늘 할 연습을 적어둡니다</h3>

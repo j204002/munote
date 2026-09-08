@@ -279,19 +279,71 @@
 <link rel="stylesheet" href="demo/demo.css" />
 
 <style>
-  /* 히어로 2단: 왼쪽 문구, 오른쪽 살아있는 폰 */
-  .hero.demo { text-align:left; display:grid; grid-template-columns: 1.05fr 0.95fr; gap:48px; align-items:center; padding:72px 0 64px; }
-  .hero.demo .logo { margin:0; width:clamp(200px,28vw,320px); }
-  .hero.demo .tagline { text-align:left; }
-  .hero.demo .sub { text-align:left; }
-  .hero.demo .store-row { justify-content:flex-start; }
-  .hero.demo .store-note { text-align:left; }
-  .hero-demo { display:flex; flex-direction:column; }
-  @media (max-width: 720px) {
-    .hero.demo { grid-template-columns:1fr; gap:34px; text-align:center; padding:56px 0 48px; }
-    .hero.demo .logo { margin:0 auto; }
-    .hero.demo .tagline, .hero.demo .sub, .hero.demo .store-note { text-align:center; }
-    .hero.demo .store-row { justify-content:center; }
+  /* ===== 리디자인 A안 (2026-09-08, 창업자 확정) — 히어로: 평평한 grid, 글은 폰 윗선·3단계 요약은 폰 바닥선 ===== */
+  .hero.demo { display:grid; text-align:left; column-gap:72px; row-gap:0; padding:52px 0 72px;
+    grid-template-columns: minmax(0,1.05fr) minmax(0,0.95fr); grid-template-rows: auto auto auto auto auto 1fr;
+    grid-template-areas: "logo demo" "tagline demo" "sub demo" "store demo" "note demo" "steps demo"; align-items:start; }
+  .hero.demo .logo { grid-area:logo; margin:0; width:clamp(180px,22vw,260px); }
+  .hero.demo .tagline { grid-area:tagline; text-align:left; margin-top:30px; font-size:clamp(30px,3.6vw,48px); font-weight:700; letter-spacing:-0.045em; line-height:1.18; }
+  .hero.demo .sub { grid-area:sub; text-align:left; margin-top:20px; font-size:17px; max-width:420px; line-height:1.6; }
+  .hero.demo .store-row { grid-area:store; justify-content:flex-start; margin-top:36px; }
+  .hero.demo .store-note { grid-area:note; text-align:left; margin-top:16px; }
+  .hero.demo .hero-demo { grid-area:demo; display:flex; flex-direction:column; min-width:0; }
+  .mini-steps { grid-area:steps; align-self:end; list-style:none; margin-top:56px; border-top:1px solid var(--line); max-width:440px; }
+  .mini-steps li { display:flex; gap:18px; align-items:baseline; padding:13px 0; border-bottom:1px solid var(--line); font-size:14px; color:var(--gray); }
+  .mini-steps li span { flex:none; font-weight:200; font-size:22px; color:var(--ink); font-variant-numeric:tabular-nums; width:18px; }
+  .mini-steps li b { color:var(--ink); font-weight:600; margin-right:4px; }
+  @media (max-width:720px) {
+    .hero.demo { grid-template-columns:minmax(0,1fr); grid-template-rows:auto; grid-template-areas: "logo" "tagline" "demo" "sub" "store" "note"; padding:18px 0 56px; }
+    .hero.demo .logo { width:140px; margin:0 auto; }
+    .hero.demo .tagline { text-align:center; margin-top:14px; font-size:clamp(24px,7vw,30px); line-height:1.25; }
+    .hero.demo .hero-demo { margin-top:26px; }
+    .hero.demo .md-phone { width:min(300px, 80vw); }
+    .hero.demo .sub { text-align:center; margin:30px auto 0; font-size:15.5px; }
+    .hero.demo .store-row { flex-direction:column; align-items:stretch; margin-top:24px; }
+    .hero.demo .store-row .btn-store, .hero.demo .store-row .badge-soon { justify-content:center; }
+    .hero.demo .store-note { text-align:center; }
+    .mini-steps { display:none; }
+    .md-hint { margin-top:10px; }
+  }
+  /* 섹션 리듬 — 제목 왼쪽 정렬, 마무리(closing)만 가운데 */
+  section .center { text-align:left; }
+  .center .lead { margin-left:0; }
+  .faq, .privacy-list { margin-left:0; }
+  h1, h2, h3, .lead, .closing .line, .mini-steps li { word-break:keep-all; overflow-wrap:anywhere; }
+  /* 공감 문장 */
+  .statement h2 { font-size:clamp(26px,3.2vw,38px); font-weight:500; letter-spacing:-0.035em; line-height:1.4; max-width:760px; }
+  .statement .lead { max-width:none; display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:34px; font-size:16px; }
+  .statement .lead br { display:none; }
+  .statement .lead strong { display:block; font-size:18px; line-height:1.6; }
+  /* how */
+  #how .steps { margin-top:48px; }
+  #how .step .num { font-size:56px; }
+  /* friends — 그림 왼쪽, 글 오른쪽 */
+  .friends-grid { grid-template-columns:0.85fr 1.15fr; gap:72px; }
+  .friends-grid .friends-shot { order:-1; }
+  .friends-shot img { max-width:300px; margin:0; }
+  /* features — 왼쪽 sticky 머리 + 오른쪽 한 줄씩 */
+  .feat-grid { display:grid; grid-template-columns:0.9fr 1.5fr; gap:72px; align-items:start; }
+  .feat-head { position:sticky; top:92px; }
+  .feat-head .lead { margin-top:18px; max-width:320px; }
+  .features { grid-template-columns:1fr; gap:0; margin-top:0; }
+  .feature { padding:26px 0 30px; }
+  .feature:first-child { border-top:none; padding-top:6px; }
+  .feature h3 { font-size:19px; }
+  .feature p { font-size:15px; max-width:520px; }
+  /* privacy — 3칸 */
+  .privacy-list { max-width:none; display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-top:44px; }
+  .privacy-item { flex-direction:column; gap:14px; border-bottom:none; border-top:1px solid var(--line); padding:22px 0 0; font-size:15px; }
+  .privacy-item .mark { font-size:28px; font-weight:200; color:var(--ink); }
+  /* faq — 2칸 */
+  .faq { max-width:none; display:grid; grid-template-columns:1fr 1fr; gap:0 64px; margin-top:44px; }
+  .faq-item:last-child { border-bottom:none; }
+  @media (max-width:860px) {
+    .feat-grid { grid-template-columns:1fr; gap:24px; } .feat-head { position:static; }
+    .privacy-list { grid-template-columns:1fr; gap:0; } .faq { grid-template-columns:1fr; }
+    .statement .lead { grid-template-columns:1fr; gap:20px; }
+    .friends-grid .friends-shot { order:0; } .friends-shot img { margin:0 auto; }
   }
 </style>
 </head>
@@ -319,7 +371,6 @@
 </nav>
 
 <header class="hero wrap demo" id="top">
-  <div class="hero-copy">
   <img class="logo reveal" src="img/logo-horizontal.png" alt="MU:note Logo" />
   <h1 class="tagline reveal d1">Zählt nur<br />dein Instrument</h1>
   <p class="sub reveal d2">Üb einfach los: Es zählt nur die Zeit, in der du wirklich spielst.</p>
@@ -334,13 +385,17 @@
     </a>
   </div>
   <p class="store-note reveal d3">iOS-App · funktioniert ohne Konto</p>
-</div>
   <div class="hero-demo">
     <div id="munote-demo" data-lang="de"></div>
   </div>
+  <ol class="mini-steps reveal d3">
+    <li><span>1</span><b>Auf Start tippen</b> und das Handy zur Seite legen</li>
+    <li><span>2</span><b>Nur der Klang deines Instruments</b> zählt</li>
+    <li><span>3</span><b>Am Ende</b> bleiben Eintrag und zwei Sätze</li>
+  </ol>
 </header>
 
-<section>
+<section class="statement">
   <div class="wrap center">
     <h2 class="reveal">Schon mal die Stoppuhr gestartet<br />und vergessen, sie zu stoppen?</h2>
     <p class="lead reveal d1">
@@ -391,55 +446,56 @@
 
 
 <section id="features">
-  <div class="wrap">
-    <div class="center">
+  <div class="wrap feat-grid">
+    <div class="feat-head">
       <div class="kicker reveal">Funktionen</div>
       <h2 class="reveal d1">Ein Übetagebuch, gemacht fürs Üben</h2>
+      <p class="lead reveal d2">Ein Werkzeug für den Überaum, jeden Tag – deshalb ist jedes Detail ruhig und einfach gehalten.</p>
     </div>
     <div class="features">
-      <div class="feature reveal">
+<div class="feature reveal">
         <span class="fnum">01</span>
         <div>
           <h3>Nur gespielte Zeit bleibt</h3>
           <p>MU:note erkennt das Instrument, das du einstellst, und sonst nichts. Die kurze Pause zum Umblättern bleibt Teil des Flusses. Dauert die Stille 15 Sekunden oder länger, wird diese Zeit abgezogen. Unterstützt werden Klavier, Streicher, Bläser und Gesang.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">02</span>
         <div>
           <h3>Audio wird nie gespeichert</h3>
           <p>Der Klang wird auf deinem Gerät ausgewertet und sofort verworfen. Es entsteht keine Aufnahme, und nichts wird irgendwohin gesendet. MU:note hört nicht, was du spielst, sondern nur, ob du spielst.</p>
         </div>
       </div>
-      <div class="feature reveal">
+<div class="feature reveal">
         <span class="fnum">03</span>
         <div>
           <h3>Halte fest, was du heute gemacht hast</h3>
           <p>Nach der Session wählst du Stücke und Übungsart und kannst kurz etwas notieren. Der Kalender zeigt jeden Übetag mit Tagessumme und Fokus.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">04</span>
         <div>
           <h3>Ein Wort von MU:note</h3>
           <p>Dauert eine Session länger als 20 Minuten, kommt eine Notiz aus zwei Sätzen, gestützt auf deinen Verlauf. Sie verwendet nur Zahlen: Übezeit und Fokus. Deine Notizen und Stücktitel werden nie gesendet.</p>
         </div>
       </div>
-      <div class="feature reveal">
+<div class="feature reveal">
         <span class="fnum">05</span>
         <div>
           <h3>Ohne Konto starten</h3>
           <p>Aufzeichnung und Kalender funktionieren auch ohne Anmeldung. Meldest du dich an, bleibt dein Verlauf gesichert: Handywechsel oder Neuinstallation, und er ist wieder da.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">06</span>
         <div>
           <h3>Leise Erinnerungen</h3>
           <p>Eine Erinnerung pro Tag, zu der Zeit, die du wählst. Sie macht dir nie Vorwürfe wegen eines freien Tages. Standardmäßig aus.</p>
         </div>
       </div>
-      <div class="feature reveal d1">
+<div class="feature reveal d1">
         <span class="fnum">07</span>
         <div>
           <h3>Plane das Üben von heute</h3>
