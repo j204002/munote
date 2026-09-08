@@ -83,8 +83,7 @@ function optPill(label, selected, opt) {
 function sheetBodyHtml(t, s) {
   const which = s.sheet.which;
   if (which === 'instrument') {
-    // settings.instrumentNote는 앱 원문이 "악기는 소리 판정 기준이에요"라 대외비 판정 기준을 그대로
-    // 노출한다(코덱스 리뷰 2026-09-07 Blocker) — 체험판에서는 렌더하지 않는다.
+    // 앱의 악기 설명줄(settings.instrumentNote)은 체험판에서 렌더하지 않는다.
     const opts = INSTRUMENTS.map((k) => optPill(t(`instrument.${k}`), s.me.instrument === k, `instrument:${k}`)).join('');
     return `<p class="md-sheet-title">${esc(t('settings.instrumentLabel'))}</p>
       <div class="md-pill-wrap">${opts}</div>`;
