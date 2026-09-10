@@ -10,7 +10,7 @@
 <div class="wrap">
   <a class="brand" href="index.html">MU:note</a>
   <h1>Datenschutzerklärung</h1>
-  <p class="meta">Gültig ab 2026-09-07 · Version 2026-09-07 · <a href="privacy.html">한국어</a> · <a href="privacy-en.html">English</a> · <a href="privacy-es.html">Español</a></p>
+  <p class="meta">Gültig ab 2026-09-11 · Version 2026-09-11 · <a href="privacy.html">한국어</a> · <a href="privacy-en.html">English</a> · <a href="privacy-es.html">Español</a></p>
 
   <p>MUSU ("wir") betreibt MU:note, eine App zur automatischen Übungsaufzeichnung für Musiker:innen ("Dienst"). Wir erheben so wenig wie möglich — die App zeichnet nur auf, was sie von deinem Üben beobachtet, nichts darüber hinaus.</p>
 
@@ -23,6 +23,7 @@
     <tr><td>Automatisch erzeugt</td><td>Version des Erkennungsprogramms, Anzahl Pausen/Abwesenheiten, erzeugte Ermutigungsnotizen, Zeitstempel von Erstellung/Änderung, Zeitpunkt und Version der Einwilligung</td><td>Während der Nutzung</td></tr>
     <tr><td>Betriebsprotokolle des Dienstes</td><td>Was passiert ist, wenn etwas fehlschlug (Fehlerart und -code, Zahlen wie die Menge wartender Uploads), App- und iOS-Version, App-Sprache und Instrument-Einstellung, ob Erinnerungen aktiviert sind</td><td>Bei Fehlern sowie einmal täglich</td></tr>
     <tr><td>Freunde (optional)</td><td>Anzeigename (Spitzname), Freundescode, Freundschaftsbeziehungen (Anfragen, Annahmen, Blockierungen), deine Einstellung „Was Freunde sehen“, Reaktionen, die du auf die Karte eines Freundes schickst (👏 🔥 🎵), ein „Übt gerade“-Signal (nur wenn du es einschaltest), Meldungsdaten (einer von festgelegten Gründen)</td><td>Nachdem du im Freunde-Tab einen Namen gewählt hast und die Funktion nutzt</td></tr>
+    <tr><td>Freunde-Benachrichtigungen (optional)</td><td>Push-Token des Geräts (der Wert, mit dem Apple Benachrichtigungen an dieses Gerät zustellt), App-Sprache</td><td>Wenn ein Mitglied mit eingeschalteten Freunde-Benachrichtigungen die App öffnet</td></tr>
   </table>
   <p class="note"><strong>Betriebsprotokolle</strong> gibt es, damit wir die Ursache finden können, wenn etwas schiefgeht — zum Beispiel "ich habe geübt, aber nichts wurde aufgezeichnet". <strong>Von dir eingegebene Stücknamen, Notizen und Rückblicke sind darin nie enthalten</strong>; App und Server filtern sie mechanisch heraus. Diese Protokolle werden nach 90 Tagen automatisch gelöscht — und beim Löschen deines Kontos unabhängig von dieser Frist zusammen mit allem anderen entfernt.</p>
   <p class="note">Auch Übungsaufzeichnungen im Gastmodus (ohne Konto) werden zum Synchronisieren auf unserem Server gespeichert. Sie sind mit keinem Konto verknüpft — nach dem Löschen der App geht der Zugriff verloren; solche verwaisten Aufzeichnungen werden regelmäßig bereinigt.</p>
@@ -35,6 +36,7 @@
     <li>Übungsstatistiken, Kalender und Ermutigungsnotizen ("ein Wort von MU:note")</li>
     <li>Kontoverwaltung, Altersprüfung (14+) und Support</li>
     <li>Bereitstellung der Freunde-Funktion (Freunde verbinden, Tageskarten und Reaktionen, „Übt gerade“-Anzeige), Bearbeitung von Meldungen und Verhinderung von Missbrauch</li>
+    <li>Zustellung einer Benachrichtigung, wenn ein Freund dir „Lass uns üben!“ sendet (Mitglieder mit eingeschalteten Freunde-Benachrichtigungen)</li>
   </ul>
   <p>Für die Ermutigungsnotizen werden nur <strong>zusammengefasste Übungsstatistiken (etwa Übungszeit, Wochentag und Tageszeit-Muster), Übungsarten und deine App-Sprache</strong> zur KI-Verarbeitung gesendet — <strong>deine Notizen und Stücknamen werden nie gesendet.</strong> Das geschieht nur beim Erzeugen von Notizen für angemeldete Mitglieder. Im Gastmodus wird nichts zur KI-Verarbeitung gesendet; die erste Willkommensnotiz entsteht auf deinem Gerät ohne externe Übertragung.</p>
 
@@ -43,6 +45,7 @@
     <tr><th>Verarbeiter</th><th>Zweck</th><th>Standort</th></tr>
     <tr><td>Supabase</td><td>Datenspeicherung und Authentifizierung</td><td>Südkorea (Region Seoul)</td></tr>
     <tr><td>Anthropic</td><td>Erzeugung der Ermutigungsnotizen (nur Statistiken)</td><td>USA</td></tr>
+    <tr><td>Apple (APNs)</td><td>Zustellung von Freunde-Benachrichtigungen (nur der Anzeigename des Absenders und der Text „👋 Lass uns üben!“)</td><td>USA</td></tr>
   </table>
 
   <h2>4. Speicherdauer und Löschung</h2>
@@ -54,6 +57,8 @@
     <li>Für den Fall eines Datenschadens bewahren wir eine <strong>verschlüsselte</strong> Sicherungskopie <strong>30 Tage auf dem Verwaltungsgerät des Betreibers</strong> auf; ältere Sicherungen werden automatisch gelöscht. Löschst du dein Konto, werden die Daten sofort vom Server entfernt und <strong>verschwinden spätestens nach 30 Tagen aus den Sicherungen</strong>.</li>
     <li>Du kannst dein Konto in der App löschen: <strong>Einstellungen → Konto löschen</strong>. Die Löschung ist unwiderruflich.</li>
   </ul>
+
+    <p>Der Push-Token des Geräts wird sofort gelöscht, wenn du Freunde-Benachrichtigungen ausschaltest, dich abmeldest oder dein Konto löschst. Der Zustelleintrag, der zum Senden auf dem Server entsteht (wer an wen), wird nach 7 Tagen automatisch gelöscht.</p>
 
   <h2>5. Deine Rechte</h2>
   <p>Du kannst deine Daten einsehen (in der App), bearbeiten (in der App), löschen (Kontolöschung) und dich mit jedem Datenschutzanliegen an die unten stehende Adresse wenden.</p>
@@ -68,6 +73,7 @@
   <p>Datenschutzverantwortlicher: Gründer von MUSU · <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
 
   <p class="footer">Änderungen dieser Erklärung werden auf dieser Seite mit neuem Gültigkeitsdatum angekündigt.<br>
+  <span class="note">2026-09-11: Freunde-Benachrichtigungen (Geräte-Token, Zustellung über Apple) ergänzt</span><br>
   <a href="terms-de.html">Nutzungsbedingungen</a> · <a href="index.html">Über MU:note</a></p>
 </div>
 </body>

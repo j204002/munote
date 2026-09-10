@@ -10,7 +10,7 @@
 <div class="wrap">
   <a class="brand" href="index.html">MU:note</a>
   <h1>Privacy Policy</h1>
-  <p class="meta">Effective 2026-09-07 · Version 2026-09-07 · <a href="privacy.html">한국어</a> · <a href="privacy-es.html">Español</a> · <a href="privacy-de.html">Deutsch</a></p>
+  <p class="meta">Effective 2026-09-11 · Version 2026-09-11 · <a href="privacy.html">한국어</a> · <a href="privacy-es.html">Español</a> · <a href="privacy-de.html">Deutsch</a></p>
 
   <p>MUSU ("we") operates MU:note, an automatic practice-tracking app for musicians ("Service"). We collect as little as possible — the app only records what it observes about your practice, nothing more.</p>
 
@@ -23,6 +23,7 @@
     <tr><td>Automatically generated</td><td>Detection program version, pause/away counts, generated encouragement notes, record created/updated timestamps, consent time and version</td><td>While using the app</td></tr>
     <tr><td>Service operation records</td><td>What happened when something failed (error type and code, counts such as how many records were waiting to upload), app and iOS version, app language and instrument setting, whether reminders are on</td><td>When an error occurs, plus once a day</td></tr>
     <tr><td>Friends (optional)</td><td>Display name (nickname), friend code, friend relationships (requests, accepts, blocks), your "what friends can see" settings, reactions you send to a friend's card (👏 🔥 🎵), a "practicing now" signal (only if you turn it on), report details (one of a fixed set of reasons)</td><td>After you set a name in the Friends tab and start using the feature</td></tr>
+    <tr><td>Friend notifications (optional)</td><td>Device push token (the value Apple uses to deliver notifications to this device), app language</td><td>When a member who keeps friend notifications on opens the app</td></tr>
   </table>
   <p class="note"><strong>Service operation records</strong> exist so we can find the cause when something goes wrong — for example, "I practiced but nothing was recorded." <strong>Piece names, notes, and reflections you type are never included</strong>, and both the app and the server filter them out mechanically. These records are deleted automatically after 90 days, and they are removed along with everything else if you delete your account, regardless of that period.</p>
   <p class="note">Guest (not signed-up) practice records are also stored on our server for syncing. They are not linked to an account, so access is lost once the app is deleted; such orphaned records will be cleaned up periodically.</p>
@@ -35,6 +36,7 @@
     <li>Practice statistics, calendar, and encouragement notes ("a note from MU:note")</li>
     <li>Account management, age verification (14+), and support</li>
     <li>Providing the Friends feature (connecting friends, today's cards and reactions, the practicing-now indicator), handling reports and preventing misuse</li>
+    <li>Delivering a notification when a friend sends you "Let's practice!" (members who keep friend notifications on)</li>
   </ul>
   <p>When generating encouragement notes, <strong>only summarized practice statistics (such as practice time, weekday, and time-of-day patterns), practice types, and your app language</strong> are sent for AI processing — <strong>your typed notes and piece names are never sent.</strong> This only happens when generating notes for signed-in members. Nothing is sent for AI processing while you use the app without an account, and the first welcome note is created on your device without any external transfer.</p>
 
@@ -43,6 +45,7 @@
     <tr><th>Processor</th><th>Purpose</th><th>Location</th></tr>
     <tr><td>Supabase</td><td>Data storage and authentication</td><td>South Korea (Seoul region)</td></tr>
     <tr><td>Anthropic</td><td>Generating encouragement notes (statistics only)</td><td>United States</td></tr>
+    <tr><td>Apple (APNs)</td><td>Delivering friend notifications (only the sender's display name and the "👋 Let's practice!" text)</td><td>United States</td></tr>
   </table>
 
   <h2>4. Retention and deletion</h2>
@@ -54,6 +57,8 @@
     <li>In case a failure damages the data, we keep an <strong>encrypted</strong> backup copy <strong>on the operator's administrative device for 30 days</strong>; backups older than 30 days are deleted automatically. When you delete your account, the data is removed from the server immediately and <strong>disappears from the backups within 30 days at the latest</strong>.</li>
     <li>You can delete your account inside the app: <strong>Settings → Delete account</strong>. Deletion cannot be undone.</li>
   </ul>
+
+    <p>The device push token is deleted immediately when you turn friend notifications off, log out or delete your account. The delivery record kept on the server to send a notification (who sent it to whom) is deleted automatically after 7 days.</p>
 
   <h2>5. Your rights</h2>
   <p>You can view your data (in the app), edit it (in the app), delete it (account deletion), and contact us below with any privacy request.</p>
@@ -68,6 +73,7 @@
   <p>Privacy officer: MUSU founder · <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
 
   <p class="footer">Changes to this policy will be announced on this page with a new effective date.<br>
+  <span class="note">2026-09-11: friend notifications (device token, delivery via Apple) added</span><br>
   <a href="terms-en.html">Terms of Service</a> · <a href="index.html">About MU:note</a></p>
 </div>
 </body>
