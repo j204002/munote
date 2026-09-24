@@ -22,3 +22,11 @@ th { background: #fafafa; font-weight: 600; }
 .footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid #eee; font-size: 13px; color: #888; }
 .footer a { color: #555; }
 strong { font-weight: 700; }
+
+/* 공지 안 행동 버튼 (2026-09-24 설문) — 랜딩 index의 btn-store와 같은 모노크롬 알약 */
+.cta {
+  display: inline-block; margin: 20px 0 4px; padding: 13px 26px;
+  background: #111; color: #fff; text-decoration: none;
+  font-size: 15px; font-weight: 600; border-radius: 999px;
+}
+.cta:active { transform: scale(0.98); }
