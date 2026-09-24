@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MU:note 설문</title>
+<!-- 인스타 프로필용 짧은 주소(2026-09 설문, 마감 2026-09-30).
+     즉시 리다이렉트가 아니라 갈림길 페이지 — 프로필 링크를 여기로 바꿔도
+     앱을 받으러 온 신규 방문자가 설문으로 끌려가지 않는다(창업자 C안, 2026-09-24).
+     설문이 끝나면 이 폴더를 지우고 프로필 링크를 /munote/insta 로 되돌린다.
+     초안·결정 기록: practice-app/docs/NOTICE_DRAFT_2026-09-24-survey.md -->
+<meta name="robots" content="noindex">
+<meta name="description" content="MU:note를 쓰고 계신 분들의 이야기를 듣고 있습니다. 2분 설문에 참여해 주세요.">
+<style>
+  :root { --bg:#f7f7f6; --ink:#111; --mut:#8a8a86; --line:#e3e3e0; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:var(--bg); color:var(--ink); min-height:100svh;
+    display:flex; align-items:center; justify-content:center; padding:32px 24px;
+    font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,
+                "Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap { width:100%; max-width:420px; text-align:center; }
+  .logo { height:26px; width:auto; opacity:.9; }
+  h1 { margin:34px 0 12px; font-size:23px; font-weight:700; line-height:1.45; letter-spacing:-0.01em; }
+  .lead { font-size:15px; line-height:1.72; color:#4a4a47; }
+  .cta {
+    display:block; margin:30px 0 10px; padding:17px 28px; background:var(--ink); color:#fff;
+    text-decoration:none; border-radius:999px; font-size:16px; font-weight:600;
+    box-shadow:0 2px 10px rgba(17,17,17,.14);
+  }
+  .cta:active { transform:scale(.985); }
+  .until { font-size:13px; color:var(--mut); }
+  .rule { margin:38px 0 26px; border:0; border-top:1px solid var(--line); }
+  .newbie { font-size:14px; color:#4a4a47; margin-bottom:14px; }
+  .ghost {
+    display:inline-block; padding:13px 26px; border:1.6px solid var(--ink); border-radius:999px;
+    color:var(--ink); text-decoration:none; font-size:15px; font-weight:600; background:transparent;
+  }
+  .foot { margin-top:34px; font-size:12.5px; color:var(--mut); }
+  .foot a { color:var(--mut); }
+  @media (max-width:360px) { h1 { font-size:21px; } }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <img class="logo" src="../img/logo-horizontal.png" alt="MU:note">
+
+    <h1>MU:note를 어떻게 쓰고 계신지<br>알려 주세요</h1>
+    <p class="lead">다음에 무엇을 만들지 정하기 전에,<br>
+    지금 쓰고 계신 분들의 이야기를 먼저 듣고 싶습니다.</p>
+
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSdLO5TqWLaCfZE55ekVzApEZRrm4ciAdzVxw0AHmE9f4lNQ4A/viewform">2분 설문 참여하기</a>
+    <p class="until">열두 문항 · 2026년 9월 30일까지</p>
+
+    <hr class="rule">
+
+    <p class="newbie">MU:note가 처음이신가요?</p>
+    <a class="ghost" href="https://oneumart.com/munote/?utm_source=instagram&amp;utm_medium=social&amp;utm_campaign=survey">MU:note 알아보기</a>
+
+    <p class="foot"><a href="https://oneumart.com/munote/notices.html">공지사항</a></p>
+  </main>
+</body>
+</html>
