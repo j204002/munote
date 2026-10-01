@@ -22,7 +22,7 @@
     <tr><td>Dienstnutzung</td><td>Übungsaufzeichnungen (Start-/Endzeit, Übungs- und Abwesenheitszeit, Instrument, Übungsart, von dir eingegebene Stücknamen/Notizen/Rückblicke, heutige Übungsziele, D-Days, Tagesnotizen), Gerätesprache, Zeitzone, App-Einstellungen</td><td>Während der Nutzung</td></tr>
     <tr><td>Automatisch erzeugt</td><td>Version des Erkennungsprogramms, Anzahl Pausen/Abwesenheiten, erzeugte Ermutigungsnotizen, Zeitstempel von Erstellung/Änderung, Zeitpunkt und Version der Einwilligung</td><td>Während der Nutzung</td></tr>
     <tr><td>Betriebsprotokolle des Dienstes</td><td>Was passiert ist, wenn etwas fehlschlug (Fehlerart und -code, Zahlen wie die Menge wartender Uploads), App- und iOS-Version, App-Sprache und Instrument-Einstellung, ob Erinnerungen aktiviert sind</td><td>Bei Fehlern sowie einmal täglich</td></tr>
-    <tr><td>Nutzungsanalytik</td><td>Wie die App genutzt wird (welche Bildschirme und Funktionen verwendet werden), Zahlen wie Übungszeit und Fokus, Gerätemodell, iOS-/App-Version, App-Sprache, eine zufällige Kennung pro Installation, Website-Besuche und Herkunftsquelle</td><td>Bei Nutzung von App oder Website</td></tr>
+    <tr><td>Nutzungsanalytik</td><td>Wie die App genutzt wird (welche Bildschirme und Funktionen verwendet werden), Zahlen wie Übungszeit und Fokus, Gerätemodell, iOS-/App-Version, App-Sprache, eine zufällige Kennung pro Installation (bei Mitgliedern kann sie mit der Kontonummer des Dienstes verknüpft sein — Name und E-Mail werden nicht gesendet), Website-Besuche und Herkunftsquelle</td><td>Bei Nutzung von App oder Website</td></tr>
     <tr><td>Freunde (optional)</td><td>Anzeigename (Spitzname), Freundescode, Freundschaftsbeziehungen (Anfragen, Annahmen, Blockierungen), deine Einstellung „Was Freunde sehen“, Reaktionen, die du auf die Karte eines Freundes schickst (👏 🔥 🎵), ein „Übt gerade“-Signal (nur wenn du es einschaltest), Meldungsdaten (einer von festgelegten Gründen)</td><td>Nachdem du im Freunde-Tab einen Namen gewählt hast und die Funktion nutzt</td></tr>
     <tr><td>Freunde-Benachrichtigungen (optional)</td><td>Push-Token des Geräts (der Wert, mit dem Apple Benachrichtigungen an dieses Gerät zustellt), App-Sprache</td><td>Wenn ein Mitglied mit eingeschalteten Freunde-Benachrichtigungen die App öffnet</td></tr>
     <tr><td>Noten-Shop (optional)</td><td>Notenguthaben (Summe aus Aufladungen, Käufen und Erstattungen), Kaufverlauf (Zeit, Menge, Artikel, Apple-Transaktions-ID), besessene und getragene Artikel, eingelöste Gutscheincodes</td><td>Nachdem du Noten aufgeladen oder einen Artikel im Shop erhalten hast</td></tr>
@@ -58,13 +58,13 @@
 
   <h2>4. Speicherdauer und Löschung</h2>
   <ul>
-    <li>Beim Löschen deines Kontos werden alle deine Daten <strong>sofort und dauerhaft</strong> von unseren Servern gelöscht.</li>
+    <li>Beim Löschen deines Kontos werden alle deine Daten <strong>sofort und dauerhaft</strong> von unseren Servern gelöscht. Die zum Abschließen der Löschung nötigen Mindestdaten (die Kontonummer, mit der der Abschluss der Löschung bestätigt wird, und Daten für einen neuen Versuch, falls das Trennen von „Mit Apple anmelden“ fehlgeschlagen ist) werden jedoch getrennt und für normale Nutzer unzugänglich aufbewahrt und spätestens nach 180 Tagen gelöscht (die Daten für den neuen Versuch, sobald die Trennung gelungen ist). Bereits erstattete Apple-Transaktionsnummern (ohne Angaben, die eine Person erkennbar machen) werden aufbewahrt, damit dieselbe Zahlung nicht erneut gutgeschrieben wird.</li>
     <li>Betriebsprotokolle werden <strong>nach 90 Tagen automatisch gelöscht</strong>, auch wenn dein Konto aktiv bleibt.</li>
     <li>In der App gelöschte Übungsaufzeichnungen werden innerhalb von 30 Tagen entfernt; bei gelöschten Übungszielen, D-Days und Tagesnotizen wird der <strong>Inhalt sofort</strong> auf unseren Servern gelöscht. Es bleibt nur eine inhaltslose Kennung, damit der Eintrag auf einem anderen Gerät nicht wieder auftaucht.</li>
     <li>Freunde-Daten werden so bereinigt: <strong>gesendete Reaktionen werden nach 30 Tagen gelöscht</strong>, abgelehnte Freundschaftsanfragen nach 7 Tagen. <strong>Das „Übt gerade“-Signal verschwindet 10 Minuten nach dem letzten Signal</strong> und wird sofort gelöscht, wenn du diese Option ausschaltest. Deine Blockierliste bleibt, bis du die Blockierung aufhebst. Meldungen werden <strong>ein Jahr nach ihrer Bearbeitung</strong> aufbewahrt und dann gelöscht.</li>
     <li>Für den Fall eines Datenschadens bewahren wir eine <strong>verschlüsselte</strong> Sicherungskopie <strong>30 Tage auf dem Verwaltungsgerät des Betreibers</strong> auf; ältere Sicherungen werden automatisch gelöscht. Löschst du dein Konto, werden die Daten sofort vom Server entfernt und <strong>verschwinden spätestens nach 30 Tagen aus den Sicherungen</strong>.</li>
     <li>Du kannst dein Konto in der App löschen: <strong>Einstellungen → Konto löschen</strong>. Die Löschung ist unwiderruflich.</li>
-    <li>Die Nutzungsanalytik wird unter einer zufälligen Kennung ohne Namen oder E-Mail erhoben. Beim Löschen deines Kontos endet die neue Erhebung sofort; die Löschung bereits erhobener Analytik kannst du unten anfragen.</li>
+    <li>Die Nutzungsanalytik wird ohne Namen oder E-Mail erhoben. Gäste werden über eine zufällige Kennung pro Installation erkannt, Mitglieder über ihre Kontonummer des Dienstes. Beim Löschen deines Kontos endet die neue Erhebung sofort; die Löschung bereits erhobener Analytik kannst du unten anfragen.</li>
     <li>Notenguthaben, Kaufverlauf, Artikel und Gutscheineinlösungen — werden sofort zusammen mit dem Konto gelöscht</li>
   </ul>
 
@@ -83,6 +83,7 @@
   <p>Datenschutzverantwortlicher: Gründer von munote · <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
 
   <p class="footer">Änderungen dieser Erklärung werden auf dieser Seite mit neuem Gültigkeitsdatum angekündigt.<br>
+  <span class="note">2026-10-01 (Korrektur des Wortlauts): genau beschrieben, dass die Analytik von Mitgliedern mit der Kontonummer des Dienstes verknüpft ist und Mindestdaten zur Bearbeitung der Kontolöschung aufbewahrt werden — keine Änderung der erhobenen Daten</span><br>
   <span class="note">2026-10-01: Noten-Shop (Kauf- und Besitzdaten, Zahlung über Apple) und Raumbesuche (Freunde von Freunden) ergänzt; Betreibername munote</span><br>
   <span class="note">2026-09-14: Nutzungsanalytik (Amplitude, USA) offengelegt</span><br>
   <span class="note">2026-09-11: Freunde-Benachrichtigungen (Geräte-Token, Zustellung über Apple) ergänzt</span><br>

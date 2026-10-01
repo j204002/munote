@@ -22,7 +22,7 @@
     <tr><td>Service use</td><td>Practice records (start/end time, practice and away time, instrument, practice type, piece names/notes/reflections you type, today's practice goals, D-days, daily notes), device language, timezone, app settings</td><td>While using the app</td></tr>
     <tr><td>Automatically generated</td><td>Detection program version, pause/away counts, generated encouragement notes, record created/updated timestamps, consent time and version</td><td>While using the app</td></tr>
     <tr><td>Service operation records</td><td>What happened when something failed (error type and code, counts such as how many records were waiting to upload), app and iOS version, app language and instrument setting, whether reminders are on</td><td>When an error occurs, plus once a day</td></tr>
-    <tr><td>Usage analytics</td><td>How the app is used (which screens and features are used), numbers such as practice time and focus, device model, iOS/app version, app language, a random per-install identifier, website visits and referral source</td><td>While using the app or website</td></tr>
+    <tr><td>Usage analytics</td><td>How the app is used (which screens and features are used), numbers such as practice time and focus, device model, iOS/app version, app language, a random per-install identifier (for members, this can be linked to the service account number — no name or email is sent), website visits and referral source</td><td>While using the app or website</td></tr>
     <tr><td>Friends (optional)</td><td>Display name (nickname), friend code, friend relationships (requests, accepts, blocks), your "what friends can see" settings, reactions you send to a friend's card (👏 🔥 🎵), a "practicing now" signal (only if you turn it on), report details (one of a fixed set of reasons)</td><td>After you set a name in the Friends tab and start using the feature</td></tr>
     <tr><td>Friend notifications (optional)</td><td>Device push token (the value Apple uses to deliver notifications to this device), app language</td><td>When a member who keeps friend notifications on opens the app</td></tr>
     <tr><td>Note Store (optional)</td><td>Note balance (the sum of top-up, purchase and refund entries), purchase history (time, amount, item, Apple transaction ID), owned items and what is worn, coupon code redemptions</td><td>After you top up notes or receive an item in the store</td></tr>
@@ -58,13 +58,13 @@
 
   <h2>4. Retention and deletion</h2>
   <ul>
-    <li>All your data is <strong>deleted immediately and permanently</strong> from our servers when you delete your account.</li>
+    <li>All your data is <strong>deleted immediately and permanently</strong> from our servers when you delete your account. However, the minimum records needed to finish the deletion (the account number used to confirm the deletion was completed, and retry information if disconnecting Sign in with Apple failed) are kept separately, out of reach of regular users, and deleted within 180 days at the latest (the retry information is deleted as soon as the disconnection succeeds). Apple transaction numbers that have already been refunded (containing nothing that identifies a person) are kept so the same payment is not granted again.</li>
     <li>Service operation records are <strong>deleted automatically after 90 days</strong>, even while your account stays active.</li>
     <li>Practice records you delete in the app are removed within 30 days; deleted practice goals, D-days and daily notes have their <strong>content erased immediately</strong> on our servers. Only a content-free identifier remains so the item cannot reappear on another device.</li>
     <li>Friends data is cleaned up as follows: <strong>reactions you send are deleted after 30 days</strong>, and records of declined friend requests after 7 days. <strong>The practicing-now signal disappears 10 minutes after the last signal</strong> and is deleted immediately when you turn that item off. Your block list is kept until you unblock. Reports are kept for <strong>one year after they are handled</strong>, then deleted.</li>
     <li>In case a failure damages the data, we keep an <strong>encrypted</strong> backup copy <strong>on the operator's administrative device for 30 days</strong>; backups older than 30 days are deleted automatically. When you delete your account, the data is removed from the server immediately and <strong>disappears from the backups within 30 days at the latest</strong>.</li>
     <li>You can delete your account inside the app: <strong>Settings → Delete account</strong>. Deletion cannot be undone.</li>
-    <li>Usage analytics are collected under a random identifier without your name or email. Deleting your account stops new collection immediately; to have already-collected analytics deleted, contact us below.</li>
+    <li>Usage analytics are collected without your name or email. Guests are identified by a random per-install identifier; members are linked by their service account number. Deleting your account stops new collection immediately; to have already-collected analytics deleted, contact us below.</li>
     <li>Note balance, purchase history, owned items and coupon redemptions — deleted immediately together with the account</li>
   </ul>
 
@@ -83,6 +83,7 @@
   <p>Privacy officer: munote founder · <a href="mailto:munote@oneumart.com">munote@oneumart.com</a></p>
 
   <p class="footer">Changes to this policy will be announced on this page with a new effective date.<br>
+  <span class="note">2026-10-01 (wording correction): stated precisely that member analytics are linked to the service account number and that minimum records for processing account deletion are kept — no change in what is collected</span><br>
   <span class="note">2026-10-01: Note Store (purchase and ownership data, payment via Apple) and room visits (friends of friends) added; operator name munote</span><br>
   <span class="note">2026-09-14: usage analytics (Amplitude, United States) disclosed</span><br>
   <span class="note">2026-09-11: friend notifications (device token, delivery via Apple) added</span><br>
