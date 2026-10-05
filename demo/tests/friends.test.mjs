@@ -16,7 +16,7 @@ test('연습실: 오늘 연습한 친구 4명·전 친구 이름·무니 8명·�
   const html = render(s, t);
   assert.match(html, /오늘 연습한 친구 4/);
   for (const f of FRIENDS) assert.ok(html.includes(f.name), `누락된 친구: ${f.name}`);
-  assert.ok(html.includes(s.me.name), '내 이름(무니) 누락');
+  assert.ok(html.includes(s.me.name), '내 이름(무쵸) 누락');
   const muniCount = (html.match(/data-friend="/g) ?? []).length;
   // 방(8명: 나+친구7) + 오늘 카드(4명) = data-friend 속성 12개, 그중 방의 8개만 .md-muni
   assert.equal((html.match(/class="md-muni[^"]*" data-friend="/g) ?? []).length, 8, '방 안 무니 버튼 8개');

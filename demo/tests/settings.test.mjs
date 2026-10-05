@@ -27,7 +27,7 @@ test('초기 렌더: 계정 카드·연습 그룹·앱 그룹 전부, 로그아�
   assert.match(html, /개인정보처리방침/);
   assert.match(html, />버전</);
   assert.match(html, /1\.2 \(체험판\)/);
-  assert.match(html, /무니/);
+  assert.match(html, /무쵸/);
   assert.match(html, /체험판/);
   assert.match(html, /data-go="home"/);
   assert.doesNotMatch(html, /로그아웃/);

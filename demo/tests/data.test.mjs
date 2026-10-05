@@ -41,4 +41,4 @@ test('한마디 4개 언어 규칙', () => {
   }
 });
 test('집중 대본', () => { assert.deepEqual(FOCUS_TIMELINE, [{ state: 'sounding', sec: 12 }, { state: 'grace', sec: 4 }]); assert.equal(SKIP_TO.elapsedSec, 1512); });
-test('ME·PIECES', () => { assert.equal(ME.name, '무니'); assert.equal(PIECES.length, 4); });
+test('ME·PIECES', () => { assert.equal(ME.name, '무쵸'); assert.equal(PIECES.length, 4); });

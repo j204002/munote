@@ -1,7 +1,7 @@
 // demo/data.js — 고정 대본. 랜덤 없음(새로고침마다 같은 화면). 스펙 §4.
 import { addDays } from './dateKey.js';
 
-export const ME = { name: '무니', instrument: 'piano', goalMin: 60, dayStartHour: 4, weekStartMon: false };
+export const ME = { name: '무쵸', instrument: 'piano', goalMin: 60, dayStartHour: 4, weekStartMon: false };
 export const PIECES = ['쇼팽 발라드 1번', '베토벤 소나타', '바흐 평균율', '하농'];
 export const TYPES = ['section', 'runThrough', 'technique', 'memorization', 'scale', 'detail', 'sightReading'];
 export const POSE_OF_INSTRUMENT = { piano: 'play_piano', strings: 'play_strings', winds: 'play_winds', vocal: 'play_vocal' };
