@@ -1,1 +1,23 @@
-{ "popups": [] }
+{
+  "popups": [
+    {
+      "id": "store-open-2026-10",
+      "from": "2026-10-07",
+      "until": "2026-10-31",
+      "audience": "all",
+      "image": {
+        "ko": "popups/store-open-2026-10-ko-v1.jpg",
+        "en": "popups/store-open-2026-10-en-v1.jpg",
+        "es": "popups/store-open-2026-10-es-v1.jpg",
+        "de": "popups/store-open-2026-10-de-v1.jpg"
+      },
+      "alt": {
+        "ko": "상점이 열렸어요. 캐릭터와 연습실을 꾸며 보세요. 꽃무늬·줄무늬·체크 옷을 입은 캐릭터 셋이 가게 차양 아래 서 있어요.",
+        "en": "The store is open. Decorate your character and practice room. Three characters in floral, striped and gingham tops stand under a shop awning.",
+        "es": "La tienda está abierta. Decora a tu personaje y tu sala de práctica. Tres personajes con camisetas de flores, rayas y cuadros bajo el toldo de una tienda.",
+        "de": "Der Shop ist geöffnet. Gestalte deine Figur und deinen Übungsraum. Drei Figuren in Oberteilen mit Blumen, Streifen und Karos stehen unter einer Ladenmarkise."
+      },
+      "action": "store.special"
+    }
+  ]
+}
