@@ -45,6 +45,10 @@
   <url><loc>https://oneumart.com/munote/privacy-es.html</loc><priority>0.2</priority></url>
   <url><loc>https://oneumart.com/munote/terms-de.html</loc><priority>0.2</priority></url>
   <url><loc>https://oneumart.com/munote/privacy-de.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/delete-account.html</loc><priority>0.3</priority></url>
+  <url><loc>https://oneumart.com/munote/delete-account-en.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/delete-account-es.html</loc><priority>0.2</priority></url>
+  <url><loc>https://oneumart.com/munote/delete-account-de.html</loc><priority>0.2</priority></url>
   <url>
     <loc>https://oneumart.com/munote/notices.html</loc>
     <xhtml:link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/notices.html" />
