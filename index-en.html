@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MU:note — Counts only your instrument | Practice log app</title>
-<meta name="description" content="Start practicing — only your actual playing time adds up. MU:note hears the instrument you set, and audio is never recorded. Piano, strings, winds, voice, guitar (acoustic and classical). iOS practice log app. Meet your friends in the practice room." />
+<meta name="description" content="Start practicing — only your actual playing time adds up. MU:note hears the instrument you set, and audio is never recorded. Piano, strings, winds, voice, guitar (acoustic and classical). Practice log app for iOS and Android. Meet your friends in the practice room." />
 <meta name="keywords" content="practice log,practice journal,music practice app,piano practice,violin practice,voice practice,music major,practice timer,MU:note" />
 <link rel="canonical" href="https://oneumart.com/munote/index-en.html" />
 <link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
@@ -34,7 +34,7 @@
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "MU:note",
-  "operatingSystem": "iOS",
+  "operatingSystem": "iOS, Android",
   "applicationCategory": "EducationalApplication",
   "description": "A practice log that counts only your instrument. Start practicing — only your actual playing time adds up. Audio is never recorded.",
   "url": "https://oneumart.com/munote/index-en.html",
@@ -169,10 +169,10 @@
     },
     {
       "@type": "Question",
-      "name": "Is there an Android version?",
+      "name": "Can I use it on Android?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It’s in the works. Android microphones differ by device, so we’re re-tuning how MU:note picks out your instrument. Sign up for the launch notice and we’ll let you know."
+        "text": "Yes. You can get it on Google Play. Friends on iPhone and Android stay connected, and if you log in with the same account, your records come with you when you switch phones."
       }
     },
     {
@@ -499,6 +499,16 @@
         </div>
       </details>
       <a class="nav-cta" href="https://apps.apple.com/app/id6800597794">App Store</a>
+      <script>
+        // 안드로이드 폰에서 열면 맨 위 버튼을 Google Play로 (2026-10-17 창업자 결정 — 그 밖의 기기는 App Store 그대로)
+        (function () {
+          if (!/Android/i.test(navigator.userAgent || '')) return;
+          var a = document.currentScript && document.currentScript.previousElementSibling;
+          if (!a || !a.classList.contains('nav-cta')) return;
+          a.href = 'https://play.google.com/store/apps/details?id=com.musu.munote';
+          a.textContent = 'Google Play';
+        })();
+      </script>
     </div>
   </div>
 </nav>
@@ -506,18 +516,18 @@
 <header class="hero wrap demo" id="top">
   <img class="logo reveal" src="img/logo-horizontal.png" alt="MU:note logo" />
   <h1 class="tagline reveal d1">The practice log that counts only your instrument</h1>
-  <p class="sub reveal d2">MU:note is an iPhone app that listens for the instrument you set and automatically records only the time you actually play.</p>
+  <p class="sub reveal d2">MU:note is an iPhone and Android app that listens for the instrument you set and automatically records only the time you actually play.</p>
   <div class="store-row reveal d3">
     <a class="btn-store" href="https://apps.apple.com/app/id6800597794">
       <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
       Download on the App Store
     </a>
-    <a class="badge-soon" href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform" aria-label="Sign up for the Android launch notice">
+    <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.musu.munote">
       <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-      Get notified about Android <span class="arrow" aria-hidden="true">→</span>
+      Get it on Google Play
     </a>
   </div>
-  <p class="store-note reveal d3">iOS app · works without an account</p>
+  <p class="store-note reveal d3">iOS &amp; Android app · works without an account</p>
   <div class="hero-demo">
     <div id="munote-demo" data-lang="en"></div>
   </div>
@@ -709,8 +719,8 @@
         <p>Friends is for signed-in members only. Records and the calendar still work without an account.</p>
       </div>
       <div class="faq-item reveal">
-        <h3>Is there an Android version?</h3>
-        <p>It’s in the works. Android microphones differ by device, so we’re re-tuning how MU:note picks out your instrument. <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform">Sign up for the launch notice</a> and we’ll let you know.</p>
+        <h3>Can I use it on Android?</h3>
+        <p>Yes. You can get it on Google Play. Friends on iPhone and Android stay connected, and if you log in with the same account, your records come with you when you switch phones.</p>
       </div>
       <div class="faq-item reveal">
         <h3>Who makes MU:note?</h3>
@@ -731,10 +741,10 @@
         <svg viewBox="0 0 384 512" aria-hidden="true"><path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         Download on the App Store
       </a>
-      <a class="badge-soon" href="https://docs.google.com/forms/d/e/1FAIpQLSd6aRWHrocIOXeBTpJO_mIuuJE-kjATzRjFjnmwrcOmZdq_RA/viewform" aria-label="Sign up for the Android launch notice">
-        <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
-        Get notified about Android <span class="arrow" aria-hidden="true">→</span>
-      </a>
+      <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.musu.munote">
+      <svg viewBox="0 0 512 512" aria-hidden="true"><path d="M325.3 234.3 104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/></svg>
+      Get it on Google Play
+    </a>
     </div>
     <p class="store-note reveal d2">Available in English, 한국어, Español, and Deutsch</p>
   </div>
@@ -817,6 +827,9 @@
     var props = { position: pos, page_lang: 'en' };
     if (href.indexOf('apps.apple.com') !== -1) {
       amplitude.track('app_store_clicked', props);
+      if (amplitude.flush) amplitude.flush();
+    } else if (href.indexOf('play.google.com') !== -1) {
+      amplitude.track('android_store_clicked', props);
       if (amplitude.flush) amplitude.flush();
     } else if (href.indexOf('docs.google.com/forms') !== -1) {
       amplitude.track('android_waitlist_clicked', props);
