@@ -85,4 +85,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
+<!-- guides:start -->
+  <url><loc>https://oneumart.com/munote/guides/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- guides:end -->
 </urlset>
