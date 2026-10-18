@@ -99,5 +99,24 @@
 <section class="related"><p class="byline">New guides are on the way.</p></section>
 </main>
 <footer><a href="../index-en.html">MU:note</a> · <a href="../guides/">Practice guides</a> · <a href="../privacy-en.html">Privacy</a><br>© 2026 munote</footer>
+<!-- Amplitude: same page-view-only setup as index-en.html (session replay off — founder decision 2026-09-05). -->
+<script src="https://cdn.jsdelivr.net/npm/@amplitude/unified@1/lib/scripts/amplitude-min.umd.js"></script>
+<script>
+  var AMPLITUDE_API_KEY = '0bd1141287b691dce8c5ebf88e1fe963';
+  amplitude.initAll(AMPLITUDE_API_KEY, {
+    analytics: {
+      transport: 'beacon',
+      autocapture: { pageViews: true, sessions: true, attribution: true, formInteractions: false, fileDownloads: false, elementInteractions: false }
+    },
+    sessionReplay: false
+  });
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || typeof amplitude === 'undefined') return;
+    if ((a.getAttribute('href') || '').indexOf('apps.apple.com') === -1) return;
+    amplitude.track('app_store_clicked', { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' });
+    if (amplitude.flush) amplitude.flush();
+  }, true);
+</script>
 </body>
 </html>
