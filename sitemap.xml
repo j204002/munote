@@ -87,5 +87,7 @@
   </url>
 <!-- guides:start -->
   <url><loc>https://oneumart.com/munote/guides/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-journal/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-log-template/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <!-- guides:end -->
 </urlset>

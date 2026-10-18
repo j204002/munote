@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Music Practice Log — Printable Template | MU:note</title>
+<meta name="robots" content="noindex, follow" />
+<link rel="canonical" href="https://oneumart.com/munote/guides/practice-log-template/">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<style>
+  @page { size: A4; margin: 14mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Pretendard Variable", Pretendard, -apple-system, "Helvetica Neue", sans-serif; color: #111; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .sheet { max-width: 182mm; margin: 0 auto; padding: 8mm 0; }
+  header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 1.5px solid #111; padding-bottom: 6px; }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; }
+  .week { font-size: 12px; color: #444; }
+  .week span { display: inline-block; width: 46mm; border-bottom: 1px solid #999; margin-left: 4px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; }
+  th { font-size: 10.5px; font-weight: 600; color: #444; text-align: left; padding: 6px 6px; border-bottom: 1px solid #111; }
+  td { height: 13.5mm; border-bottom: 1px solid #cfcfcb; border-right: 1px solid #e3e3e0; }
+  td:last-child, th:last-child { border-right: 0; }
+  col.date { width: 15%; } col.piece { width: 29%; } col.min { width: 12%; } col.worked { width: 22%; } col.fix { width: 22%; }
+  .review { margin-top: 12px; border: 1px solid #111; border-radius: 6px; padding: 8px 10px; height: 38mm; }
+  .review b { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+  .review p { margin-top: 4px; font-size: 10.5px; color: #555; }
+  footer { margin-top: 8px; font-size: 9.5px; color: #777; display: flex; justify-content: space-between; }
+  .actions { max-width: 182mm; margin: 0 auto; padding: 12px 0 0; }
+  .actions button { font: inherit; font-size: 13px; font-weight: 600; color: #fff; background: #111; border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  @media print { .actions { display: none; } .sheet { padding: 0; } }
+</style>
+</head>
+<body>
+<div class="actions"><button type="button" onclick="window.print()">Print this page</button></div>
+<main class="sheet">
+  <header>
+    <h1>Practice log</h1>
+    <div class="week">Week of<span></span></div>
+  </header>
+  <table>
+    <colgroup><col class="date"><col class="piece"><col class="min"><col class="worked"><col class="fix"></colgroup>
+    <thead><tr><th>Date</th><th>Piece / exercise · practice type</th><th>Minutes played</th><th>What worked</th><th>What to fix</th></tr></thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+  <section class="review">
+    <b>Weekly review</b>
+    <p>What changed this week? What is one thing to try next week?</p>
+  </section>
+  <footer><span>Minutes played = time you were actually playing, not time at the instrument.</span><span>oneumart.com/munote/guides</span></footer>
+</main>
+</body>
+</html>
