@@ -6,24 +6,6 @@
 <title>MU:note — 내 악기소리만 자동으로 세는 연습 기록 앱</title>
 <meta name="description" content="연습을 시작하면 실제로 연주한 시간만 알아서 쌓입니다. 설정한 내 악기 소리만 인식하고, 소리는 저장하지 않습니다. 피아노·현악기·관악기·성악·기타(클래식·통기타) 지원. iOS 연습 기록 앱. 친구와 같은 연습실에서 서로의 연습을 응원합니다." />
 <meta name="keywords" content="연습기록,연습일지,연습 앱,악기 연습,피아노 연습,바이올린 연습,성악 연습,음악 전공,입시,연습 타이머,MU:note,무노트,뮤노트" />
-<script>
-/* 자동 언어 이동 (2026-09-02): 브라우저 언어 ko/en/es/de → 각자 페이지, 그 외 → 영어.
-   드롭다운에서 직접 고른 언어(munote-lang)가 있으면 그게 우선 — 선택을 되돌리는 덫 방지. */
-(function () {
-  try {
-    var map = { en: 'index-en.html', es: 'index-es.html', de: 'index-de.html' };
-    var saved = localStorage.getItem('munote-lang');
-    var target = null;
-    if (saved) {
-      if (saved !== 'ko' && map[saved]) target = map[saved];
-    } else {
-      var nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
-      if (nav !== 'ko') target = map[nav] || map.en;
-    }
-    if (target) location.replace(target);
-  } catch (e) {}
-})();
-</script>
 <link rel="canonical" href="https://oneumart.com/munote/" />
 <link rel="alternate" hreflang="ko" href="https://oneumart.com/munote/" />
 <link rel="alternate" hreflang="en" href="https://oneumart.com/munote/index-en.html" />
@@ -409,6 +391,16 @@
     .shot { width: 226px; }
     section { padding: 68px 0; }
   }
+  /* 언어 안내 띠 (2026-10-18): 자동 언어 이동을 없앤 대신, 한국어가 아닌 브라우저에만 보인다.
+     자동 이동은 검색 로봇이 이 페이지를 "다른 주소로 넘어가는 페이지"로 보게 만들어 색인에서 빠졌었다. */
+  .lang-hint { background: var(--ink); color: #fff; font-size: 13px; }
+  .lang-hint[hidden] { display: none; }
+  .lang-hint-inner { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 40px; padding-top: 6px; padding-bottom: 6px; position: relative; }
+  .lang-hint-text { opacity: 0.78; }
+  .lang-hint-link { color: #fff; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .lang-hint-close { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: 0; color: #fff; opacity: 0.7; font-size: 18px; line-height: 1; padding: 6px; cursor: pointer; }
+  .lang-hint-close:hover { opacity: 1; }
+  @media (max-width: 520px) { .lang-hint-inner { flex-direction: column; gap: 2px; padding-right: 44px; padding-left: 16px; align-items: flex-start; justify-content: center; } }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 <style>
@@ -490,6 +482,42 @@
 </style>
 </head>
 <body>
+<div class="lang-hint" id="lang-hint" hidden data-nosnippet>
+  <div class="wrap lang-hint-inner">
+    <span class="lang-hint-text"></span>
+    <a class="lang-hint-link" href="index-en.html"></a>
+    <button type="button" class="lang-hint-close" aria-label="Close">&times;</button>
+  </div>
+</div>
+<script>
+/* 언어 안내 띠 (2026-10-18) — 예전 자동 이동(2026-09-02)을 대신한다. 페이지를 옮기지 않고 안내만.
+   드롭다운에서 고른 언어(munote-lang)가 ko면 띠를 안 보이고, 띠를 닫으면 ko로 기억한다. */
+(function () {
+  try {
+    var T = {
+      en: { href: 'index-en.html', text: 'This page is in Korean.', link: 'View in English \u2192', close: 'Close' },
+      es: { href: 'index-es.html', text: 'Esta p\u00e1gina est\u00e1 en coreano.', link: 'Ver en espa\u00f1ol \u2192', close: 'Cerrar' },
+      de: { href: 'index-de.html', text: 'Diese Seite ist auf Koreanisch.', link: 'Auf Deutsch ansehen \u2192', close: 'Schlie\u00dfen' }
+    };
+    var saved = null;
+    try { saved = localStorage.getItem('munote-lang'); } catch (e) {}
+    if (saved === 'ko') return;
+    var lang = saved && T[saved] ? saved : (navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (lang === 'ko') return;
+    var t = T[lang] || T.en;
+    var bar = document.getElementById('lang-hint');
+    bar.setAttribute('lang', T[lang] ? lang : 'en');
+    bar.querySelector('.lang-hint-text').textContent = t.text;
+    var a = bar.querySelector('.lang-hint-link');
+    a.textContent = t.link; a.href = t.href;
+    a.addEventListener('click', function () { try { localStorage.setItem('munote-lang', T[lang] ? lang : 'en'); } catch (e) {} });
+    var x = bar.querySelector('.lang-hint-close');
+    x.setAttribute('aria-label', t.close);
+    x.addEventListener('click', function () { bar.hidden = true; try { localStorage.setItem('munote-lang', 'ko'); } catch (e) {} });
+    bar.hidden = false;
+  } catch (e) {}
+})();
+</script>
 
 <nav class="nav" id="nav" aria-label="주 메뉴">
   <div class="wrap nav-inner">
