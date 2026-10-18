@@ -86,16 +86,16 @@
     <priority>0.5</priority>
   </url>
 <!-- guides:start -->
-  <url><loc>https://oneumart.com/munote/guides/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/about/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-journal/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-log-template/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-time-per-day/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-efficiently/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-motivation/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-apps/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/stage-fright/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/practice-routine/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://oneumart.com/munote/guides/audition-prep/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/about/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-journal/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-log-template/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-time-per-day/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-efficiently/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-motivation/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-apps/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/stage-fright/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/practice-routine/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://oneumart.com/munote/guides/audition-prep/</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <!-- guides:end -->
 </urlset>
