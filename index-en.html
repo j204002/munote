@@ -391,6 +391,12 @@
     .shot { width: 226px; }
     section { padding: 68px 0; }
   }
+  /* Practice guides block (2026-10-18) — links the home page to the English guides for search engines and readers. */
+  .guides-list { max-width: 720px; margin: 40px auto 0; display: grid; gap: 10px; }
+  .guides-list a { display: block; padding: 16px 18px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); font-weight: 600; font-size: 15px; transition: border-color 0.2s; }
+  .guides-list a:hover { border-color: var(--ink); }
+  .guides-list a span { display: block; margin-top: 3px; font-weight: 400; font-size: 13.5px; color: var(--gray); line-height: 1.5; }
+  .guides-all { display: block; text-align: center; margin-top: 18px; font-size: 14px; color: var(--ink); }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 <style>
@@ -640,6 +646,24 @@
       <div class="privacy-item reveal d1"><span class="mark">02</span><span>While sound detection is on, it is always shown on screen.</span></div>
       <div class="privacy-item reveal d2"><span class="mark">03</span><span>Your notes and piece names are never sent to the AI server &mdash; or shown to friends &mdash; under any circumstances.</span></div>
     </div>
+  </div>
+</section>
+
+<section id="guides">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker reveal">Guides</div>
+      <h2 class="reveal d1">Practice guides for musicians</h2>
+      <p class="lead reveal d2">Research-checked guides written by a music educator.</p>
+    </div>
+    <div class="guides-list">
+      <a href="guides/practice-journal/">How to Keep a Music Practice Journal<span>What to write after each session, and how a journal helps you plan a piece by a deadline.</span></a>
+      <a href="guides/practice-time-per-day/">How Long Should You Practice Each Day?<span>For hobby players, entrance-exam students and music majors.</span></a>
+      <a href="guides/practice-efficiently/">How to Practice More Efficiently<span>Skip early run-throughs, start slow, finish one section a day.</span></a>
+      <a href="guides/stage-fright/">Stage Fright for Musicians<span>Why it happens and how to make your preparation visible.</span></a>
+      <a href="guides/practice-apps/">Music Practice Tracker Apps Compared<span>How each app records practice time, and which one fits you.</span></a>
+    </div>
+    <a class="guides-all" href="guides/">All practice guides &rarr;</a>
   </div>
 </section>
 
