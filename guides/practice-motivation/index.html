@@ -79,7 +79,8 @@
   .appcard img { width:48px; height:48px; border-radius:12px; flex:none; }
   .appcard h2 { font-size:16px; font-weight:700; }
   .appcard p { margin-top:3px; font-size:13.5px; color:rgba(255,255,255,0.72); line-height:1.5; }
-  .appcard a { margin-top:16px; display:inline-block; background:#fff; color:var(--ink); font-size:13px; font-weight:700; border-radius:999px; padding:9px 17px; text-decoration:none; }
+  .appcard .stores { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .appcard a { display:inline-block; background:#fff; color:var(--ink); font-size:13px; font-weight:700; border-radius:999px; padding:9px 17px; text-decoration:none; }
   .sources { margin-top:36px; padding-top:18px; border-top:1px solid var(--line); }
   .sources ol { margin:8px 0 0 20px; font-size:13px; line-height:1.65; color:var(--gray); }
   .sources a { word-break:break-all; }
@@ -97,6 +98,14 @@
 <nav class="nav"><div class="nav-inner">
   <a href="../../index-en.html" aria-label="MU:note home"><img src="../../img/logo-horizontal.png" alt="MU:note"></a>
   <a class="cta" href="https://apps.apple.com/app/id6800597794">Get the app</a>
+  <script>
+    // On Android phones the nav button opens Google Play, like the landing page (founder 2026-10-17); other devices keep the App Store.
+    (function () {
+      if (!/Android/i.test(navigator.userAgent || '')) return;
+      var a = document.currentScript && document.currentScript.previousElementSibling;
+      if (a && a.classList.contains('cta')) a.href = 'https://play.google.com/store/apps/details?id=com.musu.munote';
+    })();
+  </script>
 </div></nav>
 <main>
 <div class="crumb"><a href="../">Guides</a> · Motivation</div>
@@ -127,7 +136,7 @@
 <p>MU:note is built on the same idea: it never blames you for days you did not practice. Its streak counts days with at least 20 minutes of playing, and it only records what you did.</p>
 </article>
 <section class="faq" id="faq"><h2>Frequently asked questions</h2><h3>Is it normal to lose motivation to practice?</h3><p>Yes. Motivation rises and falls for every musician. What helps is a routine that survives low days, not waiting for motivation to return.</p><h3>Should I take days off?</h3><p>Rest is part of practice. Plan it, so a day off is a choice rather than something that happened to you.</p><h3>Do practice streaks help?</h3><p>They can, as long as a broken streak does not turn into guilt. Treat the streak as a record of what you did, not a rule you must not break.</p><h3>Do I need an account to practice with friends in MU:note?</h3><p>Yes. Friends is for signed-in members. Recording and the calendar work without an account.</p></section>
-<section class="appcard"><div class="row"><img src="../../img/app-icon.png" alt="" width="48" height="48"><div><h2>Let the minutes write themselves</h2><p>MU:note listens and counts only the time you actually play. Audio is never recorded.</p></div></div><a href="https://apps.apple.com/app/id6800597794">Download on the App Store</a></section>
+<section class="appcard"><div class="row"><img src="../../img/app-icon.png" alt="" width="48" height="48"><div><h2>Let the minutes write themselves</h2><p>MU:note listens and counts only the time you actually play. Audio is never recorded.</p></div></div><div class="stores"><a href="https://apps.apple.com/app/id6800597794">Download on the App Store</a><a href="https://play.google.com/store/apps/details?id=com.musu.munote">Get it on Google Play</a></div></section>
 <section class="sources"><div class="k">Sources</div><ol><li>Evans, P., McPherson, G. E., &amp; Davidson, J. W. (2013). The role of psychological needs in ceasing music and music learning activities. Psychology of Music, 41(5), 600–619. <a href="https://doi.org/10.1177/0305735612441736">https://doi.org/10.1177/0305735612441736</a></li></ol></section>
 <section class="author"><div class="av" aria-hidden="true">JK</div><div><b><a href="../../about/">Jisoo Kim</a></b><p>Founder of MU:note. Master's degree in music, music educator, and author of published music research.</p></div></section>
 <section class="related"><div class="k">More guides</div><a href="../practice-journal/">How to Keep a Music Practice Journal (and Actually Stick With It)<span>What to write in a music practice journal after each session, why memory of practice time misleads, and how a journal helps you plan a piece by a deadline.</span></a><a href="../practice-apps/">Music Practice Tracker Apps Compared: Which One Fits You?<span>A factual comparison of music practice tracker apps — how each records practice time (timer, manual entry or automatic) and which kind of musician each fits.</span></a><a href="../audition-prep/">How to Prepare for a Music Audition<span>How to prepare for a music audition or entrance exam: plan back from the date, practice performing in halls and mock auditions, and trust your own work.</span></a></section>
@@ -147,8 +156,11 @@
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a || typeof amplitude === 'undefined') return;
-    if ((a.getAttribute('href') || '').indexOf('apps.apple.com') === -1) return;
-    amplitude.track('app_store_clicked', { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' });
+    var href = a.getAttribute('href') || '';
+    var props = { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' };
+    if (href.indexOf('apps.apple.com') !== -1) amplitude.track('app_store_clicked', props);
+    else if (href.indexOf('play.google.com') !== -1) amplitude.track('android_store_clicked', props);
+    else return;
     if (amplitude.flush) amplitude.flush();
   }, true);
 </script>

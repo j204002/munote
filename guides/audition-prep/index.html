@@ -79,7 +79,8 @@
   .appcard img { width:48px; height:48px; border-radius:12px; flex:none; }
   .appcard h2 { font-size:16px; font-weight:700; }
   .appcard p { margin-top:3px; font-size:13.5px; color:rgba(255,255,255,0.72); line-height:1.5; }
-  .appcard a { margin-top:16px; display:inline-block; background:#fff; color:var(--ink); font-size:13px; font-weight:700; border-radius:999px; padding:9px 17px; text-decoration:none; }
+  .appcard .stores { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .appcard a { display:inline-block; background:#fff; color:var(--ink); font-size:13px; font-weight:700; border-radius:999px; padding:9px 17px; text-decoration:none; }
   .sources { margin-top:36px; padding-top:18px; border-top:1px solid var(--line); }
   .sources ol { margin:8px 0 0 20px; font-size:13px; line-height:1.65; color:var(--gray); }
   .sources a { word-break:break-all; }
@@ -97,6 +98,14 @@
 <nav class="nav"><div class="nav-inner">
   <a href="../../index-en.html" aria-label="MU:note home"><img src="../../img/logo-horizontal.png" alt="MU:note"></a>
   <a class="cta" href="https://apps.apple.com/app/id6800597794">Get the app</a>
+  <script>
+    // On Android phones the nav button opens Google Play, like the landing page (founder 2026-10-17); other devices keep the App Store.
+    (function () {
+      if (!/Android/i.test(navigator.userAgent || '')) return;
+      var a = document.currentScript && document.currentScript.previousElementSibling;
+      if (a && a.classList.contains('cta')) a.href = 'https://play.google.com/store/apps/details?id=com.musu.munote';
+    })();
+  </script>
 </div></nav>
 <main>
 <div class="crumb"><a href="../">Guides</a> · Performance</div>
@@ -125,7 +134,7 @@
 <p><a href="../../index-en.html#how">MU:note</a> keeps that record for you — the time you actually played, day by day, on a calendar you can look back on before you go in. If nerves are a worry, read <a href="../stage-fright/">stage fright for musicians</a>, and keep a short <a href="../practice-journal/">practice journal</a> through your preparation.</p>
 </article>
 <section class="faq" id="faq"><h2>Frequently asked questions</h2><h3>How many mock auditions should I do?</h3><p>As many as you can arrange. Each one makes the room, the waiting and the first notes more familiar.</p><h3>What if I make a mistake during the audition?</h3><p>Keep going. Recovering calmly is part of performing, and the panel hears the whole performance, not a single note.</p><h3>Should I learn new material in the last week?</h3><p>No. Use the last week to keep what you have secure and to rehearse the routine of the day.</p></section>
-<section class="appcard"><div class="row"><img src="../../img/app-icon.png" alt="" width="48" height="48"><div><h2>Let the minutes write themselves</h2><p>MU:note listens and counts only the time you actually play. Audio is never recorded.</p></div></div><a href="https://apps.apple.com/app/id6800597794">Download on the App Store</a></section>
+<section class="appcard"><div class="row"><img src="../../img/app-icon.png" alt="" width="48" height="48"><div><h2>Let the minutes write themselves</h2><p>MU:note listens and counts only the time you actually play. Audio is never recorded.</p></div></div><div class="stores"><a href="https://apps.apple.com/app/id6800597794">Download on the App Store</a><a href="https://play.google.com/store/apps/details?id=com.musu.munote">Get it on Google Play</a></div></section>
 <section class="sources"><div class="k">Sources</div><ol><li>Williamon, A., Aufegger, L., &amp; Eiholzer, H. (2014). Simulating and stimulating performance: introducing distributed simulation to enhance musical learning and performance. Frontiers in Psychology, 5. <a href="https://doi.org/10.3389/fpsyg.2014.00025">https://doi.org/10.3389/fpsyg.2014.00025</a></li><li>González, A., Blanco-Piñeiro, P., &amp; Díaz-Pereira, M. P. (2018). Music performance anxiety: Exploring structural relations with self-efficacy, boost, and self-rated performance. Psychology of Music, 46(6), 831–847. <a href="https://doi.org/10.1177/0305735617727822">https://doi.org/10.1177/0305735617727822</a></li></ol></section>
 <section class="author"><div class="av" aria-hidden="true">JK</div><div><b><a href="../../about/">Jisoo Kim</a></b><p>Founder of MU:note. Master's degree in music, music educator, and author of published music research.</p></div></section>
 <section class="related"><div class="k">More guides</div><a href="../stage-fright/">Stage Fright for Musicians: Why It Happens and What Helps<span>Why stage fright hits musicians so hard, what research and well-known performers show, and practical ways to make your preparation visible before a concert.</span></a><a href="../practice-routine/">How to Build a Practice Routine That Sticks<span>How to build a daily practice routine for piano, guitar or any instrument: what order to practice in, how to split your time, and how to keep the habit.</span></a><a href="../practice-journal/">How to Keep a Music Practice Journal (and Actually Stick With It)<span>What to write in a music practice journal after each session, why memory of practice time misleads, and how a journal helps you plan a piece by a deadline.</span></a></section>
@@ -145,8 +154,11 @@
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a || typeof amplitude === 'undefined') return;
-    if ((a.getAttribute('href') || '').indexOf('apps.apple.com') === -1) return;
-    amplitude.track('app_store_clicked', { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' });
+    var href = a.getAttribute('href') || '';
+    var props = { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' };
+    if (href.indexOf('apps.apple.com') !== -1) amplitude.track('app_store_clicked', props);
+    else if (href.indexOf('play.google.com') !== -1) amplitude.track('android_store_clicked', props);
+    else return;
     if (amplitude.flush) amplitude.flush();
   }, true);
 </script>

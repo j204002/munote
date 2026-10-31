@@ -79,7 +79,8 @@
   .appcard img { width:48px; height:48px; border-radius:12px; flex:none; }
   .appcard h2 { font-size:16px; font-weight:700; }
   .appcard p { margin-top:3px; font-size:13.5px; color:rgba(255,255,255,0.72); line-height:1.5; }
-  .appcard a { margin-top:16px; display:inline-block; background:#fff; color:var(--ink); font-size:13px; font-weight:700; border-radius:999px; padding:9px 17px; text-decoration:none; }
+  .appcard .stores { margin-top:16px; display:flex; flex-wrap:wrap; gap:8px; }
+  .appcard a { display:inline-block; background:#fff; color:var(--ink); font-size:13px; font-weight:700; border-radius:999px; padding:9px 17px; text-decoration:none; }
   .sources { margin-top:36px; padding-top:18px; border-top:1px solid var(--line); }
   .sources ol { margin:8px 0 0 20px; font-size:13px; line-height:1.65; color:var(--gray); }
   .sources a { word-break:break-all; }
@@ -97,6 +98,14 @@
 <nav class="nav"><div class="nav-inner">
   <a href="../../index-en.html" aria-label="MU:note home"><img src="../../img/logo-horizontal.png" alt="MU:note"></a>
   <a class="cta" href="https://apps.apple.com/app/id6800597794">Get the app</a>
+  <script>
+    // On Android phones the nav button opens Google Play, like the landing page (founder 2026-10-17); other devices keep the App Store.
+    (function () {
+      if (!/Android/i.test(navigator.userAgent || '')) return;
+      var a = document.currentScript && document.currentScript.previousElementSibling;
+      if (a && a.classList.contains('cta')) a.href = 'https://play.google.com/store/apps/details?id=com.musu.munote';
+    })();
+  </script>
 </div></nav>
 <main>
 <div class="crumb"><a href="../">Guides</a> · Practice habits</div>
@@ -126,7 +135,7 @@
 <p><a href="../../index-en.html#how">MU:note</a> records how long you actually played in each session automatically, so your weekly review starts from real numbers. For how long each day should be, see <a href="../practice-time-per-day/">how long to practice each day</a>, and for how to make each block count, see <a href="../practice-efficiently/">how to practice more efficiently</a>.</p>
 </article>
 <section class="faq" id="faq"><h2>Frequently asked questions</h2><h3>Do I need to warm up every time?</h3><p>A few minutes of gentle playing helps your hands, your breath or your voice settle before harder work. Keep it short so it does not eat the session.</p><h3>What if I only have 20 minutes?</h3><p>Keep the same order and shrink each part: a minute or two of warm-up, one technical item, and one focused section.</p><h3>What if I miss a day?</h3><p>Pick the routine up the next day without trying to make up the time. Consistency over weeks matters more than any single day.</p></section>
-<section class="appcard"><div class="row"><img src="../../img/app-icon.png" alt="" width="48" height="48"><div><h2>Let the minutes write themselves</h2><p>MU:note listens and counts only the time you actually play. Audio is never recorded.</p></div></div><a href="https://apps.apple.com/app/id6800597794">Download on the App Store</a></section>
+<section class="appcard"><div class="row"><img src="../../img/app-icon.png" alt="" width="48" height="48"><div><h2>Let the minutes write themselves</h2><p>MU:note listens and counts only the time you actually play. Audio is never recorded.</p></div></div><div class="stores"><a href="https://apps.apple.com/app/id6800597794">Download on the App Store</a><a href="https://play.google.com/store/apps/details?id=com.musu.munote">Get it on Google Play</a></div></section>
 <section class="sources"><div class="k">Sources</div><ol><li>Carter, C. E., &amp; Grahn, J. A. (2016). Optimizing Music Learning: Exploring How Blocked and Interleaved Practice Schedules Affect Advanced Performance. Frontiers in Psychology, 7. <a href="https://doi.org/10.3389/fpsyg.2016.01251">https://doi.org/10.3389/fpsyg.2016.01251</a></li><li>Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. Psychological Review, 100(3), 363–406. <a href="https://doi.org/10.1037/0033-295x.100.3.363">https://doi.org/10.1037/0033-295x.100.3.363</a></li><li>Macnamara, B. N., &amp; Maitra, M. (2019). The role of deliberate practice in expert performance: revisiting Ericsson, Krampe &amp; Tesch-Römer (1993). Royal Society Open Science, 6(8), 190327. <a href="https://doi.org/10.1098/rsos.190327">https://doi.org/10.1098/rsos.190327</a></li><li>Duke, R. A., Simmons, A. L., &amp; Cash, C. D. (2009). It's Not How Much; It's How. Journal of Research in Music Education, 56(4), 310–321. <a href="https://doi.org/10.1177/0022429408328851">https://doi.org/10.1177/0022429408328851</a></li></ol></section>
 <section class="author"><div class="av" aria-hidden="true">JK</div><div><b><a href="../../about/">Jisoo Kim</a></b><p>Founder of MU:note. Master's degree in music, music educator, and author of published music research.</p></div></section>
 <section class="related"><div class="k">More guides</div><a href="../practice-efficiently/">How to Practice More Efficiently: Tips for Musicians<span>Practice an instrument more efficiently: skip early run-throughs, start at the slowest tempo, and finish one section a day instead of the whole piece at once.</span></a><a href="../practice-time-per-day/">How Long Should You Practice Your Instrument Each Day?<span>How long to practice an instrument each day for hobby players, exam students and music majors, why short daily practice beats one long weekly session.</span></a><a href="../practice-log-template/">Free Music Practice Log Template (Printable PDF)<span>A free one-page music practice log you can print: date, piece, minutes actually played, what worked, what to fix, and a weekly review box. Any instrument.</span></a></section>
@@ -146,8 +155,11 @@
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a || typeof amplitude === 'undefined') return;
-    if ((a.getAttribute('href') || '').indexOf('apps.apple.com') === -1) return;
-    amplitude.track('app_store_clicked', { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' });
+    var href = a.getAttribute('href') || '';
+    var props = { position: a.closest('nav') ? 'nav' : 'guide', page_lang: 'en' };
+    if (href.indexOf('apps.apple.com') !== -1) amplitude.track('app_store_clicked', props);
+    else if (href.indexOf('play.google.com') !== -1) amplitude.track('android_store_clicked', props);
+    else return;
     if (amplitude.flush) amplitude.flush();
   }, true);
 </script>
