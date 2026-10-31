@@ -18,6 +18,42 @@
         "de": "Der Shop ist geöffnet. Gestalte deine Figur und deinen Übungsraum. Drei Figuren in Oberteilen mit Blumen, Streifen und Karos stehen unter einer Ladenmarkise."
       },
       "action": "store.special"
+    },
+    {
+      "id": "special-open-2026-11",
+      "from": "2026-11-01",
+      "until": "2026-11-30",
+      "audience": "all",
+      "image": {
+        "ko": "popups/special-open-2026-11-ko-v1.jpg",
+        "en": "popups/special-open-2026-11-en-v1.jpg",
+        "es": "popups/special-open-2026-11-es-v1.jpg",
+        "de": "popups/special-open-2026-11-de-v1.jpg"
+      },
+      "alt": {
+        "ko": "11월 가을 스페셜. 이번 달에만 만날 수 있어요. 트렌치코트에 체크 목도리를 한 캐릭터가 단풍잎을 들고 있어요.",
+        "en": "Autumn Special for November. Only here this month. A character in a trench coat and plaid scarf holds a maple leaf.",
+        "es": "Especial de otoño de noviembre. Solo por este mes. Un personaje con gabardina y bufanda de cuadros sostiene una hoja de arce.",
+        "de": "Herbst-Special im November. Nur diesen Monat. Eine Figur in Trenchcoat und kariertem Schal hält ein Ahornblatt."
+      },
+      "action": "store.special"
+    }
+  ],
+  "banners": [
+    {
+      "month": "2026-11",
+      "image": {
+        "ko": "popups/special-banner-2026-11-ko-v1.png",
+        "en": "popups/special-banner-2026-11-en-v1.png",
+        "es": "popups/special-banner-2026-11-es-v1.png",
+        "de": "popups/special-banner-2026-11-de-v1.png"
+      },
+      "alt": {
+        "ko": "11월 가을 스페셜. 이번 달에만 살 수 있어요.",
+        "en": "Autumn Special for November. Only available this month.",
+        "es": "Especial de otoño de noviembre. Solo disponible este mes.",
+        "de": "Herbst-Special im November. Nur diesen Monat erhältlich."
+      }
     }
   ]
 }
