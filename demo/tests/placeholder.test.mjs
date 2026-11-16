@@ -99,3 +99,16 @@ for (const [page, lang] of PAGES) {
     assert.match(html, /\.friends-shot img \{[^}]*height:\s*auto/);
   });
 }
+
+// 폰·태블릿 폭(≤860)에서는 친구 칸도 한 줄 — 리디자인(7c62e16)의 데스크톱 2칸(그림 왼쪽·글 오른쪽) 규칙이 폰까지 새어
+// 390px 폰에서 글이 좁은 칸에 갇혔다(2026-11-16 리뷰 발견 · 대표님 "바꾸고 게시"). 다른 2칸 섹션들과 같이 ≤860 블록에서 되돌린다.
+const narrowBlock = (html) => {
+  const i = html.indexOf('@media (max-width:860px) {');
+  assert.ok(i >= 0, '≤860 블록이 없다');
+  return html.slice(i, html.indexOf('\n  }', i));
+};
+for (const [page, lang] of PAGES) {
+  test(`${page}: 폰·태블릿 폭에서 친구 칸은 한 줄이다`, () => {
+    assert.match(narrowBlock(read(page)), /\.friends-grid \{ grid-template-columns:1fr;/, `${lang}: ≤860에서 친구 칸을 한 줄로 되돌리는 규칙이 없다`);
+  });
+}
