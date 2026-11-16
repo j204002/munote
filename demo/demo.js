@@ -13,7 +13,12 @@ const SCREENS = { home, focus, reflection, records, friends, settings };
 const root = document.getElementById('munote-demo');
 // 홈은 체험판 자리에 빈 폰 틀을 미리 그려 둔다(2026-11-16 — #business-info로 들어올 때 페이지가 늦게 커지지 않게).
 // 번역 파일을 못 받으면(인터넷 끊김 등) 그 빈 틀과 "눌러보세요" 띠만 남으니 자리를 통째로 숨긴다.
-const firstT = root ? await loadLocale(root.dataset.lang || 'ko').catch(() => null) : null;
+const firstT = root
+  ? await loadLocale(root.dataset.lang || 'ko').catch((e) => {
+      console.warn('[munote-demo] 번역 파일을 못 받아 체험판을 숨깁니다', e); // 나중에 원인을 찾을 수 있게(2026-11-16 리뷰)
+      return null;
+    })
+  : null;
 if (root && !firstT) root.hidden = true;
 
 if (root && firstT) {

@@ -54,21 +54,36 @@ test('체험판 화면 칸은 비율과 넘침 숨김으로 높이가 고정된�
   assert.match(rule[1], /overflow:\s*hidden/);
 });
 
-test('번역 파일을 못 받으면 체험판 자리를 숨긴다(미리 그린 빈 폰 틀이 남지 않게)', async () => {
+test('번역 파일을 못 받으면 체험판 자리를 숨기고, 이유를 콘솔에 남긴다(미리 그린 빈 폰 틀이 남지 않게)', async () => {
   const fakeRoot = { dataset: { lang: 'ko' }, hidden: false, innerHTML: '' };
-  const saved = { document: globalThis.document, fetch: globalThis.fetch };
+  const saved = { document: globalThis.document, fetch: globalThis.fetch, warn: console.warn };
+  const warned = [];
   globalThis.document = { getElementById: (id) => (id === 'munote-demo' ? fakeRoot : null) };
   globalThis.fetch = () => Promise.reject(new Error('offline'));
+  console.warn = (...args) => warned.push(args);
+  let importError = null;
   try {
     await import(new URL('../demo.js?offline', import.meta.url).href);
-  } catch {
-    // 고치기 전: 맨 위 await가 실패해 모듈째 깨지고 자리는 그대로 남는다
+  } catch (e) {
+    importError = e; // 고치기 전엔 맨 위 await가 실패해 모듈째 깨졌다 — 원인을 메시지로 보여 준다(리뷰 Low ㉢)
   } finally {
     globalThis.document = saved.document;
     globalThis.fetch = saved.fetch;
+    console.warn = saved.warn;
   }
-  assert.equal(fakeRoot.hidden, true);
+  assert.equal(fakeRoot.hidden, true, importError ? `demo.js 불러오기 실패: ${importError.message}` : undefined);
+  // 실패 이유가 아무 데도 안 남으면 나중에 원인을 못 찾는다(리뷰 Low ㉡)
+  assert.ok(warned.some((args) => args.some((a) => a instanceof Error && a.message === 'offline')), '실패 이유(offline)가 console.warn에 없다');
 });
+
+// 체험판 프로그램 자체(demo.js나 화면 파일)를 못 받으면 demo.js가 아예 안 돈다 — 그때는 script 태그의 onerror가 자리를 숨긴다(리뷰 Low ㉠)
+for (const [page, lang] of PAGES) {
+  test(`${page}: 체험판 프로그램을 못 받으면 자리를 숨기는 장치가 있다`, () => {
+    const tag = read(page).match(/<script type="module" src="demo\/demo\.js"[^>]*>/);
+    assert.ok(tag, `${lang}: 체험판 script 태그가 없다`);
+    assert.match(tag[0], /onerror="[^"]*getElementById\('munote-demo'\)[^"]*hidden\s*=\s*true/);
+  });
+}
 
 // 친구 사진(loading="lazy")에 크기가 없으면 받기 전 2px → 받은 뒤 수백 px로 커져, 컴퓨터·아이패드 사파리에서
 // #business-info가 사업자 정보 위에서 멈췄다(리뷰 Medium ③). 원본 크기를 적고 CSS는 height:auto(비율만 잡는다).
