@@ -11,12 +11,16 @@ import * as settings from './screens/settings.js';
 
 const SCREENS = { home, focus, reflection, records, friends, settings };
 const root = document.getElementById('munote-demo');
+// 홈은 체험판 자리에 빈 폰 틀을 미리 그려 둔다(2026-11-16 — #business-info로 들어올 때 페이지가 늦게 커지지 않게).
+// 번역 파일을 못 받으면(인터넷 끊김 등) 그 빈 틀과 "눌러보세요" 띠만 남으니 자리를 통째로 숨긴다.
+const firstT = root ? await loadLocale(root.dataset.lang || 'ko').catch(() => null) : null;
+if (root && !firstT) root.hidden = true;
 
-if (root) {
+if (root && firstT) {
   const lang = root.dataset.lang || 'ko';
   const store = createStore();
   store.set(setLang(store.get(), lang));
-  let T = await loadLocale(lang);
+  let T = firstT;
   root.innerHTML = `<div class="md-phone"><span class="md-ribbon">${esc(T.t('demo.ribbon'))}</span><div class="md-screen"><div class="md-mount"></div><div class="md-toast" role="status"></div></div></div><p class="md-hint">${T.t('demo.hint')}</p>`;
   const mount = root.querySelector('.md-mount');
   const toastEl = root.querySelector('.md-toast');

@@ -41,6 +41,46 @@ for (const [page, lang] of PAGES) {
 
 test('demo.js가 바꿔 그리는 틀도 같은 모양이다(폰 틀 → 띠 → 화면, 그 아래 안내 글)', () => {
   const src = read('demo/demo.js');
-  assert.match(src, /<div class="md-phone"><span class="md-ribbon">\$\{esc\(T\.t\('demo\.ribbon'\)\)\}<\/span><div class="md-screen">/);
+  // 틀 템플릿의 '맨 앞'이 폰 틀이어야 한다 — 폰 앞에 다른 요소를 넣으면 자리표시보다 커진다(리뷰 Low ②)
+  assert.match(src, /root\.innerHTML = `<div class="md-phone"><span class="md-ribbon">\$\{esc\(T\.t\('demo\.ribbon'\)\)\}<\/span><div class="md-screen">/);
   assert.match(src, /<\/div><\/div><p class="md-hint">\$\{T\.t\('demo\.hint'\)\}<\/p>`/);
 });
+
+test('체험판 화면 칸은 비율과 넘침 숨김으로 높이가 고정된다(안에 무엇이 들어와도 자리표시와 같은 크기)', () => {
+  const css = read('demo/demo.css');
+  const rule = css.match(/\.md-screen\s*\{([^}]*)\}/);
+  assert.ok(rule, '.md-screen 규칙이 없다');
+  assert.match(rule[1], /aspect-ratio:\s*9\s*\/\s*19\.5/);
+  assert.match(rule[1], /overflow:\s*hidden/);
+});
+
+test('번역 파일을 못 받으면 체험판 자리를 숨긴다(미리 그린 빈 폰 틀이 남지 않게)', async () => {
+  const fakeRoot = { dataset: { lang: 'ko' }, hidden: false, innerHTML: '' };
+  const saved = { document: globalThis.document, fetch: globalThis.fetch };
+  globalThis.document = { getElementById: (id) => (id === 'munote-demo' ? fakeRoot : null) };
+  globalThis.fetch = () => Promise.reject(new Error('offline'));
+  try {
+    await import(new URL('../demo.js?offline', import.meta.url).href);
+  } catch {
+    // 고치기 전: 맨 위 await가 실패해 모듈째 깨지고 자리는 그대로 남는다
+  } finally {
+    globalThis.document = saved.document;
+    globalThis.fetch = saved.fetch;
+  }
+  assert.equal(fakeRoot.hidden, true);
+});
+
+// 친구 사진(loading="lazy")에 크기가 없으면 받기 전 2px → 받은 뒤 수백 px로 커져, 컴퓨터·아이패드 사파리에서
+// #business-info가 사업자 정보 위에서 멈췄다(리뷰 Medium ③). 원본 크기를 적고 CSS는 height:auto(비율만 잡는다).
+const pngSize = (p) => { const b = readFileSync(new URL(p, root)); return [b.readUInt32BE(16), b.readUInt32BE(20)]; };
+for (const [page, lang] of PAGES) {
+  test(`${page}: 친구 사진이 받아지기 전부터 제 크기로 자리를 잡는다`, () => {
+    const html = read(page);
+    const m = html.match(/<figure class="friends-shot[^"]*"><img ([^>]*?)\s*\/?>/);
+    assert.ok(m, `${lang}: 친구 사진 태그가 없다`);
+    const [w, h] = pngSize(`img/shots/${lang}/06.png`);
+    assert.match(m[1], new RegExp(`\\bwidth="${w}"`));
+    assert.match(m[1], new RegExp(`\\bheight="${h}"`));
+    assert.match(html, /\.friends-shot img \{[^}]*height:\s*auto/);
+  });
+}
