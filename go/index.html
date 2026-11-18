@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MU:note 받기</title>
+<!-- 인쇄물(포스터 등) QR을 찍은 폰을 스토어로 바로 보내는 넘김 페이지. 검색에는 안 잡힌다(sitemap에도 없다).
+     아이폰 → App Store · 안드로이드 → Google Play · 그 밖(컴퓨터) → 랜딩 첫 화면.
+     넘기기 직전에 "이 QR로 몇 명 왔나"를 한 번 센다(Amplitude 이벤트 qr_opened · 명함 QR과 같은 utm 규칙).
+     QR 주소 예: https://oneumart.com/munote/go/?utm_source=poster&utm_medium=qr&utm_campaign=munote_poster_2026
+     검사: node scripts/test-go.mjs -->
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/png" href="../img/app-icon.png" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  [hidden] { display:none !important; }
+  body { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:28px; padding:32px 24px;
+         background:#fafafa; color:#111; font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; -webkit-font-smoothing:antialiased; text-align:center; }
+  img { width:76px; height:76px; border-radius:18px; }
+  h1 { font-size:22px; font-weight:700; letter-spacing:-0.03em; }
+  p { font-size:15px; color:#8e8e8e; letter-spacing:-0.02em; line-height:1.5; }
+  .btns { display:flex; flex-direction:column; gap:12px; width:100%; max-width:320px; }
+  a { display:block; padding:16px 20px; border-radius:16px; border:1.5px solid #111; color:#111; text-decoration:none; font-size:16px; font-weight:700; letter-spacing:-0.02em; }
+  a.primary { background:#111; color:#fff; }
+  a.plain { border-color:transparent; color:#8e8e8e; font-weight:500; font-size:14px; padding:8px; }
+</style>
+</head>
+<body>
+<img src="../img/app-icon.png" alt="" />
+<div>
+  <h1>MU:note</h1>
+  <p>내 악기 소리만 인식하는 자동 연습 기록</p>
+</div>
+<p id="moving" hidden>스토어로 이동하는 중…</p>
+<div class="btns">
+  <a id="b-ios" class="primary" href="https://apps.apple.com/app/id6800597794">App Store에서 받기</a>
+  <a id="b-and" class="primary" href="https://play.google.com/store/apps/details?id=com.musu.munote">Google Play에서 받기</a>
+  <a id="b-web" class="plain" href="../">MU:note 더 알아보기</a>
+</div>
+<script>
+// <pick>
+var IOS = 'https://apps.apple.com/app/id6800597794';
+var ANDROID_BASE = 'https://play.google.com/store/apps/details?id=com.musu.munote';
+var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+
+// 폰 종류: 'ios' | 'android' | 'web'
+function kindOf(ua, touchPoints) {
+  ua = String(ua || '');
+  if (/Android/i.test(ua)) return 'android';
+  if (/iPhone|iPad|iPod/i.test(ua)) return 'ios';
+  // 아이패드는 맥인 척한다 — 맥인데 손가락 터치가 되면 아이패드
+  if (/Macintosh/i.test(ua) && touchPoints > 1) return 'ios';
+  return 'web';
+}
+
+// 주소 뒤 '?…' 꼬리에서 유입 표시(utm_ 네 가지)만 꺼낸다. 영문·숫자·_ . - 로 된 60자 이하 값만 받는다.
+function utmOf(search) {
+  var out = {};
+  var parts = String(search || '').replace(/^\?/, '').split('&');
+  for (var i = 0; i < parts.length; i++) {
+    var eq = parts[i].indexOf('=');
+    if (eq < 1) continue;
+    var k = parts[i].slice(0, eq), v = parts[i].slice(eq + 1);
+    if (UTM_KEYS.indexOf(k) === -1) continue;
+    if (!/^[A-Za-z0-9_.-]{1,60}$/.test(v)) continue;
+    out[k] = v;
+  }
+  return out;
+}
+
+function utmQuery(utm) {
+  var s = [];
+  for (var i = 0; i < UTM_KEYS.length; i++) if (utm[UTM_KEYS[i]]) s.push(UTM_KEYS[i] + '=' + utm[UTM_KEYS[i]]);
+  return s.join('&');
+}
+
+// 어디로 보낼지. 안드로이드는 유입 표시를 referrer로 실어 플레이 콘솔 '획득 보고서'에도 찍히게 한다.
+// 컴퓨터는 랜딩으로 — utm 표시만 넘긴다(랜딩이 직접 센다).
+function pickTarget(kind, search) {
+  var q = utmQuery(utmOf(search));
+  if (kind === 'ios') return IOS;
+  if (kind === 'android') return ANDROID_BASE + (q ? '&referrer=' + encodeURIComponent(q) : '');
+  return '../' + (q ? '?' + q : '');
+}
+
+// 넘기기 직전에 보내는 기록 한 줄. 브라우저 정보 원문·주소 전체는 넣지 않는다.
+function buildPayload(kind, search, deviceId, now) {
+  var props = utmOf(search);
+  props.store = kind === 'ios' ? 'app_store' : 'google_play';
+  return {
+    api_key: '0bd1141287b691dce8c5ebf88e1fe963', // 랜딩 첫 화면과 같은 프로젝트 — 공개돼도 되는 수집용 키
+    events: [{
+      device_id: deviceId,
+      event_type: 'qr_opened',
+      time: now,
+      platform: 'QR', // 랜딩 방문자(Web)·앱(iOS·Android) 숫자와 안 섞이게 따로 둔다
+      os_name: kind === 'ios' ? 'iOS' : 'Android',
+      event_properties: props,
+      insert_id: deviceId + '-' + now
+    }]
+  };
+}
+// </pick>
+(function () {
+  var kind = kindOf(navigator.userAgent, navigator.maxTouchPoints || 0);
+  var target = pickTarget(kind, location.search);
+  var toStore = kind !== 'web';
+
+  // 폰이면 그 폰의 스토어 버튼만 남긴다(넘김이 막혔을 때 누를 것). 버튼 주소도 넘기는 주소와 같게.
+  if (kind === 'ios') document.getElementById('b-and').hidden = true;
+  if (kind === 'android') { document.getElementById('b-ios').hidden = true; document.getElementById('b-and').href = target; }
+  document.getElementById('b-web').href = pickTarget('web', location.search);
+  var moving = document.getElementById('moving');
+  if (!toStore) moving.textContent = 'MU:note 소개로 이동하는 중…';
+  moving.hidden = false;
+
+  var done = false;
+  function go() { if (done) return; done = true; location.replace(target); }
+
+  // 세는 것은 실제 사이트에서, 스토어로 보낼 때만.
+  // (내 컴퓨터 시험은 안 센다 · 컴퓨터로 온 사람은 랜딩이 같은 표시로 세므로 여기서 또 세지 않는다)
+  var live = /(^|\.)oneumart\.com$/.test(location.hostname);
+  if (!live || !toStore) { go(); return; }
+
+  try {
+    // 같은 폰이 다시 찍어도 한 사람으로 세도록 번호를 폰에 적어 둔다(막혀 있으면 매번 새 번호)
+    var id = null;
+    try { id = localStorage.getItem('munote_go_id'); } catch (e) {}
+    if (!id) {
+      id = 'go-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+      try { localStorage.setItem('munote_go_id', id); } catch (e) {}
+    }
+    var body = JSON.stringify(buildPayload(kind, location.search, id, Date.now()));
+    var url = 'https://api2.amplitude.com/2/httpapi';
+    // sendBeacon = 페이지를 떠나도 브라우저가 끝까지 보내 준다. 없으면 keepalive fetch.
+    if (navigator.sendBeacon && navigator.sendBeacon(url, body)) { /* 맡김 */ }
+    else if (window.fetch) fetch(url, { method: 'POST', body: body, keepalive: true, mode: 'no-cors' }).catch(function () {});
+  } catch (e) {}
+  setTimeout(go, 120); // 보내기를 브라우저에 맡길 틈만 준다 — 기다리지 않는다
+})();
+</script>
+</body>
+</html>
